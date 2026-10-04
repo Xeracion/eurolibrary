@@ -348,7 +348,7 @@ footer .meta{display:grid;gap:16px}
 .counters.four .counter b{font-size:clamp(32px,3.6vw,48px)}
 @media (max-width:560px){.counters.two{grid-template-columns:1fr}}
 .checklist.learn li::before{background:var(--sky-deep)}
-.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;text-align:center}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;text-align:center}
 .quotes blockquote{
   font:400 28px/1.15 var(--font-display);background:var(--cream-deep);border-radius:var(--radius-card);padding:28px 24px;text-wrap:balance;
 }
@@ -364,3 +364,8 @@ footer .meta{display:grid;gap:16px}
 .facts-list small{display:block;color:var(--ash);font-size:14px}
 .facts-list strong{font-weight:500}
 @media (max-width:560px){.facts-list{grid-template-columns:1fr}}
+
+.quotes figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.quotes blockquote{flex:1}
+.quotes figcaption{font-size:14px;color:var(--ash)}
+@media (max-width:960px){.quotes{grid-template-columns:1fr}}

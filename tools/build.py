@@ -200,7 +200,7 @@ RESULTS = {
                 "The mix of backgrounds and professions in the group, and the sense of connection it created."],
         learned=["A heat wave made the programme tough. Participants suggested later start times for events, more breaks and more water and snacks.",
                  "They also asked for more time at the start to get to know each other's stories before organising events together."],
-        quotes=["Inspiring.", "A powerful human experience of connection, growth, and shared vulnerability."],
+        quotes=[("Inspiring.", "Gui"), ("A powerful human experience of connection, growth, and shared vulnerability.", "Beatriz"), ("It was a fun, dynamic trip focussed on connection.", "Rashel")],
     ),
     "spain": dict(
         stats=BASE + [("22", "Human Books in the catalogue"), ("5", "Countries represented in the catalogue")],
@@ -408,7 +408,7 @@ def home():
         <a class="btn btn-primary" href="#destinations">Explore the five chapters</a>
         <a class="btn btn-ghost" href="human-library.html">See how the Human Library works</a>
       </div>
-      <p class="note">All five mobilities are completed and applications are closed. This site is the project record.</p>
+      <p class="note">All five mobilities are completed and applications are closed. This site is the project record. <a href="about.html#results" style="text-decoration:underline">See the results</a>.</p>
 
       <div class="ticket-row" aria-label="The five chapters at a glance">
 {tickets}
@@ -545,6 +545,37 @@ def about():
     </div>
   </section>
 
+  <section id="results" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <span class="eyebrow">Results of the 2025 edition</span>
+        <h2 class="display h2">Five chapters, in numbers</h2>
+        <p class="lead muted">Figures taken from the project reports. Digital figures are as reported in October 2025, six months after the Instagram account launched.</p>
+      </div>
+      <div class="results-grid">
+        {stats_block([("5", "Mobilities in five countries"), ("125", "Young participants, 25 per mobility"), ("20", "Human Library events, 4 per country"), ("20 to 30", "Readers per event, on average"), ("600,000+", "Video views across platforms"), ("20,000+", "Accounts reached on Instagram"), ("1,000+", "Organic followers, with no paid promotion"), ("3,000+", "Likes, comments, shares and saves"), ("200+", "Registrations of interest in the project")])}
+      </div>
+      <p class="lead" style="max-width:760px;margin:32px auto 0;text-align:center">Behind the numbers: more than 75 posts and reels, including over 50 short videos, plus several hours of interviews and footage that fed our podcast and videos. Participants also left written feedback that points to high satisfaction and personal growth.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <span class="eyebrow">Project facts</span>
+        <h2 class="display h2">The project at a glance</h2>
+      </div>
+      <div class="facts-list">
+        <div><small>Programme</small><strong>Erasmus+, European Youth Together</strong></div>
+        <div><small>Project number</small><strong>101186721</strong></div>
+        <div><small>Coordinator</small><strong>Asociación Xeración, Spain</strong></div>
+        <div><small>Partners</small><strong>NGOs from Bulgaria, Greece, the Netherlands, Portugal and Spain</strong></div>
+        <div><small>Mobilities</small><strong>Five chapters, June to November 2025</strong></div>
+        <div><small>Dissemination lead</small><strong>AltVenturers, Greece</strong></div>
+      </div>
+    </div>
+  </section>
+
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
@@ -601,9 +632,9 @@ def chapter(k):
         lists += '<div><h3 class="display h3">What worked</h3><ul class="checklist">' + "".join(f"<li>{e(x)}</li>" for x in r["worked"]) + "</ul></div>"
     if r["learned"]:
         lists += '<div><h3 class="display h3">What we learned</h3><ul class="checklist learn">' + "".join(f"<li>{e(x)}</li>" for x in r["learned"]) + "</ul></div>"
-    quotes = "".join(f"<blockquote>{e(q)}</blockquote>" for q in r["quotes"])
+    quotes = "".join(f"<figure><blockquote>{e(q)}</blockquote><figcaption>{e(n)}, participant</figcaption></figure>" for q, n in r["quotes"])
     if quotes:
-        quotes = f'<div class="quotes">{quotes}<small>Participants, in one sentence.</small></div>'
+        quotes = f'<div class="quotes">{quotes}<small>Participants, describing the chapter in one sentence.</small></div>'
     note = f'<p class="form-note" style="text-align:center;margin-top:12px">{e(r["note"])}</p>' if r["note"] else ""
     two = f'<div class="two-col" style="margin-top:32px">{lists}</div>' if lists else ""
     results_section = f"""  <section id="results" style="padding-top:0">
@@ -740,6 +771,19 @@ def human_library():
         <div class="pillar"><h3 class="display h3" style="font-size:22px">Honest dialogue</h3><p>Create safe spaces to talk openly.</p></div>
         <div class="pillar"><h3 class="display h3" style="font-size:22px">Real listening</h3><p>Help us listen without assumptions.</p></div>
         <div class="pillar"><h3 class="display h3" style="font-size:22px">Connection</h3><p>Bring together people from different cultures, experiences and walks of life.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <span class="eyebrow">In practice</span>
+        <h2 class="display h2">The Human Library in numbers</h2>
+        <p class="lead muted">Sessions took place on trains, ferries, in museums, cafés and public spaces, and in local schools.</p>
+      </div>
+      <div class="counters four" style="margin:0">
+        {stats_block([("20", "Human Library events, 4 per chapter"), ("20 to 30", "Readers per event, on average"), ("22", "Human Books in the Spain catalogue"), ("5", "Countries represented among them")])}
       </div>
     </div>
   </section>
