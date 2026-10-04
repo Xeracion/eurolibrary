@@ -397,3 +397,10 @@ footer img.eu{background:none}
 /* sin antetítulos: el primer título de cada bloque no necesita margen superior */
 .section-head .h2:first-child,.two-col .h2:first-child,.concept .h2:first-child,
 .join .h2:first-child,.leitmotiv .h2:first-child,.page-hero .h1:first-child,.hero .h1:first-child{margin-top:0}
+
+/* galería de fotos */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gallery figure{margin:0;border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow);background:var(--white)}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.gallery figure:nth-child(3) img{object-position:50% 58%}
+@media (max-width:960px){.gallery{grid-template-columns:1fr 1fr}}

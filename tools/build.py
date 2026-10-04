@@ -84,9 +84,21 @@ CH = {
             ("28 July", "Betanzos", "Said by many to serve the best tortilla in the world. Tasted with locals while celebrating the first public event in its stone streets.", "photos/spain-betanzos.jpg", "Church and square in Betanzos"),
             ("29 July", "Ordes", "A modern town halfway along the route, and the place to rest, reflect and recharge for the final kilometres.", "photos/spain-ordes.jpg", "Town hall of Ordes"),
             ("30 July", "Sigüeiro", "The last stop before Santiago, with parks, forest and a river, and friendly locals keen to listen to the stories.", "photos/spain-sigueiro.jpg", "A stone bridge near Sigüeiro"),
-            ("31 July to 2 August", "Santiago de Compostela", "The magical city hosted the last and most important part of the trip: time to digest everything collected along the Way.", "photos/spain-santiago.jpg", "A scallop shell hanging from a backpack"),
+            ("31 July to 2 August", "Santiago de Compostela", "The magical city hosted the last and most important part of the trip: time to digest everything collected along the Way.", "photos/spain-santiago-arrival.jpg", "Pilgrims gathered in front of Santiago cathedral"),
         ],
         side=None,
+        gallery_h="Photos from the road",
+        gallery_p="From the first kilometres to the Obradoiro square, a few moments from the walk.",
+        gallery=[
+            ("photos/spain-landscape.jpg", "A river valley under a cloudy sky seen from the Way"),
+            ("photos/spain-walkers-road.jpg", "Three walkers with backpacks on a country road"),
+            ("photos/spain-group-street.jpg", "The group sitting together on a cobbled street while a participant takes a photo"),
+            ("photos/spain-human-library-setup.jpg", "A Human Library table under a blue tent in a town square"),
+            ("photos/spain-viewpoint.jpg", "A walker standing on a rock above a Galician landscape"),
+            ("photos/spain-walkers-hands.jpg", "Walkers raising their arms on a tree lined road"),
+            ("photos/spain-town.jpg", "A Galician town of white glazed balconies on a hill"),
+            ("photos/spain-walkers-path.jpg", "Walkers with backpacks on a path between fields"),
+        ],
     ),
     "netherlands": dict(
         file="netherlands.html", no=3, name="The Dutch Way", country="The Netherlands",
@@ -655,6 +667,19 @@ def chapter(k):
       {quotes}
     </div>
   </section>"""
+    gallery_section = ""
+    if c.get("gallery"):
+        figs = "".join(f'<figure><img src="assets/{u}" alt="{e(a)}" loading="lazy"></figure>' for u, a in c["gallery"])
+        gallery_section = f"""  <section id="photos" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <h2 class="display h2">{e(c['gallery_h'])}</h2>
+        <p class="lead muted">{e(c['gallery_p'])}</p>
+      </div>
+      <div class="gallery">{figs}</div>
+    </div>
+  </section>
+"""
     side = ""
     if c["side"]:
         side = f'<div class="polaroid alt" style="margin-top:24px"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>'
@@ -705,6 +730,7 @@ def chapter(k):
     </div>
   </section>
 
+{gallery_section}
 {results_section}
   <section style="padding-top:0">
     <div class="wrap">

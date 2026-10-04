@@ -159,3 +159,9 @@ Las páginas se sirven sin `.html` (`/about`, `/spain`...). Lo hace `vercel.json
 ## Sexta ronda: sin antetítulos
 
 Se eliminan las etiquetas pequeñas que iban sobre los títulos en todas las páginas. La mención a Erasmus+ que llevaba la del hero de la home pasa a la primera frase del texto de apertura. Se mantiene la etiqueta "Chapter N of 5" de las páginas de capítulo, porque es un dato de navegación y no un antetítulo.
+
+## Séptima ronda: fotos reales de Spain
+
+Se añade una galería "Photos from the road" con 8 fotos del álbum compartido de Eurolibrary Spain, y la parada de Santiago pasa a usar una foto real de la llegada a la plaza del Obradoiro en lugar de una imagen de archivo.
+
+Criterio de selección: paisaje y caminantes de espaldas, el montaje de una mesa de Human Library en una plaza y fotos de grupo en las que nadie queda en primer plano. Se dejaron fuera los primeros planos de participantes y de personas del público de las Human Library, porque en la web no consta su consentimiento para aparecer. Conviene que el equipo confirme los consentimientos de imagen antes de publicar las fotos de grupo.
