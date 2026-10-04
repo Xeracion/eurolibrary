@@ -165,3 +165,10 @@ Se eliminan las etiquetas pequeñas que iban sobre los títulos en todas las pá
 Se añade una galería "Photos from the road" con 8 fotos del álbum compartido de Eurolibrary Spain, y la parada de Santiago pasa a usar una foto real de la llegada a la plaza del Obradoiro en lugar de una imagen de archivo.
 
 Criterio de selección: paisaje y caminantes de espaldas, el montaje de una mesa de Human Library en una plaza y fotos de grupo en las que nadie queda en primer plano. Se dejaron fuera los primeros planos de participantes y de personas del público de las Human Library, porque en la web no consta su consentimiento para aparecer. Conviene que el equipo confirme los consentimientos de imagen antes de publicar las fotos de grupo.
+
+## Octava ronda: fotos del álbum en las paradas, carrusel y sin "Who"
+
+* Las fotos de archivo de las paradas de Spain se sustituyen por fotos del álbum. Se asignan por la fecha de captura que guarda el álbum, que coincide con el itinerario: el 28 de julio sale en Pontedeume y llega a Betanzos, el 29 es Ordes, el 30 Sigüeiro y el 31 Santiago.
+* La imagen de portada de Spain pasa a ser una foto del álbum de caminantes por la carretera.
+* La galería pasa a ser un carrusel con lightbox: flechas, teclado, Escape, gesto de deslizar en móvil y pie de foto con la fecha.
+* Se elimina de los cinco capítulos la sección "Who we were looking for" (perfil y requisitos de participación). Los datos siguen en `tools/build.py` por si se quieren recuperar.

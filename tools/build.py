@@ -58,7 +58,7 @@ CH = {
     "spain": dict(
         file="spain.html", no=2, name="Buen Camino", country="Spain",
         mode="on foot", mode_short="On foot", dates="26 July to 2 August 2025", topic="Mental health",
-        hero="photos/spain-hero.jpg", hero_alt="A Camino de Santiago waymarker with a yellow arrow",
+        hero="photos/spain-hero.jpg", hero_alt="Three walkers with backpacks on a country road in Galicia",
         subtitle="An intense journey about mental health",
         tagline="A pilgrimage to the inner self.",
         intro=[
@@ -80,24 +80,24 @@ CH = {
         route_h="Five stops on the English Way",
         route_p="From the Atlantic coast to Santiago de Compostela, one stage at a time.",
         stops=[
-            ("26 to 27 July", "Pontedeume", "A lovely medieval town to get ready, mind and legs, before the first steps away from the Atlantic.", "photos/spain-pontedeume.jpg", "A street in Pontedeume"),
-            ("28 July", "Betanzos", "Said by many to serve the best tortilla in the world. Tasted with locals while celebrating the first public event in its stone streets.", "photos/spain-betanzos.jpg", "Church and square in Betanzos"),
-            ("29 July", "Ordes", "A modern town halfway along the route, and the place to rest, reflect and recharge for the final kilometres.", "photos/spain-ordes.jpg", "Town hall of Ordes"),
-            ("30 July", "Sigüeiro", "The last stop before Santiago, with parks, forest and a river, and friendly locals keen to listen to the stories.", "photos/spain-sigueiro.jpg", "A stone bridge near Sigüeiro"),
+            ("26 to 27 July", "Pontedeume", "A lovely medieval town to get ready, mind and legs, before the first steps away from the Atlantic.", "photos/spain-group-street.jpg", "The group sitting together on a street in Pontedeume"),
+            ("28 July", "Betanzos", "Said by many to serve the best tortilla in the world. Tasted with locals while celebrating the first public event in its stone streets.", "photos/spain-human-library-setup.jpg", "A Human Library table under a blue tent in a town square"),
+            ("29 July", "Ordes", "A modern town halfway along the route, and the place to rest, reflect and recharge for the final kilometres.", "photos/spain-church.jpg", "A stone chapel with a bell tower in the Galician countryside"),
+            ("30 July", "Sigüeiro", "The last stop before Santiago, with parks, forest and a river, and friendly locals keen to listen to the stories.", "photos/spain-walkers-hands.jpg", "Walkers raising their arms on a tree lined road"),
             ("31 July to 2 August", "Santiago de Compostela", "The magical city hosted the last and most important part of the trip: time to digest everything collected along the Way.", "photos/spain-santiago-arrival.jpg", "Pilgrims gathered in front of Santiago cathedral"),
         ],
         side=None,
         gallery_h="Photos from the road",
-        gallery_p="From the first kilometres to the Obradoiro square, a few moments from the walk.",
+        gallery_p="From the first kilometres to the Obradoiro square. Tap a photo to see it larger.",
         gallery=[
-            ("photos/spain-landscape.jpg", "A river valley under a cloudy sky seen from the Way"),
-            ("photos/spain-walkers-road.jpg", "Three walkers with backpacks on a country road"),
-            ("photos/spain-group-street.jpg", "The group sitting together on a cobbled street while a participant takes a photo"),
-            ("photos/spain-human-library-setup.jpg", "A Human Library table under a blue tent in a town square"),
-            ("photos/spain-viewpoint.jpg", "A walker standing on a rock above a Galician landscape"),
-            ("photos/spain-walkers-hands.jpg", "Walkers raising their arms on a tree lined road"),
-            ("photos/spain-town.jpg", "A Galician town of white glazed balconies on a hill"),
-            ("photos/spain-walkers-path.jpg", "Walkers with backpacks on a path between fields"),
+            ("photos/spain-viewpoint.jpg", "A walker standing on a rock above a Galician landscape", "26 July", "50% 50%"),
+            ("photos/spain-forest.jpg", "A shaded forest path beside a stream", "26 July", "50% 50%"),
+            ("photos/spain-landscape.jpg", "A river valley under a cloudy sky seen from the Way", "28 July", "50% 50%"),
+            ("photos/spain-town.jpg", "A Galician town of white glazed balconies on a hill", "28 July", "50% 50%"),
+            ("photos/spain-human-library-tent.jpg", "A Human Library table under a blue tent in a town square", "28 July", "50% 50%"),
+            ("photos/spain-landscape-2.jpg", "Rolling green hills under a wide sky", "29 July", "50% 50%"),
+            ("photos/spain-walkers-path.jpg", "Walkers with backpacks on a path between fields", "31 July", "50% 50%"),
+            ("photos/spain-cathedral.jpg", "The facade of Santiago cathedral seen from below", "31 July", "50% 22%"),
         ],
     ),
     "netherlands": dict(
@@ -348,6 +348,53 @@ SCRIPT = """<script>
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('""" + EMAIL + """').then(done,function(){});}
     })}
   }
+  (function(){
+    var car=document.querySelector('[data-carousel]');
+    if(!car)return;
+    var track=car.querySelector('.carousel-track'),prev=car.querySelector('.prev'),next=car.querySelector('.next');
+    function upd(){prev.disabled=track.scrollLeft<=2;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-2}
+    function step(d){track.scrollBy({left:d*Math.max(track.clientWidth*0.8,260),behavior:'smooth'})}
+    prev.addEventListener('click',function(){step(-1)});
+    next.addEventListener('click',function(){step(1)});
+    track.addEventListener('scroll',upd,{passive:true});
+    window.addEventListener('resize',upd);
+    track.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();step(1)}if(e.key==='ArrowLeft'){e.preventDefault();step(-1)}});
+    upd();
+    var lb=document.getElementById('lightbox'),btns=[].slice.call(car.querySelectorAll('[data-lightbox]'));
+    var img=lb.querySelector('.lb-fig img'),cap=lb.querySelector('figcaption'),cur=0,opener=null;
+    var ctrls=[lb.querySelector('.lb-close'),lb.querySelector('.lb-prev'),lb.querySelector('.lb-next')];
+    function show(i){
+      cur=(i+btns.length)%btns.length;
+      var im=btns[cur].querySelector('img');
+      img.src=im.currentSrc||im.src;img.alt=im.alt;
+      cap.textContent=btns[cur].parentNode.querySelector('figcaption').textContent+'. '+im.alt+'. ('+(cur+1)+' of '+btns.length+')';
+    }
+    function open(i){opener=btns[i];show(i);lb.hidden=false;document.body.style.overflow='hidden';ctrls[0].focus()}
+    function close(){lb.hidden=true;document.body.style.overflow='';if(opener)opener.focus()}
+    btns.forEach(function(b,i){b.addEventListener('click',function(){open(i)})});
+    ctrls[0].addEventListener('click',close);
+    ctrls[1].addEventListener('click',function(){show(cur-1)});
+    ctrls[2].addEventListener('click',function(){show(cur+1)});
+    lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-fig'))close()});
+    document.addEventListener('keydown',function(e){
+      if(lb.hidden)return;
+      if(e.key==='Escape')close();
+      else if(e.key==='ArrowLeft')show(cur-1);
+      else if(e.key==='ArrowRight')show(cur+1);
+      else if(e.key==='Tab'){
+        var i=ctrls.indexOf(document.activeElement);
+        e.preventDefault();
+        ctrls[(i+(e.shiftKey?-1:1)+ctrls.length)%ctrls.length].focus();
+      }
+    });
+    var x0=null;
+    lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+    lb.addEventListener('touchend',function(e){
+      if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0;x0=null;
+      if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));
+    });
+  })();
 </script>"""
 
 
@@ -632,9 +679,7 @@ def chapter(k):
     prev = CH[order[i - 1]] if i > 0 else None
     nxt = CH[order[i + 1]] if i < len(order) - 1 else None
     intro = "".join(f"<p>{e(p)}</p>" for p in c["intro"])
-    profile = "".join(f"<p>{e(p)}</p>" for p in c["profile"])
     facts = "".join(f'<div class="fact"><small>{e(a)}</small><strong>{e(b)}</strong></div>' for a, b in c["facts"])
-    crit = "".join(f"<li>{e(x)}</li>" for x in c["criteria"])
     stops = []
     for date, name, desc, img, alt in c["stops"]:
         im = f'<img src="assets/{img}" alt="{e(alt)}" loading="lazy">' if img else ""
@@ -669,20 +714,45 @@ def chapter(k):
   </section>"""
     gallery_section = ""
     if c.get("gallery"):
-        figs = "".join(f'<figure><img src="assets/{u}" alt="{e(a)}" loading="lazy"></figure>' for u, a in c["gallery"])
+        slides = "".join(
+            f'<figure class="slide"><button type="button" class="slide-btn" data-lightbox aria-label="Open photo: {e(alt)}">'
+            f'<img src="assets/{u}" alt="{e(alt)}" loading="lazy" style="object-position:{pos}"></button>'
+            f'<figcaption>{e(cap)}</figcaption></figure>' for u, alt, cap, pos in c["gallery"])
+        chev_l = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>'
+        chev_r = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>'
         gallery_section = f"""  <section id="photos" style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
         <h2 class="display h2">{e(c['gallery_h'])}</h2>
         <p class="lead muted">{e(c['gallery_p'])}</p>
       </div>
-      <div class="gallery">{figs}</div>
+      <div class="carousel" data-carousel role="region" aria-roledescription="carousel" aria-label="{e(c['gallery_h'])}">
+        <div class="carousel-track" tabindex="0">{slides}</div>
+        <button type="button" class="car-btn prev" aria-label="Previous photos">{chev_l}</button>
+        <button type="button" class="car-btn next" aria-label="Next photos">{chev_r}</button>
+      </div>
+    </div>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+      <button type="button" class="lb-close" aria-label="Close photo viewer">{chr(215)}</button>
+      <button type="button" class="lb-nav lb-prev" aria-label="Previous photo">{chev_l}</button>
+      <figure class="lb-fig"><img alt=""><figcaption></figcaption></figure>
+      <button type="button" class="lb-nav lb-next" aria-label="Next photo">{chev_r}</button>
     </div>
   </section>
 """
-    side = ""
     if c["side"]:
-        side = f'<div class="polaroid alt" style="margin-top:24px"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>'
+        idea_block = f'''<div class="wrap two-col idea">
+      <div>
+        <h2 class="display h2">{e(c['tagline'])}</h2>
+        {intro}
+      </div>
+      <div class="polaroid alt"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>
+    </div>'''
+    else:
+        idea_block = f'''<div class="wrap narrow">
+      <h2 class="display h2">{e(c['tagline'])}</h2>
+      {intro}
+    </div>'''
     pager = '<div class="pager">'
     pager += (f'<a href="{prev["file"]}"><small>Previous chapter</small><strong>{e(prev["name"])}</strong></a>' if prev else "<span></span>")
     pager += (f'<a class="next" href="{nxt["file"]}"><small>Next chapter</small><strong>{e(nxt["name"])}</strong></a>' if nxt else "<span></span>")
@@ -704,18 +774,7 @@ def chapter(k):
   </section>
 
   <section>
-    <div class="wrap two-col">
-      <div>
-        <h2 class="display h2">{e(c['tagline'])}</h2>
-        {intro}
-        {side}
-      </div>
-      <div>
-        <h2 class="display h2">{e(c['profile_h'])}</h2>
-        {profile}
-        <ul class="checklist" aria-label="Participation criteria">{crit}</ul>
-      </div>
-    </div>
+    {idea_block}
   </section>
 
   <section style="padding-top:0">
