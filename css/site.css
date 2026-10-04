@@ -472,3 +472,10 @@ footer img.eu{background:none}
 .carousel.portrait .slide img{aspect-ratio:4/5}
 .polaroid.side{max-width:440px;justify-self:center}
 .polaroid.side img{aspect-ratio:4/5}
+
+/* frases: se reparten el ancho aunque sean dos */
+.quotes{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+.quotes{grid-template-columns:repeat(var(--n,3),1fr)}
+.quotes blockquote{font-size:clamp(22px,2.3vw,28px)}
+@media (max-width:960px){.quotes{grid-template-columns:1fr}}
