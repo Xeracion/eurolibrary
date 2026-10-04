@@ -151,3 +151,7 @@ Cifras agregadas, sin datos personales, publicadas con confirmación de la perso
 * El pie usa una versión azul del logo de la UE, que es el archivo blanco oficial recoloreado al azul de la UE. Si se dispone del archivo oficial en color, conviene sustituirlo en `assets/eu-funded-blue.png`.
 
 **Valoraciones de los otros capítulos.** No se han añadido, porque en el Drive solo existe la hoja de valoración de Bulgaria. Hace falta el enlace a las de Spain, Netherlands, Greece y Portugal.
+
+## Quinta ronda: URLs limpias
+
+Las páginas se sirven sin `.html` (`/about`, `/spain`...). Lo hace `vercel.json` con `cleanUrls`, y `tools/build.py` genera los enlaces internos ya sin extensión. Las direcciones antiguas con `.html` redirigen a las nuevas. La copia de vista previa en Claude mantiene `.html`, porque ese entorno no admite URLs limpias.
