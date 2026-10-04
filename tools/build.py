@@ -188,6 +188,50 @@ CH = {
     ),
 }
 
+# Resultados verificados en los informes del proyecto (informe interno de noviembre 2025,
+# informe de diseminación de octubre 2025, hoja de valoración de Bulgaria y catálogo de Spain).
+BASE = [("25", "Young participants"), ("4", "Human Library events")]
+RESULTS = {
+    "bulgaria": dict(
+        stats=BASE + [("4.0 of 5", "Average project rating in the participant survey"),
+                      ("4 of 5", "Respondents who picked a Human Library as their favourite activity")],
+        note="Survey based on 5 responses.",
+        worked=["The Human Library on the train, which participants singled out as a highlight.",
+                "The mix of backgrounds and professions in the group, and the sense of connection it created."],
+        learned=["A heat wave made the programme tough. Participants suggested later start times for events, more breaks and more water and snacks.",
+                 "They also asked for more time at the start to get to know each other's stories before organising events together."],
+        quotes=["Inspiring.", "A powerful human experience of connection, growth, and shared vulnerability."],
+    ),
+    "spain": dict(
+        stats=BASE + [("22", "Human Books in the catalogue"), ("5", "Countries represented in the catalogue")],
+        note="",
+        worked=["A shared catalogue of personal stories on mental health, built by participants before the walk and used to prepare each Human Library."],
+        learned=[],
+        quotes=[],
+    ),
+    "netherlands": dict(
+        stats=BASE,
+        note="",
+        worked=["Four public events held along the whole route through Friesland."],
+        learned=["Rain and wind complicated the logistics. The team found alternatives that kept participants safe and the events impactful."],
+        quotes=[],
+    ),
+    "greece": dict(
+        stats=BASE,
+        note="",
+        worked=["Human Library events held in unusual places, including on board a ferry, and in local schools."],
+        learned=[],
+        quotes=[],
+    ),
+    "portugal": dict(
+        stats=BASE,
+        note="",
+        worked=["Four Human Library events spread along a campervan route across the south of Portugal."],
+        learned=[],
+        quotes=[],
+    ),
+}
+
 NAV_MOB = [
     ("bulgaria", "Balkan Express, Bulgaria"),
     ("spain", "Buen Camino, Spain"),
@@ -320,6 +364,11 @@ def counters(items):
         out.append(
             f'<div class="counter"><b data-to="{to}" data-prefix="{prefix}" data-suffix="{suffix}">{shown}</b><span>{e(label)}</span></div>')
     return "\n        ".join(out)
+
+
+def stats_block(items, cls="counters four"):
+    return "".join(
+        f'<div class="counter"><b>{e(v)}</b><span>{e(l)}</span></div>' for v, l in items)
 
 
 # ---------------------------------------------------------------- páginas
@@ -544,6 +593,31 @@ def chapter(k):
           <div class="stop-body"><time>{e(date)}</time><h3 class="display h3">{e(name)}</h3><p>{e(desc)}</p></div>
           {im}
         </div></li>""")
+    r = RESULTS[k]
+    ncols = len(r["stats"])
+    ccls = "counters four" if ncols == 4 else "counters two"
+    lists = ""
+    if r["worked"]:
+        lists += '<div><h3 class="display h3">What worked</h3><ul class="checklist">' + "".join(f"<li>{e(x)}</li>" for x in r["worked"]) + "</ul></div>"
+    if r["learned"]:
+        lists += '<div><h3 class="display h3">What we learned</h3><ul class="checklist learn">' + "".join(f"<li>{e(x)}</li>" for x in r["learned"]) + "</ul></div>"
+    quotes = "".join(f"<blockquote>{e(q)}</blockquote>" for q in r["quotes"])
+    if quotes:
+        quotes = f'<div class="quotes">{quotes}<small>Participants, in one sentence.</small></div>'
+    note = f'<p class="form-note" style="text-align:center;margin-top:12px">{e(r["note"])}</p>' if r["note"] else ""
+    two = f'<div class="two-col" style="margin-top:32px">{lists}</div>' if lists else ""
+    results_section = f"""  <section id="results" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <span class="eyebrow">Results</span>
+        <h2 class="display h2">What this chapter delivered</h2>
+      </div>
+      <div class="{ccls}" style="margin:0">{stats_block(r["stats"])}</div>
+      {note}
+      {two}
+      {quotes}
+    </div>
+  </section>"""
     side = ""
     if c["side"]:
         side = f'<div class="polaroid alt" style="margin-top:24px"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>'
@@ -597,6 +671,7 @@ def chapter(k):
     </div>
   </section>
 
+{results_section}
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
