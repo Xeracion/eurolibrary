@@ -155,3 +155,7 @@ Cifras agregadas, sin datos personales, publicadas con confirmación de la perso
 ## Quinta ronda: URLs limpias
 
 Las páginas se sirven sin `.html` (`/about`, `/spain`...). Lo hace `vercel.json` con `cleanUrls`, y `tools/build.py` genera los enlaces internos ya sin extensión. Las direcciones antiguas con `.html` redirigen a las nuevas. La copia de vista previa en Claude mantiene `.html`, porque ese entorno no admite URLs limpias.
+
+## Sexta ronda: sin antetítulos
+
+Se eliminan las etiquetas pequeñas que iban sobre los títulos en todas las páginas. La mención a Erasmus+ que llevaba la del hero de la home pasa a la primera frase del texto de apertura. Se mantiene la etiqueta "Chapter N of 5" de las páginas de capítulo, porque es un dato de navegación y no un antetítulo.
