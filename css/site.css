@@ -393,3 +393,7 @@ footer .meta{display:grid;gap:16px}
 @media (max-width:560px){.partners{grid-template-columns:1fr}}
 footer .partners-line a{text-decoration:underline}
 footer img.eu{background:none}
+
+/* sin antetítulos: el primer título de cada bloque no necesita margen superior */
+.section-head .h2:first-child,.two-col .h2:first-child,.concept .h2:first-child,
+.join .h2:first-child,.leitmotiv .h2:first-child,.page-hero .h1:first-child,.hero .h1:first-child{margin-top:0}

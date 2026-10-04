@@ -405,9 +405,8 @@ def home():
         </article>""")
     body = f"""  <div class="hero">
     <div class="wrap">
-      <span class="eyebrow">An Erasmus+ project, completed in 2025</span>
       <h1 class="display h1">5 countries, 5 topics,<br>5 ways to move.</h1>
-      <p class="lead">We took young people across Europe by train, on foot, by bike, by ferry and by campervan, and turned their stories into a living library. The trip is over. The stories keep going.</p>
+      <p class="lead">This Erasmus+ project took young people across Europe by train, on foot, by bike, by ferry and by campervan, and turned their stories into a living library. The trip is over. The stories keep going.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#destinations">Explore the five chapters</a>
         <a class="btn btn-ghost" href="human-library.html">See how the Human Library works</a>
@@ -423,7 +422,6 @@ def home():
   <section>
     <div class="wrap concept">
       <div>
-        <span class="eyebrow">A journey beyond borders</span>
         <h2 class="display h2">The concept</h2>
         <p class="lead">At Eurolibrary we bet on two things: a story can <strong>change a life</strong>, and a journey can <strong>unite a continent</strong>. So we travelled green across the EU to build a <strong>living library</strong> made of people, not books.</p>
         <ul class="voices">
@@ -443,7 +441,6 @@ def home():
   <section id="destinations" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">The five chapters</span>
         <h2 class="display h2">Five chapters, five ways to travel</h2>
         <p class="lead muted">Each mobility paired one green way of moving with one topic that matters to young Europeans. Here is what each chapter was about.</p>
       </div>
@@ -456,7 +453,6 @@ def home():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
-        <span class="eyebrow">Listen, share, inspire</span>
         <h2 class="display h2">Want to know more?</h2>
         <p class="lead">Reviewing the project, curious about our method or thinking about a collaboration? We are happy to talk.</p>
         <a class="btn btn-primary" href="contact.html">Get in touch</a>
@@ -466,7 +462,6 @@ def home():
 
   <section class="leitmotiv">
     <div class="wrap">
-      <span class="eyebrow">Our leitmotiv</span>
       <h2 class="display h2">This was never just a project. It was an adventure and a celebration of empathy, sustainability and European identity.</h2>
 
       <div class="counters">
@@ -500,7 +495,6 @@ def about():
     body = f"""  <div class="page-hero split">
     <div class="wrap">
       <div>
-        <span class="eyebrow">Mobility and stories, since 2022</span>
         <h1 class="display h1">Plenty of Erasmus+ projects. None quite like this one.</h1>
         <p class="lead">Eurolibrary bridges cultural gaps by putting young people face to face with the communities they travel through. The result is more understanding, more empathy and lasting relationships, plus real tools to push back against discrimination and promote inclusion.</p>
       </div>
@@ -511,7 +505,6 @@ def about():
   <section style="padding-top:32px">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Our commitment to cultural connection</span>
         <h2 class="display h2">What the earlier editions delivered</h2>
         <p class="lead muted">Figures from the Spain edition in 2022 and the Greece edition in 2023.</p>
       </div>
@@ -524,7 +517,6 @@ def about():
   <section>
     <div class="wrap two-col">
       <div>
-        <span class="eyebrow">Our story</span>
         <h2 class="display h2">How Eurolibrary evolved</h2>
         <p class="lead">Eurolibrary was born in 2021 from an Erasmus+ partnership between NGOs from Spain, Portugal, Bulgaria, the Netherlands and Greece.</p>
         <p>We started with one question: how do we get young Europeans to engage with each other in a meaningful way? The answer grew into a platform for cultural exchange and community connection, with a real impact on participants' lives.</p>
@@ -537,7 +529,6 @@ def about():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Where we came from</span>
         <h2 class="display h2">Our editions so far</h2>
       </div>
       <ul class="timeline-years">
@@ -552,7 +543,6 @@ def about():
   <section id="results" style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Results of the 2025 edition</span>
         <h2 class="display h2">Five chapters, in numbers</h2>
         <p class="lead muted">Figures taken from the project reports. Digital figures are as reported in October 2025, six months after the Instagram account launched.</p>
       </div>
@@ -566,7 +556,6 @@ def about():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Project facts</span>
         <h2 class="display h2">The project at a glance</h2>
       </div>
       <div class="facts-list">
@@ -583,7 +572,6 @@ def about():
   <section id="partners" style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Who made it happen</span>
         <h2 class="display h2">Five NGOs, one living library</h2>
         <p class="lead muted">Eurolibrary is coordinated by Asociación Xeración and carried out together with four partner organisations.</p>
       </div>
@@ -600,7 +588,6 @@ def about():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Why it matters</span>
         <h2 class="display h2">How the project connects with Erasmus+ priorities</h2>
         <p class="lead muted">Four ideas run through every chapter.</p>
       </div>
@@ -616,7 +603,6 @@ def about():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
-        <span class="eyebrow">Listen, share, inspire</span>
         <h2 class="display h2">See the five chapters</h2>
         <p class="lead">Five countries, five topics and five ways to move. Pick a chapter and follow the route.</p>
         <a class="btn btn-primary" href="index.html#destinations">Explore the chapters</a>
@@ -661,7 +647,6 @@ def chapter(k):
     results_section = f"""  <section id="results" style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Results</span>
         <h2 class="display h2">What this chapter delivered</h2>
       </div>
       <div class="{ccls}" style="margin:0">{stats_block(r["stats"])}</div>
@@ -696,13 +681,11 @@ def chapter(k):
   <section>
     <div class="wrap two-col">
       <div>
-        <span class="eyebrow">The idea</span>
         <h2 class="display h2">{e(c['tagline'])}</h2>
         {intro}
         {side}
       </div>
       <div>
-        <span class="eyebrow">Who we were looking for</span>
         <h2 class="display h2">{e(c['profile_h'])}</h2>
         {profile}
         <ul class="checklist" aria-label="Participation criteria">{crit}</ul>
@@ -713,7 +696,6 @@ def chapter(k):
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">The journey</span>
         <h2 class="display h2">{e(c['route_h'])}</h2>
         <p class="lead muted">{e(c['route_p'])}</p>
       </div>
@@ -727,7 +709,6 @@ def chapter(k):
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
-        <span class="eyebrow">What was covered</span>
         <h2 class="display h2">Everything on the road</h2>
         <p class="lead">Tickets, accommodation and meals were covered by the project. Some restrictions applied. This chapter is completed and applications are closed.</p>
         <a class="btn btn-primary" href="human-library.html">See how the Human Library works</a>
@@ -746,7 +727,6 @@ def human_library():
     body = f"""  <div class="page-hero split">
     <div class="wrap">
       <div>
-        <span class="eyebrow">Our method</span>
         <h1 class="display h1">What is a Human Library?</h1>
         <p class="lead">In Eurolibrary, the Human Library is the engine of every mobility. Participants were trained to share personal stories about mental health, eco living, migration, healthy lifestyles and entrepreneurship, and shared them with local communities across Europe in a safe, respectful space.</p>
       </div>
@@ -757,7 +737,6 @@ def human_library():
   <section>
     <div class="wrap two-col">
       <div>
-        <span class="eyebrow">Imagine this</span>
         <h2 class="display h2">You borrow a person, not a book</h2>
         <p class="lead">You walk into a library. Instead of borrowing a book, you borrow a person. They tell you a story, their story: raw, real and often misunderstood.</p>
         <p>Welcome to the Human Library, where people are the books and every conversation is a chance to question bias, break stereotypes and build connection.</p>
@@ -783,7 +762,6 @@ def human_library():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Why a Human Library</span>
         <h2 class="display h2">Five reasons we use it</h2>
       </div>
       <div class="grid-4 grid-5">
@@ -799,7 +777,6 @@ def human_library():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">In practice</span>
         <h2 class="display h2">The Human Library in numbers</h2>
         <p class="lead muted">Sessions took place on trains, ferries, in museums, cafés and public spaces, and in local schools.</p>
       </div>
@@ -812,7 +789,6 @@ def human_library():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <span class="eyebrow">Format</span>
         <h2 class="display h2">How a session works</h2>
         <p class="lead muted">We ran four Human Library events in each of the five chapters.</p>
       </div>
@@ -834,7 +810,6 @@ def human_library():
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
-        <span class="eyebrow">Listen, share, inspire</span>
         <h2 class="display h2">Where we used it</h2>
         <p class="lead">From Bulgarian trains to Greek islands, in town squares and in schools.</p>
         <a class="btn btn-primary" href="index.html#destinations">See the five chapters</a>
@@ -848,7 +823,6 @@ def human_library():
 def contact():
     body = f"""  <div class="page-hero">
     <div class="wrap">
-      <span class="eyebrow">Get in touch</span>
       <h1 class="display h1">Reach out to the Eurolibrary team</h1>
       <p class="lead">Reviewing the project, curious about the method or up for a collaboration? Write to us and we will get back to you.</p>
     </div>
@@ -864,7 +838,6 @@ def contact():
         <p class="form-note" id="form-status" role="status"></p>
       </form>
       <div>
-        <span class="eyebrow">Prefer email?</span>
         <h2 class="display h2">Write to us directly</h2>
         <p>The project is completed, but the team still answers questions about the method, the results and possible collaborations.</p>
         <div class="email-line"><code>{EMAIL}</code><button class="btn btn-ghost" type="button" id="copy-email">Copy address</button></div>
