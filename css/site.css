@@ -369,3 +369,27 @@ footer .meta{display:grid;gap:16px}
 .quotes blockquote{flex:1}
 .quotes figcaption{font-size:14px;color:var(--ash)}
 @media (max-width:960px){.quotes{grid-template-columns:1fr}}
+
+/* tarjetas, icono social y socios */
+.card-btn{margin-top:auto;justify-content:center;width:100%}
+.icon-link{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px}
+.icon-link:hover{background:rgba(255,255,255,.7);color:var(--orange)}
+.icon-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:960px){
+  .icon-link{width:auto;height:auto;display:flex;gap:10px;justify-content:flex-start;padding:10px 12px}
+  .icon-label{position:static;width:auto;height:auto;clip:auto;overflow:visible}
+}
+.partners{list-style:none;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.partners li{
+  grid-column:span 2;background:var(--white);border:1px solid var(--mist);border-radius:var(--radius-card);
+  padding:24px;display:flex;flex-direction:column;gap:10px;align-items:flex-start;min-width:0
+}
+.partners li.lead-partner{grid-column:span 6;background:var(--cream-deep);border-color:transparent}
+.partners li:nth-child(5){grid-column:span 2}
+.partners h3{font-size:26px}
+.partners p{color:var(--ash);margin-bottom:6px}
+.partners .btn{margin-top:auto;padding:10px 18px}
+@media (max-width:960px){.partners{grid-template-columns:1fr 1fr}.partners li,.partners li.lead-partner{grid-column:span 1}.partners li.lead-partner{grid-column:1 / -1}}
+@media (max-width:560px){.partners{grid-template-columns:1fr}}
+footer .partners-line a{text-decoration:underline}
+footer img.eu{background:none}

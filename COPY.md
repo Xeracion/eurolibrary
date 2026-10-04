@@ -123,7 +123,7 @@ Cifras agregadas, sin datos personales, publicadas con confirmación de la perso
 * Informe técnico interno de noviembre de 2025: 125 participantes, 25 por movilidad, 4 Human Library por país, y los problemas de clima en Bulgaria y Países Bajos.
 * Informe de diseminación de octubre de 2025: más de 600.000 visualizaciones, más de 20.000 cuentas alcanzadas, más de 1.000 seguidores orgánicos, más de 3.000 interacciones y más de 75 publicaciones.
 * Hoja de valoración de Bulgaria: 5 respuestas, valoración media de 4,0 sobre 5, y 4 de 5 eligen una Human Library como actividad favorita.
-* Catálogo de Spain: 22 Human Books distintos de cinco países.
+* Catálogo de Human Books: 125 libros, según indicó la persona responsable.
 
 **Dónde aparece**
 
@@ -132,7 +132,7 @@ Cifras agregadas, sin datos personales, publicadas con confirmación de la perso
 | About | Cuadrícula de nueve cifras del proyecto y ficha con programa, número de proyecto, coordinador y socios |
 | Cada capítulo | Cifras del capítulo, qué funcionó y qué se aprendió |
 | Bulgaria | Valoración de la encuesta y tres frases de participantes |
-| Spain | Catálogo de Human Books |
+| Spain | Catálogo de 125 Human Books |
 | Human Library | Cifras del método en la práctica |
 | Home | Enlace a los resultados |
 
@@ -141,3 +141,13 @@ Cifras agregadas, sin datos personales, publicadas con confirmación de la perso
 * Valoraciones de los capítulos de Spain, Netherlands, Greece y Portugal. Solo existe la encuesta de Bulgaria.
 * Lectores por evento: dos informes dan 30 y 20 de media. La web dice "20 to 30" hasta que se aclare.
 * Las hojas de candidaturas incluyen filas vacías y pestañas duplicadas, así que no se usan sus recuentos.
+
+## Cuarta ronda: ajustes
+
+* El catálogo pasa a 125 Human Books, según la corrección de la persona responsable. Aparece en Spain y en la página de Human Library.
+* Las fichas de capítulo de la home ya no dicen "Completed" y llevan un botón "Check the details". La etiqueta de cada capítulo pasa a "Chapter N of 5".
+* Icono de Instagram en la cabecera, enlazado a https://www.instagram.com/eurolibrary.
+* Nueva sección de socios en About y línea de coordinación en el pie. Coordina Asociación Xeración, con AltVenturers, De Kracht van Sport, The Future Now Association y GAIA Alentejo. El país de cada socio es una deducción a partir de los documentos del proyecto y conviene confirmarlo.
+* El pie usa una versión azul del logo de la UE, que es el archivo blanco oficial recoloreado al azul de la UE. Si se dispone del archivo oficial en color, conviene sustituirlo en `assets/eu-funded-blue.png`.
+
+**Valoraciones de los otros capítulos.** No se han añadido, porque en el Drive solo existe la hoja de valoración de Bulgaria. Hace falta el enlace a las de Spain, Netherlands, Greece y Portugal.
