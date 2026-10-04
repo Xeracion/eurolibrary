@@ -4,7 +4,9 @@
 Uso:
   python3 tools/build.py                 escribe las páginas en la raíz del repo
   python3 tools/build.py --inline DIR    escribe una copia con el CSS incrustado en DIR
-                                         (para publicarla como artefacto)
+                                         (para publicarla como artefacto, con enlaces .html)
+
+Las páginas de la raíz usan URLs limpias (/about) gracias a "cleanUrls" en vercel.json.
 """
 import html
 import os
@@ -890,6 +892,14 @@ def strip_wrapper(doc):
     return doc
 
 
+def clean_links(doc):
+    """Quita .html de los enlaces internos. Vercel los sirve con cleanUrls (vercel.json)."""
+    def repl(m):
+        name, frag = m.group(1), m.group(2) or ""
+        return 'href="/' + ("" if name == "index" else name) + frag + '"'
+    return re.sub(r'href="([a-z][a-z-]*)\.html(#[^"]*)?"', repl, doc)
+
+
 def main():
     inline = None
     if "--inline" in sys.argv:
@@ -906,6 +916,7 @@ def main():
                 doc = re.sub(r"<title>.*?</title>", "<title>Eurolibrary rediseño</title>", doc, count=1)
         else:
             doc = doc.replace("<!--CSS-->", '<link rel="stylesheet" href="css/site.css">')
+            doc = clean_links(doc)
         with open(os.path.join(out, name), "w", encoding="utf8") as f:
             f.write(doc)
         print("escrito", os.path.join(out, name))
