@@ -111,7 +111,7 @@ CH = {
     "netherlands": dict(
         file="netherlands.html", no=3, name="The Dutch Way", country="The Netherlands",
         mode="by bike", mode_short="By bike", dates="1 to 8 September 2025", topic="Healthy lifestyle",
-        hero="photos/netherlands-hero.jpg", hero_alt="A group of cyclists on a path in the Netherlands",
+        hero="photos/netherlands-hero.jpg", hero_alt="The whole group gathered around a table, smiling at the camera",
         subtitle="A journey by bike through stories about a healthy lifestyle",
         tagline="Pedal through Friesland, inspire with your lifestyle.",
         intro=[
@@ -134,12 +134,33 @@ CH = {
         route_h="Across the whole province",
         route_p="More than 150 km by bike through Friesland with the international Eurolibrary team.",
         stops=[
-            ("1 September", "Leeuwarden", "Historic canals, bold street art and Frisian pride. Open skies, cosy cafés and a creative, down to earth vibe.", "photos/netherlands-leeuwarden.jpg", "A canal in Leeuwarden"),
-            ("1 to 3 September", "Sint Annaparochie", "A quiet village with big stories: poetic landscapes, local pride and the roots of Rembrandt's love story. Calm meets curiosity.", "photos/netherlands-annaparochie.jpg", "A boat on a canal near Sint Annaparochie"),
-            ("3 to 5 September", "Terschelling", "Where sea meets sky: windswept beaches, endless bike paths and a rhythm made of nature, freedom and inspiration.", "photos/netherlands-terschelling.jpg", "The island of Terschelling"),
-            ("5 to 8 September", "Goingarijp", "Tucked between lakes and meadows, a place to slow down and discover Friesland on the water. A hidden gem for nature and sailing lovers.", "photos/netherlands-goingarijp.jpg", "Aerial view of Goingarijp"),
+            ("1 September", "Leeuwarden", "Historic canals, bold street art and Frisian pride. Open skies, cosy cafés and a creative, down to earth vibe.", "photos/netherlands-leeuwarden.jpg", "Participants posing together on a street in a Dutch town", "50% 55%"),
+            ("1 to 3 September", "Sint Annaparochie", "A quiet village with big stories: poetic landscapes, local pride and the roots of Rembrandt's love story. Calm meets curiosity.", "photos/netherlands-annaparochie.jpg", "Participants crouching and smiling on a grass dike", "50% 45%"),
+            ("3 to 5 September", "Terschelling", "Where sea meets sky: windswept beaches, endless bike paths and a rhythm made of nature, freedom and inspiration.", "photos/netherlands-ferry.jpg", "Two participants laughing on the deck of a ferry", "85% 40%"),
+            ("5 to 8 September", "Goingarijp", "Tucked between lakes and meadows, a place to slow down and discover Friesland on the water. A hidden gem for nature and sailing lovers.", "photos/netherlands-sailors.jpg", "Participants laughing in life jackets on a sailing boat", "50% 80%"),
         ],
-        side=("photos/netherlands-bike.jpg", "A cycling path along a lake in Friesland"),
+        side=("photos/netherlands-cyclists-smiling.jpg", "Three participants smiling on their bikes"),
+        gallery_h="Photos from the ride",
+        gallery_p="Bikes, ferries, sailboats and long dinners. Tap a photo to see it larger.",
+        gallery_link=("View the full album", "https://photos.app.goo.gl/QfrxSffqHgeStmjM6"),
+        gallery_portrait=True,
+        gallery=[
+            ("photos/netherlands-cyclists-pair.jpg", "Two participants smiling as they cycle along a country path", "50% 50%"),
+            ("photos/netherlands-cyclists.jpg", "Cyclists riding side by side in the Frisian countryside", "50% 50%"),
+            ("photos/netherlands-tandem.jpg", "Two participants on a tandem bike on the deck of a ferry", "50% 50%"),
+            ("photos/netherlands-ferry-hug.jpg", "Two participants hugging in a ferry corridor", "50% 50%"),
+            ("photos/netherlands-boat-chat.jpg", "Participants chatting on a boat under a cloudy sky", "50% 50%"),
+            ("photos/netherlands-sailing.jpg", "Participants sailing together on a Frisian lake", "50% 50%"),
+            ("photos/netherlands-sailboat.jpg", "A white sailboat with a blue striped hull on a lake", "50% 50%"),
+            ("photos/netherlands-dinner.jpg", "A long candlelit dinner table", "50% 50%"),
+            ("photos/netherlands-cooks.jpg", "Two cooks in aprons smiling at the camera", "50% 50%"),
+            ("photos/netherlands-apron.jpg", "Two participants in aprons asking for silence", "50% 50%"),
+            ("photos/netherlands-table.jpg", "Participants talking around a table", "50% 50%"),
+            ("photos/netherlands-talk.jpg", "Two participants in conversation on the grass", "50% 50%"),
+            ("photos/netherlands-grass.jpg", "Three participants laughing together on the grass", "50% 50%"),
+            ("photos/netherlands-fierljeppen.jpg", "A participant pole vaulting over a canal", "50% 50%"),
+            ("photos/netherlands-couple.jpg", "Two participants smiling and hugging", "50% 50%"),
+        ],
     ),
     "greece": dict(
         file="greece.html", no=4, name="Waves of Hope", country="Greece",
@@ -699,8 +720,9 @@ def chapter(k):
     intro = "".join(f"<p>{e(p)}</p>" for p in c["intro"])
     facts = "".join(f'<div class="fact"><small>{e(a)}</small><strong>{e(b)}</strong></div>' for a, b in c["facts"])
     stops = []
-    for date, name, desc, img, alt in c["stops"]:
-        im = f'<img src="assets/{img}" alt="{e(alt)}" loading="lazy">' if img else ""
+    for date, name, desc, img, alt, *rest in c["stops"]:
+        pos = f' style="object-position:{rest[0]}"' if rest else ""
+        im = f'<img src="assets/{img}" alt="{e(alt)}" loading="lazy"{pos}>' if img else ""
         cls = "stop-card has-img" if img else "stop-card"
         stops.append(f"""        <li class="stop"><div class="{cls}">
           <div class="stop-body"><time>{e(date)}</time><h3 class="display h3">{e(name)}</h3><p>{e(desc)}</p></div>
@@ -747,7 +769,7 @@ def chapter(k):
         <h2 class="display h2">{e(c['gallery_h'])}</h2>
         <p class="lead muted">{e(c['gallery_p'])}</p>
       </div>
-      <div class="carousel" data-carousel role="region" aria-roledescription="carousel" aria-label="{e(c['gallery_h'])}">
+      <div class="carousel{" portrait" if c.get("gallery_portrait") else ""}" data-carousel role="region" aria-roledescription="carousel" aria-label="{e(c['gallery_h'])}">
         <div class="carousel-track" tabindex="0">{slides}</div>
         <button type="button" class="car-btn prev" aria-label="Previous photos">{chev_l}</button>
         <button type="button" class="car-btn next" aria-label="Next photos">{chev_r}</button>
@@ -768,7 +790,7 @@ def chapter(k):
         <h2 class="display h2">{e(c['tagline'])}</h2>
         {intro}
       </div>
-      <div class="polaroid alt"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>
+      <div class="polaroid alt side"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>
     </div>'''
     else:
         idea_block = f'''<div class="wrap narrow">

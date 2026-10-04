@@ -184,3 +184,13 @@ Se eliminan las descripciones visibles de las fotos, tanto bajo el carrusel como
 * El bloque oscuro "Everything on the road" de los cinco capítulos pasa a ser "A library where the books are people", con un texto de apertura adaptado a cada destino y un párrafo común que explica cómo funciona. Los detalles salen de los informes y la web: la Human Library en el tren de Bulgaria, el catálogo de historias de Spain, la lluvia y el viento de Países Bajos, las escuelas y el ferry de Grecia y las cuatro paradas de Portugal.
 * El anterior y el siguiente capítulo llevan flechas.
 * El pie ya no dice "Project completed in 2025".
+
+## Undécima ronda: fotos en Países Bajos
+
+El álbum compartido como "Eurolibrary Greece" contiene en realidad fotos del capítulo de Países Bajos (pancartas de "The Dutch Way", bicicletas por Frisia, ferris y veleros), y se usa en esa página. La persona responsable indicó que se use en Países Bajos.
+
+* Portada: la foto de grupo.
+* Paradas: Leeuwarden con el grupo en la calle, Sint Annaparochie con el grupo en el dique, Terschelling con el ferry y Goingarijp con la vela. La imagen lateral de la idea pasa a una foto de tres ciclistas sonrientes.
+* Carrusel de 15 fotos con lightbox, sin descripciones y con botón al álbum. Como las fotos son verticales, las diapositivas también lo son.
+* Las fotos del álbum tienen una resolución máxima de 1440 por 1800 píxeles, menor que las de Spain.
+* La página de Grecia sigue con sus imágenes de archivo hasta recibir el álbum correcto.
