@@ -466,3 +466,9 @@ footer img.eu{background:none}
 .pager a:hover .arrow{background:var(--orange);border-color:var(--orange);color:#fff}
 .pager .next .txt{text-align:right}
 @media (max-width:560px){.pager .next .txt{text-align:right}}
+
+/* carrusel con fotos verticales e imagen lateral vertical */
+.carousel.portrait .slide{flex-basis:min(300px,74%)}
+.carousel.portrait .slide img{aspect-ratio:4/5}
+.polaroid.side{max-width:440px;justify-self:center}
+.polaroid.side img{aspect-ratio:4/5}
