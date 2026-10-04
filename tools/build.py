@@ -203,7 +203,7 @@ RESULTS = {
         quotes=[("Inspiring.", "Gui"), ("A powerful human experience of connection, growth, and shared vulnerability.", "Beatriz"), ("It was a fun, dynamic trip focussed on connection.", "Rashel")],
     ),
     "spain": dict(
-        stats=BASE + [("22", "Human Books in the catalogue"), ("5", "Countries represented in the catalogue")],
+        stats=BASE + [("125", "Human Books in the catalogue"), ("5", "Countries represented")],
         note="",
         worked=["A shared catalogue of personal stories on mental health, built by participants before the walk and used to prepare each Human Library."],
         learned=[],
@@ -282,6 +282,7 @@ def nav(active):
         </div>
       </li>
       <li><a href="human-library.html"{cur("hl")}>Human library</a></li>
+      <li><a class="icon-link" href="https://www.instagram.com/eurolibrary" target="_blank" rel="noopener" aria-label="Eurolibrary on Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg><span class="icon-label">Instagram</span></a></li>
       <li><a class="btn btn-dark" href="contact.html"{cur("contact")}>Contact</a></li>
     </ul>
   </div>
@@ -295,9 +296,10 @@ def footer():
             ("contact.html", "Contact")] + [(CH[k]["file"], CH[k]["name"]) for k in CHAPTERS])
     return f"""<footer>
   <div class="wrap">
-    <img class="eu" src="assets/eu-funded.png" alt="Funded by the European Union" style="background:var(--ink);padding:8px 12px;border-radius:8px">
+    <img class="eu" src="assets/eu-funded-blue.png" alt="Funded by the European Union">
     <div class="meta">
       <ul class="links">{links}</ul>
+      <p class="partners-line">Coordinated by <a href="https://xeracion.org">Asociación Xeración</a>, with <a href="https://altventurers.com/">AltVenturers</a>, <a href="https://www.dekrachtvansport.nl/">De Kracht van Sport</a>, <a href="https://tfn-bg.com/">The Future Now Association</a> and <a href="https://gaiaalentejo.wordpress.com/english/">GAIA Alentejo</a>.</p>
       <p>{e(EU_DISCLAIMER)}</p>
     </div>
     <p class="copy">Copyright © 2026 Eurolibrary. Project completed in 2025.</p>
@@ -396,7 +398,7 @@ def home():
             <span class="dates">{c['dates']}</span>
             <p>{summaries[k]}</p>
             <span class="tag">{c['topic']}</span>
-            <div class="status"><span>Completed</span><a href="{c['file']}">Read the chapter</a></div>
+            <a class="btn btn-ghost card-btn" href="{c['file']}">Check the details</a>
           </div>
         </article>""")
     body = f"""  <div class="hero">
@@ -569,10 +571,27 @@ def about():
         <div><small>Programme</small><strong>Erasmus+, European Youth Together</strong></div>
         <div><small>Project number</small><strong>101186721</strong></div>
         <div><small>Coordinator</small><strong>Asociación Xeración, Spain</strong></div>
-        <div><small>Partners</small><strong>NGOs from Bulgaria, Greece, the Netherlands, Portugal and Spain</strong></div>
+        <div><small>Partners</small><strong>Five NGOs from Bulgaria, Greece, the Netherlands, Portugal and Spain</strong></div>
         <div><small>Mobilities</small><strong>Five chapters, June to November 2025</strong></div>
         <div><small>Dissemination lead</small><strong>AltVenturers, Greece</strong></div>
       </div>
+    </div>
+  </section>
+
+  <section id="partners" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <span class="eyebrow">Who made it happen</span>
+        <h2 class="display h2">Five NGOs, one living library</h2>
+        <p class="lead muted">Eurolibrary is coordinated by Asociación Xeración and carried out together with four partner organisations.</p>
+      </div>
+      <ul class="partners">
+        <li class="lead-partner"><span class="tag">Coordinator</span><h3 class="display h3">Asociación Xeración</h3><p>Spain</p><a class="btn btn-ghost" href="https://xeracion.org">Visit website</a></li>
+        <li><span class="tag">Partner</span><h3 class="display h3">AltVenturers</h3><p>Greece</p><a class="btn btn-ghost" href="https://altventurers.com/">Visit website</a></li>
+        <li><span class="tag">Partner</span><h3 class="display h3">De Kracht van Sport</h3><p>The Netherlands</p><a class="btn btn-ghost" href="https://www.dekrachtvansport.nl/">Visit website</a></li>
+        <li><span class="tag">Partner</span><h3 class="display h3">The Future Now Association</h3><p>Bulgaria</p><a class="btn btn-ghost" href="https://tfn-bg.com/">Visit website</a></li>
+        <li><span class="tag">Partner</span><h3 class="display h3">GAIA Alentejo</h3><p>Portugal</p><a class="btn btn-ghost" href="https://gaiaalentejo.wordpress.com/english/">Visit website</a></li>
+      </ul>
     </div>
   </section>
 
@@ -659,7 +678,7 @@ def chapter(k):
     body = f"""  <div class="page-hero split">
     <div class="wrap">
       <div>
-        <span class="status-pill">Chapter {c['no']} of 5, completed</span>
+        <span class="status-pill">Chapter {c['no']} of 5</span>
         <h1 class="display h1">{e(c['name'])}</h1>
         <p class="tagline">{e(c['tagline'])}</p>
         <p class="lead">{e(c['subtitle'])}, {e(c['country'])}.</p>
@@ -783,7 +802,7 @@ def human_library():
         <p class="lead muted">Sessions took place on trains, ferries, in museums, cafés and public spaces, and in local schools.</p>
       </div>
       <div class="counters four" style="margin:0">
-        {stats_block([("20", "Human Library events, 4 per chapter"), ("20 to 30", "Readers per event, on average"), ("22", "Human Books in the Spain catalogue"), ("5", "Countries represented among them")])}
+        {stats_block([("20", "Human Library events, 4 per chapter"), ("20 to 30", "Readers per event, on average"), ("125", "Human Books in the catalogue"), ("5", "Countries represented")])}
       </div>
     </div>
   </section>
