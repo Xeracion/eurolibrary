@@ -254,6 +254,16 @@ RESULTS = {
     ),
 }
 
+HL_HOW = ("How does it work? Readers choose a book from the catalogue and borrow it for a timed conversation. "
+          "Respect comes first, books decide what they share, and nobody has to agree. The point is to understand.")
+HL_INTRO = {
+    "bulgaria": "Picture a library where the books are young entrepreneurs. You pick a title, sit down for a timed conversation and hear how someone built something from nothing, including the setbacks nobody posts about. On the Balkan Express that library never stayed in one place. It opened in city squares and parks, and even on a moving train between cities.",
+    "spain": "In this library every book is a story about mental health. Participants wrote a title and a short summary for a shared catalogue, and readers chose who to borrow. Along the English Way the library opened in town squares, where strangers sat down on a bench and listened to experiences that are rarely said out loud.",
+    "netherlands": "Healthy living is easier to talk about when you are doing it. Cycling across Friesland, the books were coaches, creators and people finding their own balance, and the readers were locals who stopped to ask honest questions about movement, food, rest and connection. Rain and wind forced some changes, and the team found alternatives so the events still went ahead.",
+    "greece": "Here the books were stories of migration, and the library travelled by ferry. It opened on Cycladic islands, in a village square and in local schools, where students heard these stories straight from the people who lived them. It even set up on board a ferry.",
+    "portugal": "A campervan became a travelling library about living lightly and caring for the planet. Across the south of Portugal, four stops each opened a Human Library where readers borrowed stories about eco friendly, minimalist lifestyles and asked how those choices work in everyday life.",
+}
+
 NAV_MOB = [
     ("bulgaria", "Balkan Express, Bulgaria"),
     ("spain", "Buen Camino, Spain"),
@@ -324,7 +334,7 @@ def footer():
       <p class="partners-line">Coordinated by <a href="https://xeracion.org">Asociación Xeración</a>, with <a href="https://altventurers.com/">AltVenturers</a>, <a href="https://www.dekrachtvansport.nl/">De Kracht van Sport</a>, <a href="https://tfn-bg.com/">The Future Now Association</a> and <a href="https://gaiaalentejo.wordpress.com/english/">GAIA Alentejo</a>.</p>
       <p>{e(EU_DISCLAIMER)}</p>
     </div>
-    <p class="copy">Copyright © 2026 Eurolibrary. Project completed in 2025.</p>
+    <p class="copy">Copyright © 2026 Eurolibrary</p>
   </div>
 </footer>"""
 
@@ -765,9 +775,11 @@ def chapter(k):
       <h2 class="display h2">{e(c['tagline'])}</h2>
       {intro}
     </div>'''
+    arrow_l = '<span class="arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>'
+    arrow_r = '<span class="arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
     pager = '<div class="pager">'
-    pager += (f'<a href="{prev["file"]}"><small>Previous chapter</small><strong>{e(prev["name"])}</strong></a>' if prev else "<span></span>")
-    pager += (f'<a class="next" href="{nxt["file"]}"><small>Next chapter</small><strong>{e(nxt["name"])}</strong></a>' if nxt else "<span></span>")
+    pager += (f'<a class="prev" href="{prev["file"]}">{arrow_l}<span class="txt"><small>Previous chapter</small><strong>{e(prev["name"])}</strong></span></a>' if prev else "<span></span>")
+    pager += (f'<a class="next" href="{nxt["file"]}"><span class="txt"><small>Next chapter</small><strong>{e(nxt["name"])}</strong></span>{arrow_r}</a>' if nxt else "<span></span>")
     pager += "</div>"
     body = f"""  <div class="page-hero split">
     <div class="wrap">
@@ -806,8 +818,9 @@ def chapter(k):
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
-        <h2 class="display h2">Everything on the road</h2>
-        <p class="lead">Tickets, accommodation and meals were covered by the project. Some restrictions applied. This chapter is completed and applications are closed.</p>
+        <h2 class="display h2">A library where the books are people</h2>
+        <p class="lead hl-text">{e(HL_INTRO[k])}</p>
+        <p class="hl-text">{e(HL_HOW)}</p>
         <a class="btn btn-primary" href="human-library.html">See how the Human Library works</a>
       </div>
     </div>

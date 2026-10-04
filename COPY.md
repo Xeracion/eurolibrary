@@ -178,3 +178,9 @@ Criterio de selección: paisaje y caminantes de espaldas, el montaje de una mesa
 La persona responsable confirma que cuenta con el consentimiento de todas las personas de las fotos, así que se incorporan fotos con caras: conversaciones de la Human Library, un selfie en la carretera, caminantes de frente, el grupo descansando en el albergue y los abrazos en el Obradoiro. El carrusel pasa a 15 fotos, y las paradas de Betanzos, Sigüeiro y Santiago usan fotos con personas.
 
 Se eliminan las descripciones visibles de las fotos, tanto bajo el carrusel como en el lightbox, que solo muestra el contador. El texto alternativo se mantiene para accesibilidad. Se añade el botón "View the full album", que abre el álbum compartido en una pestaña nueva.
+
+## Décima ronda: texto de la Human Library, flechas y pie
+
+* El bloque oscuro "Everything on the road" de los cinco capítulos pasa a ser "A library where the books are people", con un texto de apertura adaptado a cada destino y un párrafo común que explica cómo funciona. Los detalles salen de los informes y la web: la Human Library en el tren de Bulgaria, el catálogo de historias de Spain, la lluvia y el viento de Países Bajos, las escuelas y el ferry de Grecia y las cuatro paradas de Portugal.
+* El anterior y el siguiente capítulo llevan flechas.
+* El pie ya no dice "Project completed in 2025".

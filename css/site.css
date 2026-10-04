@@ -451,3 +451,18 @@ footer img.eu{background:none}
 .car-album{margin-top:24px;text-align:center}
 .car-album .btn svg{flex:none}
 .slide figcaption{display:none}
+
+/* texto de la Human Library en los capítulos */
+.join .hl-text{max-width:660px;margin:0 auto 20px;position:relative;color:#e9dfd6}
+.join .hl-text.lead{font-size:19px}
+.join .hl-text+.btn{margin-top:12px}
+/* flechas del anterior y siguiente */
+.pager a{flex-direction:row;align-items:center;gap:16px}
+.pager .txt{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+.pager .arrow{
+  flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--mist);background:var(--cream);
+  display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s;
+}
+.pager a:hover .arrow{background:var(--orange);border-color:var(--orange);color:#fff}
+.pager .next .txt{text-align:right}
+@media (max-width:560px){.pager .next .txt{text-align:right}}
