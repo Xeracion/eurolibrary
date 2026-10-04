@@ -81,23 +81,31 @@ CH = {
         route_p="From the Atlantic coast to Santiago de Compostela, one stage at a time.",
         stops=[
             ("26 to 27 July", "Pontedeume", "A lovely medieval town to get ready, mind and legs, before the first steps away from the Atlantic.", "photos/spain-group-street.jpg", "The group sitting together on a street in Pontedeume"),
-            ("28 July", "Betanzos", "Said by many to serve the best tortilla in the world. Tasted with locals while celebrating the first public event in its stone streets.", "photos/spain-human-library-setup.jpg", "A Human Library table under a blue tent in a town square"),
+            ("28 July", "Betanzos", "Said by many to serve the best tortilla in the world. Tasted with locals while celebrating the first public event in its stone streets.", "photos/spain-hl-talk.jpg", "Two people in conversation during a Human Library in a town square"),
             ("29 July", "Ordes", "A modern town halfway along the route, and the place to rest, reflect and recharge for the final kilometres.", "photos/spain-church.jpg", "A stone chapel with a bell tower in the Galician countryside"),
-            ("30 July", "Sigüeiro", "The last stop before Santiago, with parks, forest and a river, and friendly locals keen to listen to the stories.", "photos/spain-walkers-hands.jpg", "Walkers raising their arms on a tree lined road"),
-            ("31 July to 2 August", "Santiago de Compostela", "The magical city hosted the last and most important part of the trip: time to digest everything collected along the Way.", "photos/spain-santiago-arrival.jpg", "Pilgrims gathered in front of Santiago cathedral"),
+            ("30 July", "Sigüeiro", "The last stop before Santiago, with parks, forest and a river, and friendly locals keen to listen to the stories.", "photos/spain-picnic.jpg", "Three walkers resting and smiling on the roadside"),
+            ("31 July to 2 August", "Santiago de Compostela", "The magical city hosted the last and most important part of the trip: time to digest everything collected along the Way.", "photos/spain-obradoiro-group.jpg", "Pilgrims hugging in front of Santiago cathedral"),
         ],
         side=None,
         gallery_h="Photos from the road",
         gallery_p="From the first kilometres to the Obradoiro square. Tap a photo to see it larger.",
+        gallery_link=("View the full album", "https://photos.app.goo.gl/FBvjyPFJJKJQ9BHe8"),
         gallery=[
-            ("photos/spain-viewpoint.jpg", "A walker standing on a rock above a Galician landscape", "26 July", "50% 50%"),
-            ("photos/spain-forest.jpg", "A shaded forest path beside a stream", "26 July", "50% 50%"),
-            ("photos/spain-landscape.jpg", "A river valley under a cloudy sky seen from the Way", "28 July", "50% 50%"),
-            ("photos/spain-town.jpg", "A Galician town of white glazed balconies on a hill", "28 July", "50% 50%"),
-            ("photos/spain-human-library-tent.jpg", "A Human Library table under a blue tent in a town square", "28 July", "50% 50%"),
-            ("photos/spain-landscape-2.jpg", "Rolling green hills under a wide sky", "29 July", "50% 50%"),
-            ("photos/spain-walkers-path.jpg", "Walkers with backpacks on a path between fields", "31 July", "50% 50%"),
-            ("photos/spain-cathedral.jpg", "The facade of Santiago cathedral seen from below", "31 July", "50% 22%"),
+            ("photos/spain-viewpoint.jpg", "A walker standing on a rock above a Galician landscape", "50% 50%"),
+            ("photos/spain-landscape.jpg", "A river valley under a cloudy sky seen from the Way", "50% 50%"),
+            ("photos/spain-town.jpg", "A Galician town of white glazed balconies on a hill", "50% 50%"),
+            ("photos/spain-hl-table.jpg", "A volunteer at the Human Library registration table", "50% 30%"),
+            ("photos/spain-hl-conversation.jpg", "A reader and a human book talking during a Human Library", "30% 40%"),
+            ("photos/spain-human-library-setup.jpg", "A Human Library table under a blue tent in a town square", "50% 50%"),
+            ("photos/spain-landscape-2.jpg", "Rolling green hills under a wide sky", "50% 50%"),
+            ("photos/spain-selfie.jpg", "A smiling walker in a sun hat taking a selfie on the road", "50% 50%"),
+            ("photos/spain-walkers-women.jpg", "Three walkers coming down a village street", "50% 50%"),
+            ("photos/spain-walkers-hands.jpg", "Walkers raising their arms on a tree lined road", "50% 50%"),
+            ("photos/spain-hostel-group.jpg", "The group resting together on a sofa after a day of walking", "50% 50%"),
+            ("photos/spain-walkers-path.jpg", "Walkers with backpacks on a path between fields", "50% 50%"),
+            ("photos/spain-hug.jpg", "Two pilgrims hugging in front of Santiago cathedral", "50% 66%"),
+            ("photos/spain-santiago-arrival.jpg", "The group arriving in the Obradoiro square", "50% 50%"),
+            ("photos/spain-cathedral.jpg", "The facade of Santiago cathedral seen from below", "50% 22%"),
         ],
     ),
     "netherlands": dict(
@@ -367,7 +375,7 @@ SCRIPT = """<script>
       cur=(i+btns.length)%btns.length;
       var im=btns[cur].querySelector('img');
       img.src=im.currentSrc||im.src;img.alt=im.alt;
-      cap.textContent=btns[cur].parentNode.querySelector('figcaption').textContent+'. '+im.alt+'. ('+(cur+1)+' of '+btns.length+')';
+      cap.textContent=(cur+1)+' / '+btns.length;
     }
     function open(i){opener=btns[i];show(i);lb.hidden=false;document.body.style.overflow='hidden';ctrls[0].focus()}
     function close(){lb.hidden=true;document.body.style.overflow='';if(opener)opener.focus()}
@@ -716,8 +724,11 @@ def chapter(k):
     if c.get("gallery"):
         slides = "".join(
             f'<figure class="slide"><button type="button" class="slide-btn" data-lightbox aria-label="Open photo: {e(alt)}">'
-            f'<img src="assets/{u}" alt="{e(alt)}" loading="lazy" style="object-position:{pos}"></button>'
-            f'<figcaption>{e(cap)}</figcaption></figure>' for u, alt, cap, pos in c["gallery"])
+            f'<img src="assets/{u}" alt="{e(alt)}" loading="lazy" style="object-position:{pos}"></button></figure>'
+            for u, alt, pos in c["gallery"])
+        album = ""
+        if c.get("gallery_link"):
+            album = f'<p class="car-album"><a class="btn btn-dark" href="{c["gallery_link"][1]}" target="_blank" rel="noopener">{e(c["gallery_link"][0])}<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></p>'
         chev_l = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>'
         chev_r = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>'
         gallery_section = f"""  <section id="photos" style="padding-top:0">
@@ -731,6 +742,7 @@ def chapter(k):
         <button type="button" class="car-btn prev" aria-label="Previous photos">{chev_l}</button>
         <button type="button" class="car-btn next" aria-label="Next photos">{chev_r}</button>
       </div>
+      {album}
     </div>
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
       <button type="button" class="lb-close" aria-label="Close photo viewer">{chr(215)}</button>

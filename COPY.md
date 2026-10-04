@@ -172,3 +172,9 @@ Criterio de selección: paisaje y caminantes de espaldas, el montaje de una mesa
 * La imagen de portada de Spain pasa a ser una foto del álbum de caminantes por la carretera.
 * La galería pasa a ser un carrusel con lightbox: flechas, teclado, Escape, gesto de deslizar en móvil y pie de foto con la fecha.
 * Se elimina de los cinco capítulos la sección "Who we were looking for" (perfil y requisitos de participación). Los datos siguen en `tools/build.py` por si se quieren recuperar.
+
+## Novena ronda: fotos con personas y botón al álbum
+
+La persona responsable confirma que cuenta con el consentimiento de todas las personas de las fotos, así que se incorporan fotos con caras: conversaciones de la Human Library, un selfie en la carretera, caminantes de frente, el grupo descansando en el albergue y los abrazos en el Obradoiro. El carrusel pasa a 15 fotos, y las paradas de Betanzos, Sigüeiro y Santiago usan fotos con personas.
+
+Se eliminan las descripciones visibles de las fotos, tanto bajo el carrusel como en el lightbox, que solo muestra el contador. El texto alternativo se mantiene para accesibilidad. Se añade el botón "View the full album", que abre el álbum compartido en una pestaña nueva.

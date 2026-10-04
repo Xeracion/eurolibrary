@@ -447,3 +447,7 @@ footer img.eu{background:none}
   .lb-fig{order:1;flex-basis:100%}
   .lb-prev{order:2}.lb-next{order:3}
 }
+
+.car-album{margin-top:24px;text-align:center}
+.car-album .btn svg{flex:none}
+.slide figcaption{display:none}

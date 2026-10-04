@@ -241,7 +241,7 @@
       cur=(i+btns.length)%btns.length;
       var im=btns[cur].querySelector('img');
       img.src=im.currentSrc||im.src;img.alt=im.alt;
-      cap.textContent=btns[cur].parentNode.querySelector('figcaption').textContent+'. '+im.alt+'. ('+(cur+1)+' of '+btns.length+')';
+      cap.textContent=(cur+1)+' / '+btns.length;
     }
     function open(i){opener=btns[i];show(i);lb.hidden=false;document.body.style.overflow='hidden';ctrls[0].focus()}
     function close(){lb.hidden=true;document.body.style.overflow='';if(opener)opener.focus()}
