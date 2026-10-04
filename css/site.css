@@ -276,7 +276,7 @@ footer .copy{grid-column:1 / -1;font-size:14px}
 .stop-card.has-img{grid-template-columns:1fr 280px}
 .stop-body{padding:20px 24px;display:flex;flex-direction:column;gap:8px}
 .stop-body time{font-weight:500;font-size:14px;color:var(--orange)}
-.stop-card img{width:100%;height:100%;min-height:160px;object-fit:cover}
+.stop-card img{width:100%;height:100%;min-height:160px;max-height:240px;object-fit:cover;object-position:50% 60%}
 
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .pager a{
@@ -397,3 +397,72 @@ footer img.eu{background:none}
 /* sin antetítulos: el primer título de cada bloque no necesita margen superior */
 .section-head .h2:first-child,.two-col .h2:first-child,.concept .h2:first-child,
 .join .h2:first-child,.leitmotiv .h2:first-child,.page-hero .h1:first-child,.hero .h1:first-child{margin-top:0}
+
+/* carrusel y lightbox */
+.wrap.narrow{max-width:808px;text-align:center}
+.wrap.narrow .h2{margin:0 0 20px}
+.wrap.narrow p{font-size:19px;line-height:1.56}
+.wrap.narrow p+p{margin-top:16px}
+.two-col.idea{align-items:center}
+.carousel{position:relative}
+.carousel-track{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:4px 2px 12px;scrollbar-width:thin;scrollbar-color:var(--lavender) transparent;
+}
+.carousel-track:focus-visible{outline:2px solid var(--orange);outline-offset:4px;border-radius:12px}
+.slide{flex:0 0 min(420px,82%);scroll-snap-align:start;margin:0}
+.slide-btn{
+  display:block;width:100%;padding:0;border:0;background:var(--white);border-radius:var(--radius-card);
+  overflow:hidden;cursor:zoom-in;box-shadow:var(--shadow);
+}
+.slide-btn:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.slide img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .3s}
+.slide-btn:hover img{transform:scale(1.03)}
+.slide figcaption{font-size:14px;color:var(--ash);margin-top:8px}
+.car-btn{
+  position:absolute;top:calc(50% - 34px);width:44px;height:44px;border-radius:50%;border:1px solid var(--mist);
+  background:var(--white);color:var(--ink);box-shadow:var(--shadow);cursor:pointer;display:grid;place-items:center;z-index:2;
+}
+.car-btn.prev{left:-14px}.car-btn.next{right:-14px}
+.car-btn:hover:not([disabled]){background:var(--cream)}
+.car-btn[disabled]{opacity:.35;cursor:default}
+.car-btn:focus-visible,.lb-nav:focus-visible,.lb-close:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+@media (max-width:560px){.car-btn.prev{left:4px}.car-btn.next{right:4px}.slide{flex-basis:86%}}
+.lightbox{
+  position:fixed;inset:0;z-index:100;background:rgba(20,18,17,.94);display:flex;align-items:center;justify-content:center;
+  gap:16px;padding:56px 16px 24px;
+}
+.lightbox[hidden]{display:none}
+.lb-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0;max-width:min(1100px,100%)}
+.lb-fig img{max-width:100%;max-height:calc(100vh - 150px);width:auto;height:auto;border-radius:8px;display:block}
+.lb-fig figcaption{color:#e9dfd6;font-size:14px;text-align:center;max-width:720px}
+.lb-nav,.lb-close{
+  flex:none;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.1);color:#fff;cursor:pointer;display:grid;place-items:center;font-size:28px;line-height:1;
+}
+.lb-nav:hover,.lb-close:hover{background:rgba(255,255,255,.2)}
+.lb-close{position:absolute;top:12px;right:12px}
+@media (max-width:640px){
+  .lightbox{flex-wrap:wrap;align-content:center;padding-top:64px}
+  .lb-fig{order:1;flex-basis:100%}
+  .lb-prev{order:2}.lb-next{order:3}
+}
+
+.car-album{margin-top:24px;text-align:center}
+.car-album .btn svg{flex:none}
+.slide figcaption{display:none}
+
+/* texto de la Human Library en los capítulos */
+.join .hl-text{max-width:660px;margin:0 auto 20px;position:relative;color:#e9dfd6}
+.join .hl-text.lead{font-size:19px}
+.join .hl-text+.btn{margin-top:12px}
+/* flechas del anterior y siguiente */
+.pager a{flex-direction:row;align-items:center;gap:16px}
+.pager .txt{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+.pager .arrow{
+  flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--mist);background:var(--cream);
+  display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s;
+}
+.pager a:hover .arrow{background:var(--orange);border-color:var(--orange);color:#fff}
+.pager .next .txt{text-align:right}
+@media (max-width:560px){.pager .next .txt{text-align:right}}

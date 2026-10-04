@@ -58,7 +58,7 @@ CH = {
     "spain": dict(
         file="spain.html", no=2, name="Buen Camino", country="Spain",
         mode="on foot", mode_short="On foot", dates="26 July to 2 August 2025", topic="Mental health",
-        hero="photos/spain-hero.jpg", hero_alt="A Camino de Santiago waymarker with a yellow arrow",
+        hero="photos/spain-hero.jpg", hero_alt="Three walkers with backpacks on a country road in Galicia",
         subtitle="An intense journey about mental health",
         tagline="A pilgrimage to the inner self.",
         intro=[
@@ -80,13 +80,33 @@ CH = {
         route_h="Five stops on the English Way",
         route_p="From the Atlantic coast to Santiago de Compostela, one stage at a time.",
         stops=[
-            ("26 to 27 July", "Pontedeume", "A lovely medieval town to get ready, mind and legs, before the first steps away from the Atlantic.", "photos/spain-pontedeume.jpg", "A street in Pontedeume"),
-            ("28 July", "Betanzos", "Said by many to serve the best tortilla in the world. Tasted with locals while celebrating the first public event in its stone streets.", "photos/spain-betanzos.jpg", "Church and square in Betanzos"),
-            ("29 July", "Ordes", "A modern town halfway along the route, and the place to rest, reflect and recharge for the final kilometres.", "photos/spain-ordes.jpg", "Town hall of Ordes"),
-            ("30 July", "Sigüeiro", "The last stop before Santiago, with parks, forest and a river, and friendly locals keen to listen to the stories.", "photos/spain-sigueiro.jpg", "A stone bridge near Sigüeiro"),
-            ("31 July to 2 August", "Santiago de Compostela", "The magical city hosted the last and most important part of the trip: time to digest everything collected along the Way.", "photos/spain-santiago.jpg", "A scallop shell hanging from a backpack"),
+            ("26 to 27 July", "Pontedeume", "A lovely medieval town to get ready, mind and legs, before the first steps away from the Atlantic.", "photos/spain-group-street.jpg", "The group sitting together on a street in Pontedeume"),
+            ("28 July", "Betanzos", "Said by many to serve the best tortilla in the world. Tasted with locals while celebrating the first public event in its stone streets.", "photos/spain-hl-talk.jpg", "Two people in conversation during a Human Library in a town square"),
+            ("29 July", "Ordes", "A modern town halfway along the route, and the place to rest, reflect and recharge for the final kilometres.", "photos/spain-church.jpg", "A stone chapel with a bell tower in the Galician countryside"),
+            ("30 July", "Sigüeiro", "The last stop before Santiago, with parks, forest and a river, and friendly locals keen to listen to the stories.", "photos/spain-picnic.jpg", "Three walkers resting and smiling on the roadside"),
+            ("31 July to 2 August", "Santiago de Compostela", "The magical city hosted the last and most important part of the trip: time to digest everything collected along the Way.", "photos/spain-obradoiro-group.jpg", "Pilgrims hugging in front of Santiago cathedral"),
         ],
         side=None,
+        gallery_h="Photos from the road",
+        gallery_p="From the first kilometres to the Obradoiro square. Tap a photo to see it larger.",
+        gallery_link=("View the full album", "https://photos.app.goo.gl/FBvjyPFJJKJQ9BHe8"),
+        gallery=[
+            ("photos/spain-viewpoint.jpg", "A walker standing on a rock above a Galician landscape", "50% 50%"),
+            ("photos/spain-landscape.jpg", "A river valley under a cloudy sky seen from the Way", "50% 50%"),
+            ("photos/spain-town.jpg", "A Galician town of white glazed balconies on a hill", "50% 50%"),
+            ("photos/spain-hl-table.jpg", "A volunteer at the Human Library registration table", "50% 30%"),
+            ("photos/spain-hl-conversation.jpg", "A reader and a human book talking during a Human Library", "30% 40%"),
+            ("photos/spain-human-library-setup.jpg", "A Human Library table under a blue tent in a town square", "50% 50%"),
+            ("photos/spain-landscape-2.jpg", "Rolling green hills under a wide sky", "50% 50%"),
+            ("photos/spain-selfie.jpg", "A smiling walker in a sun hat taking a selfie on the road", "50% 50%"),
+            ("photos/spain-walkers-women.jpg", "Three walkers coming down a village street", "50% 50%"),
+            ("photos/spain-walkers-hands.jpg", "Walkers raising their arms on a tree lined road", "50% 50%"),
+            ("photos/spain-hostel-group.jpg", "The group resting together on a sofa after a day of walking", "50% 50%"),
+            ("photos/spain-walkers-path.jpg", "Walkers with backpacks on a path between fields", "50% 50%"),
+            ("photos/spain-hug.jpg", "Two pilgrims hugging in front of Santiago cathedral", "50% 66%"),
+            ("photos/spain-santiago-arrival.jpg", "The group arriving in the Obradoiro square", "50% 50%"),
+            ("photos/spain-cathedral.jpg", "The facade of Santiago cathedral seen from below", "50% 22%"),
+        ],
     ),
     "netherlands": dict(
         file="netherlands.html", no=3, name="The Dutch Way", country="The Netherlands",
@@ -234,6 +254,16 @@ RESULTS = {
     ),
 }
 
+HL_HOW = ("How does it work? Readers choose a book from the catalogue and borrow it for a timed conversation. "
+          "Respect comes first, books decide what they share, and nobody has to agree. The point is to understand.")
+HL_INTRO = {
+    "bulgaria": "Picture a library where the books are young entrepreneurs. You pick a title, sit down for a timed conversation and hear how someone built something from nothing, including the setbacks nobody posts about. On the Balkan Express that library never stayed in one place. It opened in city squares and parks, and even on a moving train between cities.",
+    "spain": "In this library every book is a story about mental health. Participants wrote a title and a short summary for a shared catalogue, and readers chose who to borrow. Along the English Way the library opened in town squares, where strangers sat down on a bench and listened to experiences that are rarely said out loud.",
+    "netherlands": "Healthy living is easier to talk about when you are doing it. Cycling across Friesland, the books were coaches, creators and people finding their own balance, and the readers were locals who stopped to ask honest questions about movement, food, rest and connection. Rain and wind forced some changes, and the team found alternatives so the events still went ahead.",
+    "greece": "Here the books were stories of migration, and the library travelled by ferry. It opened on Cycladic islands, in a village square and in local schools, where students heard these stories straight from the people who lived them. It even set up on board a ferry.",
+    "portugal": "A campervan became a travelling library about living lightly and caring for the planet. Across the south of Portugal, four stops each opened a Human Library where readers borrowed stories about eco friendly, minimalist lifestyles and asked how those choices work in everyday life.",
+}
+
 NAV_MOB = [
     ("bulgaria", "Balkan Express, Bulgaria"),
     ("spain", "Buen Camino, Spain"),
@@ -304,7 +334,7 @@ def footer():
       <p class="partners-line">Coordinated by <a href="https://xeracion.org">Asociación Xeración</a>, with <a href="https://altventurers.com/">AltVenturers</a>, <a href="https://www.dekrachtvansport.nl/">De Kracht van Sport</a>, <a href="https://tfn-bg.com/">The Future Now Association</a> and <a href="https://gaiaalentejo.wordpress.com/english/">GAIA Alentejo</a>.</p>
       <p>{e(EU_DISCLAIMER)}</p>
     </div>
-    <p class="copy">Copyright © 2026 Eurolibrary. Project completed in 2025.</p>
+    <p class="copy">Copyright © 2026 Eurolibrary</p>
   </div>
 </footer>"""
 
@@ -336,6 +366,53 @@ SCRIPT = """<script>
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('""" + EMAIL + """').then(done,function(){});}
     })}
   }
+  (function(){
+    var car=document.querySelector('[data-carousel]');
+    if(!car)return;
+    var track=car.querySelector('.carousel-track'),prev=car.querySelector('.prev'),next=car.querySelector('.next');
+    function upd(){prev.disabled=track.scrollLeft<=2;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-2}
+    function step(d){track.scrollBy({left:d*Math.max(track.clientWidth*0.8,260),behavior:'smooth'})}
+    prev.addEventListener('click',function(){step(-1)});
+    next.addEventListener('click',function(){step(1)});
+    track.addEventListener('scroll',upd,{passive:true});
+    window.addEventListener('resize',upd);
+    track.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();step(1)}if(e.key==='ArrowLeft'){e.preventDefault();step(-1)}});
+    upd();
+    var lb=document.getElementById('lightbox'),btns=[].slice.call(car.querySelectorAll('[data-lightbox]'));
+    var img=lb.querySelector('.lb-fig img'),cap=lb.querySelector('figcaption'),cur=0,opener=null;
+    var ctrls=[lb.querySelector('.lb-close'),lb.querySelector('.lb-prev'),lb.querySelector('.lb-next')];
+    function show(i){
+      cur=(i+btns.length)%btns.length;
+      var im=btns[cur].querySelector('img');
+      img.src=im.currentSrc||im.src;img.alt=im.alt;
+      cap.textContent=(cur+1)+' / '+btns.length;
+    }
+    function open(i){opener=btns[i];show(i);lb.hidden=false;document.body.style.overflow='hidden';ctrls[0].focus()}
+    function close(){lb.hidden=true;document.body.style.overflow='';if(opener)opener.focus()}
+    btns.forEach(function(b,i){b.addEventListener('click',function(){open(i)})});
+    ctrls[0].addEventListener('click',close);
+    ctrls[1].addEventListener('click',function(){show(cur-1)});
+    ctrls[2].addEventListener('click',function(){show(cur+1)});
+    lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-fig'))close()});
+    document.addEventListener('keydown',function(e){
+      if(lb.hidden)return;
+      if(e.key==='Escape')close();
+      else if(e.key==='ArrowLeft')show(cur-1);
+      else if(e.key==='ArrowRight')show(cur+1);
+      else if(e.key==='Tab'){
+        var i=ctrls.indexOf(document.activeElement);
+        e.preventDefault();
+        ctrls[(i+(e.shiftKey?-1:1)+ctrls.length)%ctrls.length].focus();
+      }
+    });
+    var x0=null;
+    lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+    lb.addEventListener('touchend',function(e){
+      if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0;x0=null;
+      if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));
+    });
+  })();
 </script>"""
 
 
@@ -620,9 +697,7 @@ def chapter(k):
     prev = CH[order[i - 1]] if i > 0 else None
     nxt = CH[order[i + 1]] if i < len(order) - 1 else None
     intro = "".join(f"<p>{e(p)}</p>" for p in c["intro"])
-    profile = "".join(f"<p>{e(p)}</p>" for p in c["profile"])
     facts = "".join(f'<div class="fact"><small>{e(a)}</small><strong>{e(b)}</strong></div>' for a, b in c["facts"])
-    crit = "".join(f"<li>{e(x)}</li>" for x in c["criteria"])
     stops = []
     for date, name, desc, img, alt in c["stops"]:
         im = f'<img src="assets/{img}" alt="{e(alt)}" loading="lazy">' if img else ""
@@ -655,12 +730,56 @@ def chapter(k):
       {quotes}
     </div>
   </section>"""
-    side = ""
+    gallery_section = ""
+    if c.get("gallery"):
+        slides = "".join(
+            f'<figure class="slide"><button type="button" class="slide-btn" data-lightbox aria-label="Open photo: {e(alt)}">'
+            f'<img src="assets/{u}" alt="{e(alt)}" loading="lazy" style="object-position:{pos}"></button></figure>'
+            for u, alt, pos in c["gallery"])
+        album = ""
+        if c.get("gallery_link"):
+            album = f'<p class="car-album"><a class="btn btn-dark" href="{c["gallery_link"][1]}" target="_blank" rel="noopener">{e(c["gallery_link"][0])}<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></p>'
+        chev_l = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>'
+        chev_r = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>'
+        gallery_section = f"""  <section id="photos" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <h2 class="display h2">{e(c['gallery_h'])}</h2>
+        <p class="lead muted">{e(c['gallery_p'])}</p>
+      </div>
+      <div class="carousel" data-carousel role="region" aria-roledescription="carousel" aria-label="{e(c['gallery_h'])}">
+        <div class="carousel-track" tabindex="0">{slides}</div>
+        <button type="button" class="car-btn prev" aria-label="Previous photos">{chev_l}</button>
+        <button type="button" class="car-btn next" aria-label="Next photos">{chev_r}</button>
+      </div>
+      {album}
+    </div>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+      <button type="button" class="lb-close" aria-label="Close photo viewer">{chr(215)}</button>
+      <button type="button" class="lb-nav lb-prev" aria-label="Previous photo">{chev_l}</button>
+      <figure class="lb-fig"><img alt=""><figcaption></figcaption></figure>
+      <button type="button" class="lb-nav lb-next" aria-label="Next photo">{chev_r}</button>
+    </div>
+  </section>
+"""
     if c["side"]:
-        side = f'<div class="polaroid alt" style="margin-top:24px"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>'
+        idea_block = f'''<div class="wrap two-col idea">
+      <div>
+        <h2 class="display h2">{e(c['tagline'])}</h2>
+        {intro}
+      </div>
+      <div class="polaroid alt"><img src="assets/{c["side"][0]}" alt="{e(c["side"][1])}" loading="lazy"></div>
+    </div>'''
+    else:
+        idea_block = f'''<div class="wrap narrow">
+      <h2 class="display h2">{e(c['tagline'])}</h2>
+      {intro}
+    </div>'''
+    arrow_l = '<span class="arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>'
+    arrow_r = '<span class="arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
     pager = '<div class="pager">'
-    pager += (f'<a href="{prev["file"]}"><small>Previous chapter</small><strong>{e(prev["name"])}</strong></a>' if prev else "<span></span>")
-    pager += (f'<a class="next" href="{nxt["file"]}"><small>Next chapter</small><strong>{e(nxt["name"])}</strong></a>' if nxt else "<span></span>")
+    pager += (f'<a class="prev" href="{prev["file"]}">{arrow_l}<span class="txt"><small>Previous chapter</small><strong>{e(prev["name"])}</strong></span></a>' if prev else "<span></span>")
+    pager += (f'<a class="next" href="{nxt["file"]}"><span class="txt"><small>Next chapter</small><strong>{e(nxt["name"])}</strong></span>{arrow_r}</a>' if nxt else "<span></span>")
     pager += "</div>"
     body = f"""  <div class="page-hero split">
     <div class="wrap">
@@ -679,18 +798,7 @@ def chapter(k):
   </section>
 
   <section>
-    <div class="wrap two-col">
-      <div>
-        <h2 class="display h2">{e(c['tagline'])}</h2>
-        {intro}
-        {side}
-      </div>
-      <div>
-        <h2 class="display h2">{e(c['profile_h'])}</h2>
-        {profile}
-        <ul class="checklist" aria-label="Participation criteria">{crit}</ul>
-      </div>
-    </div>
+    {idea_block}
   </section>
 
   <section style="padding-top:0">
@@ -705,12 +813,14 @@ def chapter(k):
     </div>
   </section>
 
+{gallery_section}
 {results_section}
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
-        <h2 class="display h2">Everything on the road</h2>
-        <p class="lead">Tickets, accommodation and meals were covered by the project. Some restrictions applied. This chapter is completed and applications are closed.</p>
+        <h2 class="display h2">A library where the books are people</h2>
+        <p class="lead hl-text">{e(HL_INTRO[k])}</p>
+        <p class="hl-text">{e(HL_HOW)}</p>
         <a class="btn btn-primary" href="human-library.html">See how the Human Library works</a>
       </div>
     </div>
