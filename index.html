@@ -3,286 +3,66 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eurolibrary, a living library of people</title>
-<meta name="description" content="Five countries, five topics, five ways to move. An Erasmus+ adventure that builds a living library made of people.">
+<title>Eurolibrary home</title>
+<meta name="description" content="An Erasmus+ project that took young people across five countries to build a living library made of people.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --cream:#faf2ec;
-  --cream-deep:#f3e4d6;
-  --ink:#1b1917;
-  --white:#ffffff;
-  --mist:#e5e5e5;
-  --ash:#6f6b73;
-  --lavender:#9894a8;
-  --orange:#c4521a;
-  --orange-soft:#f2b48c;
-  --sky:#a9cbe8;
-  --sky-deep:#3f78a8;
-
-  --font-display:'DM Serif Display','Nineties',Georgia,serif;
-  --font-body:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-
-  --radius-card:12px;
-  --radius-btn:16px;
-  --shadow:rgba(0,0,0,.08) 0 0 0 1px, rgba(0,0,0,.1) 0 1px 4px 0;
-  --gap:64px;
-  --max:1200px;
-}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--cream);color:var(--ink);
-  font:400 16px/1.5 var(--font-body);
-  font-feature-settings:"cv02","cv03","cv04","cv06","cv11";
-  -webkit-font-smoothing:antialiased;
-}
-img{max-width:100%;display:block}
-a{color:inherit}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-.display,.h1,.h2,.h3{font-family:var(--font-display);font-weight:400;line-height:1.08;letter-spacing:0}
-.h1{font-size:clamp(44px,8vw,80px)}
-.h2{font-size:clamp(34px,5vw,48px)}
-.h3{font-size:28px}
-.eyebrow{
-  font-weight:500;font-size:14px;color:var(--orange);
-  display:inline-flex;align-items:center;gap:8px;
-}
-.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
-.lead{font-size:19px;line-height:1.56}
-.muted{color:var(--ash)}
-
-/* buttons */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  font:500 16px/1 var(--font-body);
-  padding:14px 24px;border-radius:var(--radius-btn);
-  text-decoration:none;border:1px solid transparent;cursor:pointer;
-  transition:background .15s,transform .15s;
-}
-.btn-primary{background:var(--orange);color:#fff}
-.btn-primary:hover{background:#a9440f}
-.btn-dark{background:var(--ink);color:#fff}
-.btn-dark:hover{background:#000}
-.btn-ghost{border-color:var(--lavender);color:var(--ink);background:transparent}
-.btn-ghost:hover{background:rgba(255,255,255,.6)}
-.btn:focus-visible,a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
-
-/* nav */
-.nav{position:relative;z-index:10}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
-.nav img{height:44px;width:auto}
-.nav ul{list-style:none;padding:0;display:flex;align-items:center;gap:32px}
-.nav a{text-decoration:none}
-.nav ul a:not(.btn):hover{color:var(--orange)}
-.dd{position:relative}
-.dd>a::after{content:"";display:inline-block;margin-left:8px;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
-.dd-menu{
-  position:absolute;top:100%;left:-16px;min-width:270px;padding:8px;
-  background:var(--white);border-radius:var(--radius-card);box-shadow:var(--shadow);
-  display:none;flex-direction:column;gap:0;
-}
-.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:flex}
-.dd-menu a{padding:10px 12px;border-radius:8px;font-size:15px}
-.dd-menu a:hover{background:var(--cream)}
-.nav .btn{padding:10px 20px}
-.menu-toggle{display:none}
-
-/* hero */
-.hero{
-  position:relative;overflow:hidden;text-align:center;
-  background:
-    radial-gradient(60% 70% at 15% 10%, var(--sky) 0%, transparent 60%),
-    radial-gradient(55% 70% at 90% 20%, var(--orange-soft) 0%, transparent 60%),
-    var(--cream);
-  margin-top:-77px;padding:77px 0 0;
-}
-.hero .wrap{padding-top:88px;padding-bottom:72px;position:relative}
-.hero .eyebrow{margin-bottom:24px}
-.hero p.lead{max-width:640px;margin:24px auto 0}
-.hero .cta{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.hero .note{margin-top:16px;font-size:14px;color:var(--ash)}
-.ticket-row{
-  margin-top:56px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;text-align:left;
-}
-.ticket{
-  background:var(--white);border-radius:var(--radius-card);box-shadow:var(--shadow);
-  padding:16px;text-decoration:none;display:block;transition:transform .2s;
-}
-.ticket:hover{transform:translateY(-3px)}
-.ticket small{display:block;font-size:14px;color:var(--ash)}
-.ticket strong{display:block;font-weight:500;margin-top:4px}
-
-/* sections */
-section{padding:var(--gap) 0}
-.concept{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
-.concept .h2{margin:16px 0 24px}
-.concept p{max-width:520px}
-.voices{list-style:none;padding:0;margin-top:32px;display:grid;gap:12px}
-.voices li{
-  display:flex;align-items:center;gap:16px;
-  background:var(--white);border-radius:var(--radius-card);box-shadow:var(--shadow);
-  padding:16px 20px;font-family:var(--font-display);font-size:28px;line-height:1.08;
-}
-.voices span{
-  font:500 14px/1 var(--font-body);color:var(--orange);
-  border:1px solid var(--lavender);border-radius:12px;padding:6px 10px;
-}
-.stack{position:relative;height:460px}
-.stack img{
-  position:absolute;width:62%;aspect-ratio:1/1.1;object-fit:cover;
-  border:8px solid var(--white);border-radius:12px;box-shadow:var(--shadow);
-}
-.stack img:nth-child(1){left:0;top:20px;transform:rotate(-6deg)}
-.stack img:nth-child(2){right:0;top:0;transform:rotate(5deg)}
-.stack img:nth-child(3){left:20%;bottom:0;transform:rotate(-2deg)}
-
-.section-head{text-align:center;max-width:720px;margin:0 auto 56px}
-.section-head .h2{margin:16px 0 16px}
-
-.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.card{
-  grid-column:span 2;background:var(--white);border:1px solid var(--mist);border-radius:var(--radius-card);
-  overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;
-}
-.card:nth-child(4){grid-column:2 / span 2}
-.card:nth-child(5){grid-column:4 / span 2}
-.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.card figure{aspect-ratio:4/3;overflow:hidden;position:relative}
-.card figure img{width:100%;height:100%;object-fit:cover}
-.card .no{
-  position:absolute;left:12px;top:12px;background:var(--cream);border-radius:12px;
-  font:500 14px/1 var(--font-body);padding:8px 12px;
-}
-.card .body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.card .country{font-size:14px;color:var(--ash)}
-.card .dates{font-weight:500;font-size:15px}
-.tag{
-  align-self:flex-start;border:1px solid var(--lavender);border-radius:12px;
-  padding:4px 12px;font-size:14px;
-}
-.card .status{
-  margin-top:auto;padding-top:16px;border-top:1px solid var(--mist);
-  display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--ash);
-}
-.card .status a{color:var(--ink);font-weight:500;text-decoration:none}
-.card .status a:hover{color:var(--orange)}
-
-.join{
-  background:var(--ink);color:var(--cream);border-radius:24px;
-  padding:72px 24px;text-align:center;position:relative;overflow:hidden;
-}
-.join::before{
-  content:"";position:absolute;inset:auto -10% -60% -10%;height:80%;
-  background:radial-gradient(closest-side,rgba(242,180,140,.35),transparent);
-}
-.join .eyebrow{color:var(--orange-soft)}
-.join .h2{margin:16px auto 16px;max-width:760px}
-.join p{max-width:560px;margin:0 auto 32px;color:#e9dfd6;position:relative}
-.join .btn{position:relative}
-
-.leitmotiv{text-align:center}
-.leitmotiv .h2{max-width:860px;margin:16px auto 0}
-.counters{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:56px 0;
-}
-.counter{
-  background:var(--white);border-radius:var(--radius-card);box-shadow:var(--shadow);padding:32px 16px;
-}
-.counter b{font:400 clamp(48px,7vw,80px)/1.08 var(--font-display);display:block}
-.counter span{color:var(--ash)}
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
-.pillar{background:var(--cream-deep);border-radius:var(--radius-card);padding:24px}
-.pillar i{font:400 14px/1 var(--font-body);font-style:normal;color:var(--orange);border:1px solid var(--lavender);border-radius:12px;padding:4px 12px;display:inline-block}
-.pillar h3{margin:20px 0 12px}
-
-footer{padding:48px 0 40px;border-top:1px solid var(--mist)}
-footer .wrap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
-footer img.eu{width:220px}
-footer p{font-size:13px;line-height:1.5;color:var(--ash)}
-footer .copy{grid-column:1 / -1;font-size:14px}
-
-@media (max-width:960px){
-  .concept{grid-template-columns:1fr}
-  .stack{height:380px}
-  .ticket-row{grid-template-columns:repeat(2,1fr)}
-  .cards{grid-template-columns:1fr 1fr}
-  .card,.card:nth-child(4),.card:nth-child(5){grid-column:auto}
-  .pillars,.counters{grid-template-columns:1fr}
-  .nav ul{
-    display:none;position:absolute;top:100%;left:16px;right:16px;flex-direction:column;align-items:stretch;gap:4px;
-    background:var(--white);border-radius:var(--radius-card);box-shadow:var(--shadow);padding:12px;
-  }
-  .nav.open ul{display:flex}
-  .dd-menu{position:static;display:flex;box-shadow:none;padding:0 0 0 12px}
-  .dd>a::after{display:none}
-  .menu-toggle{display:inline-flex;background:none;border:1px solid var(--lavender);border-radius:12px;padding:8px 14px;font:500 14px var(--font-body);cursor:pointer}
-  footer .wrap{grid-template-columns:1fr}
-}
-@media (max-width:560px){
-  .cards{grid-template-columns:1fr}
-  .wrap{padding:0 16px}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-</style>
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a href="https://eurolibrary.eu/" aria-label="Eurolibrary home"><img src="assets/logo-ink.svg" alt="Eurolibrary"></a>
+    <a href="index.html" aria-label="Eurolibrary home"><img src="assets/logo-ink.svg" alt="Eurolibrary"></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
     <ul id="menu">
-      <li><a href="https://eurolibrary.eu/">Home</a></li>
-      <li><a href="https://eurolibrary.eu/about/">About</a></li>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="about.html">About</a></li>
       <li class="dd">
-        <a href="#destinations">Mobilities</a>
+        <a href="index.html#destinations">Mobilities</a>
         <div class="dd-menu">
-          <a href="https://eurolibrary.eu/bulgaria/">Balkan Express, Bulgaria</a>
-          <a href="https://eurolibrary.eu/spain/">Buen Camino, Spain</a>
-          <a href="https://eurolibrary.eu/netherlands/">The Dutch Way, Netherlands</a>
-          <a href="https://eurolibrary.eu/waves-of-hope-greece/">Waves of Hope, Greece</a>
-          <a href="https://eurolibrary.eu/portugal/">Green on Wheels, Portugal</a>
+          <a href="bulgaria.html">Balkan Express, Bulgaria</a>
+          <a href="spain.html">Buen Camino, Spain</a>
+          <a href="netherlands.html">The Dutch Way, Netherlands</a>
+          <a href="greece.html">Waves of Hope, Greece</a>
+          <a href="portugal.html">Green on Wheels, Portugal</a>
         </div>
       </li>
-      <li><a href="https://eurolibrary.eu/human-library-methodology/">Human library</a></li>
-      <li><a class="btn btn-dark" href="https://xeracion.typeform.com/go2eurolibrary">Get involved</a></li>
+      <li><a href="human-library.html">Human library</a></li>
+      <li><a class="btn btn-dark" href="contact.html">Contact</a></li>
     </ul>
   </div>
 </header>
 
 <main>
-  <!-- Hero -->
   <div class="hero">
     <div class="wrap">
-      <span class="eyebrow">An Erasmus+ adventure</span>
+      <span class="eyebrow">An Erasmus+ project, completed in 2025</span>
       <h1 class="display h1">5 countries, 5 topics,<br>5 ways to move.</h1>
-      <p class="lead">One journey that changes how you see Europe. Register your interest and we will send you news and details on all five chapters of #eurolibrary.</p>
+      <p class="lead">We took young people across Europe by train, on foot, by bike, by ferry and by campervan, and turned their stories into a living library. The trip is over. The stories keep going.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="https://xeracion.typeform.com/go2eurolibrary">Register your interest</a>
-        <a class="btn btn-ghost" href="#destinations">See the five chapters</a>
+        <a class="btn btn-primary" href="#destinations">Explore the five chapters</a>
+        <a class="btn btn-ghost" href="human-library.html">See how the Human Library works</a>
       </div>
-      <p class="note">Free to join the community. No spam, only stories.</p>
+      <p class="note">All five mobilities are completed and applications are closed. This site is the project record.</p>
 
       <div class="ticket-row" aria-label="The five chapters at a glance">
-        <a class="ticket" href="https://eurolibrary.eu/bulgaria/"><small>Chapter 1, by train</small><strong>Bulgaria</strong></a>
-        <a class="ticket" href="https://eurolibrary.eu/spain/"><small>Chapter 2, on foot</small><strong>Spain</strong></a>
-        <a class="ticket" href="https://eurolibrary.eu/netherlands/"><small>Chapter 3, by bike</small><strong>Netherlands</strong></a>
-        <a class="ticket" href="https://eurolibrary.eu/waves-of-hope-greece/"><small>Chapter 4, by sea</small><strong>Greece</strong></a>
-        <a class="ticket" href="https://eurolibrary.eu/portugal/"><small>Chapter 5, by RV</small><strong>Portugal</strong></a>
+        <a class="ticket" href="bulgaria.html"><small>Chapter 1, by train</small><strong>Bulgaria</strong></a>
+        <a class="ticket" href="spain.html"><small>Chapter 2, on foot</small><strong>Spain</strong></a>
+        <a class="ticket" href="netherlands.html"><small>Chapter 3, by bike</small><strong>The Netherlands</strong></a>
+        <a class="ticket" href="greece.html"><small>Chapter 4, by ferry</small><strong>Greece</strong></a>
+        <a class="ticket" href="portugal.html"><small>Chapter 5, by campervan</small><strong>Portugal</strong></a>
       </div>
     </div>
   </div>
 
-  <!-- Concept -->
   <section>
     <div class="wrap concept">
       <div>
         <span class="eyebrow">A journey beyond borders</span>
         <h2 class="display h2">The concept</h2>
-        <p class="lead">At Eurolibrary we believe a story can <strong>change a life</strong> and a journey can <strong>unite a continent</strong>. By travelling green across the EU, we are building a <strong>living library</strong> made not of books, but of people.</p>
+        <p class="lead">At Eurolibrary we bet on two things: a story can <strong>change a life</strong>, and a journey can <strong>unite a continent</strong>. So we travelled green across the EU to build a <strong>living library</strong> made of people, not books.</p>
         <ul class="voices">
           <li><span>01</span>Real voices.</li>
           <li><span>02</span>Real experiences.</li>
@@ -290,125 +70,117 @@ footer .copy{grid-column:1 / -1;font-size:14px}
         </ul>
       </div>
       <div class="stack" aria-hidden="true">
-        <img src="assets/spain.png" alt="">
-        <img src="assets/netherlands.png" alt="">
-        <img src="assets/greece.png" alt="">
+        <img src="assets/photos/spain-hero.jpg" alt="">
+        <img src="assets/photos/netherlands-hero.jpg" alt="">
+        <img src="assets/photos/greece-hero.jpg" alt="">
       </div>
     </div>
   </section>
 
-  <!-- Destinations -->
   <section id="destinations" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">The destinations</span>
+        <span class="eyebrow">The five chapters</span>
         <h2 class="display h2">Five chapters, five ways to travel</h2>
-        <p class="lead muted">Each mobility pairs a different green way to move with a topic that matters to young Europeans.</p>
+        <p class="lead muted">Each mobility paired one green way of moving with one topic that matters to young Europeans. Here is what each chapter was about.</p>
       </div>
-
       <div class="cards">
         <article class="card">
-          <figure><img src="assets/bulgaria.png" alt="A blue regional train on the tracks"><span class="no">Chapter 1</span></figure>
+          <figure><img src="assets/photos/bulgaria-hero.jpg" alt="A blue regional train on the tracks" width="1000" height="838"><span class="no">Chapter 1</span></figure>
           <div class="body">
             <span class="country">Bulgaria, by train</span>
             <h3 class="display h3">The Balkan Express</h3>
             <span class="dates">23 to 30 June 2025</span>
-            <p>Ride trains across the Balkans with young entrepreneurs and changemakers who are building their futures with their own hands.</p>
+            <p>More than 500 km by rail with young entrepreneurs and changemakers, who told their stories in four Human Libraries.</p>
             <span class="tag">Entrepreneurship</span>
-            <div class="status"><span>Applications closed</span><a href="https://eurolibrary.eu/bulgaria/">Read the story</a></div>
+            <div class="status"><span>Completed</span><a href="bulgaria.html">Read the chapter</a></div>
           </div>
         </article>
-
         <article class="card">
-          <figure><img src="assets/spain.png" alt="A Camino de Santiago waymarker with a yellow arrow"><span class="no">Chapter 2</span></figure>
+          <figure><img src="assets/photos/spain-hero.jpg" alt="A Camino de Santiago waymarker with a yellow arrow" width="1000" height="838"><span class="no">Chapter 2</span></figure>
           <div class="body">
             <span class="country">Spain, on foot</span>
             <h3 class="display h3">Buen Camino</h3>
             <span class="dates">26 July to 2 August 2025</span>
-            <p>Walk the English Way of the Camino de Santiago and share what you know about mental health, one step at a time.</p>
+            <p>Walking the English Way of the Camino de Santiago to talk about mental health, with four Human Libraries along the route.</p>
             <span class="tag">Mental health</span>
-            <div class="status"><span>Applications closed</span><a href="https://eurolibrary.eu/spain/">Read the story</a></div>
+            <div class="status"><span>Completed</span><a href="spain.html">Read the chapter</a></div>
           </div>
         </article>
-
         <article class="card">
-          <figure><img src="assets/netherlands.png" alt="Cycling in the Netherlands"><span class="no">Chapter 3</span></figure>
+          <figure><img src="assets/photos/netherlands-hero.jpg" alt="A group of cyclists on a path in the Netherlands" width="1000" height="838"><span class="no">Chapter 3</span></figure>
           <div class="body">
-            <span class="country">Netherlands, by bike</span>
+            <span class="country">The Netherlands, by bike</span>
             <h3 class="display h3">The Dutch Way</h3>
             <span class="dates">1 to 8 September 2025</span>
-            <p>Cycle across Friesland and inspire young people with your personal story about living a healthy lifestyle.</p>
+            <p>More than 150 km by bike across Friesland to share personal stories about healthy living in four public events.</p>
             <span class="tag">Healthy lifestyle</span>
-            <div class="status"><span>Applications closed</span><a href="https://eurolibrary.eu/netherlands/">Read the story</a></div>
+            <div class="status"><span>Completed</span><a href="netherlands.html">Read the chapter</a></div>
           </div>
         </article>
-
         <article class="card">
-          <figure><img src="assets/greece.png" alt="The Cycladic islands in Greece"><span class="no">Chapter 4</span></figure>
+          <figure><img src="assets/photos/greece-hero.jpg" alt="A ferry sailing past a Cycladic island" width="1000" height="838"><span class="no">Chapter 4</span></figure>
           <div class="body">
-            <span class="country">Greece, by sea</span>
+            <span class="country">Greece, by ferry</span>
             <h3 class="display h3">Waves of Hope</h3>
             <span class="dates">2 to 9 October 2025</span>
-            <p>Island hop across three Cycladic islands, sharing and listening to personal stories about migration.</p>
+            <p>Three Cycladic islands by ferry, with Human Library events for local communities and school students, all around migration.</p>
             <span class="tag">Migration</span>
-            <div class="status"><span>Applications closed</span><a href="https://eurolibrary.eu/waves-of-hope-greece/">Read the story</a></div>
+            <div class="status"><span>Completed</span><a href="greece.html">Read the chapter</a></div>
           </div>
         </article>
-
         <article class="card">
-          <figure><img src="assets/portugal.png" alt="Road trip in southern Portugal"><span class="no">Chapter 5</span></figure>
+          <figure><img src="assets/photos/portugal-hero.jpg" alt="Campervans driving along the coast of southern Portugal" width="1000" height="838"><span class="no">Chapter 5</span></figure>
           <div class="body">
-            <span class="country">Portugal, by RV</span>
+            <span class="country">Portugal, by campervan</span>
             <h3 class="display h3">Green on Wheels</h3>
             <span class="dates">2 to 9 November 2025</span>
-            <p>Road trip in RVs through southern Portugal: visit more than three cities, organise events and swap stories about sustainability and eco living.</p>
+            <p>A campervan road trip across the south of Portugal, with four Human Library events about sustainability and eco living.</p>
             <span class="tag">Sustainability</span>
-            <div class="status"><span>Applications closed</span><a href="https://eurolibrary.eu/portugal/">Read the story</a></div>
+            <div class="status"><span>Completed</span><a href="portugal.html">Read the chapter</a></div>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Join -->
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
         <span class="eyebrow">Listen, share, inspire</span>
-        <h2 class="display h2">Join the Eurolibrary community</h2>
-        <p class="lead">Europe's most powerful stories are still waiting to be heard, and yours might be one of them.</p>
-        <a class="btn btn-primary" href="https://xeracion.typeform.com/go2eurolibrary">Yes, I want to register</a>
+        <h2 class="display h2">Want to know more?</h2>
+        <p class="lead">Reviewing the project, curious about our method or thinking about a collaboration? We are happy to talk.</p>
+        <a class="btn btn-primary" href="contact.html">Get in touch</a>
       </div>
     </div>
   </section>
 
-  <!-- Leitmotiv -->
   <section class="leitmotiv">
     <div class="wrap">
       <span class="eyebrow">Our leitmotiv</span>
-      <h2 class="display h2">This is not just a project. It is an adventure, a celebration of empathy, sustainability and European identity.</h2>
+      <h2 class="display h2">This was never just a project. It was an adventure and a celebration of empathy, sustainability and European identity.</h2>
 
       <div class="counters">
-        <div class="counter"><b data-to="5">5</b><span>Mobilities</span></div>
-        <div class="counter"><b data-to="120" data-prefix="+">+120</b><span>Participants</span></div>
-        <div class="counter"><b data-to="150" data-prefix="+">+150</b><span>Videos, podcasts and reels</span></div>
+        <div class="counter"><b data-to="5" data-prefix="" data-suffix="">5</b><span>Mobilities</span></div>
+        <div class="counter"><b data-to="120" data-prefix="+" data-suffix="">+120</b><span>Participants</span></div>
+        <div class="counter"><b data-to="150" data-prefix="+" data-suffix="">+150</b><span>Videos, podcasts and reels</span></div>
       </div>
 
       <div class="pillars">
         <div class="pillar">
           <i>01</i>
-          <h3 class="display h3">Discover Europe the wild way</h3>
-          <p>Five corners of the continent, five intense travelling exchanges. We pair our energy with different kinds of green travel to bring our stories to local communities everywhere.</p>
+          <h3 class="display h3">Discovering Europe the wild way</h3>
+          <p>Five corners of the continent, five intense travelling exchanges. Each one used a different kind of green travel to bring our stories to local communities.</p>
         </div>
         <div class="pillar">
           <i>02</i>
           <h3 class="display h3">The most international group</h3>
-          <p>Every trip gathers young people who have a lot to say about the most pressing challenges Europe faces today.</p>
+          <p>Every trip brought together young people from five countries who had a lot to say about Europe's biggest challenges.</p>
         </div>
         <div class="pillar">
           <i>03</i>
           <h3 class="display h3">Cool content</h3>
-          <p>We document everything along the way in catchy clips on our socials, and you can hear our participants' stories in our podcast.</p>
+          <p>We documented everything on the way in short clips on our socials, and our participants' stories found a home in our podcast.</p>
         </div>
       </div>
     </div>
@@ -418,8 +190,11 @@ footer .copy{grid-column:1 / -1;font-size:14px}
 <footer>
   <div class="wrap">
     <img class="eu" src="assets/eu-funded.png" alt="Funded by the European Union" style="background:var(--ink);padding:8px 12px;border-radius:8px">
-    <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Education and Culture Executive Agency (EACEA). Neither the European Union nor EACEA can be held responsible for them.</p>
-    <p class="copy">Copyright © 2026 Eurolibrary</p>
+    <div class="meta">
+      <ul class="links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="human-library.html">Human library</a></li><li><a href="contact.html">Contact</a></li><li><a href="bulgaria.html">The Balkan Express</a></li><li><a href="spain.html">Buen Camino</a></li><li><a href="netherlands.html">The Dutch Way</a></li><li><a href="greece.html">Waves of Hope</a></li><li><a href="portugal.html">Green on Wheels</a></li></ul>
+      <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Education and Culture Executive Agency (EACEA). Neither the European Union nor EACEA can be held responsible for them.</p>
+    </div>
+    <p class="copy">Copyright © 2026 Eurolibrary. Project completed in 2025.</p>
   </div>
 </footer>
 
@@ -429,10 +204,26 @@ footer .copy{grid-column:1 / -1;font-size:14px}
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){
       if(!e.isIntersecting)return;io.unobserve(e.target);
-      var el=e.target,to=+el.dataset.to,p=el.dataset.prefix||'',s=performance.now();
-      (function f(n){var k=Math.min((n-s)/1500,1);el.textContent=p+Math.round(to*k);if(k<1)requestAnimationFrame(f)})(s);
+      var el=e.target,to=+el.dataset.to,p=el.dataset.prefix||'',x=el.dataset.suffix||'',s=performance.now();
+      (function f(n){var k=Math.min((n-s)/1500,1);el.textContent=p+Math.round(to*k).toLocaleString('en-GB')+x;if(k<1)requestAnimationFrame(f)})(s);
     })},{threshold:.6});
     document.querySelectorAll('[data-to]').forEach(function(el){io.observe(el)});
+  }
+  var form=document.getElementById('contact-form');
+  if(form){
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var n=document.getElementById('f-name').value.trim(),m=document.getElementById('f-email').value.trim(),b=document.getElementById('f-msg').value.trim();
+      var body=encodeURIComponent(b+'\n\n'+n+(m?' ('+m+')':''));
+      var note=document.getElementById('form-status');
+      note.textContent='Your email app should open with the message ready. If it does not, write to info@xeracion.org.';
+      window.location.href='mailto:info@xeracion.org?subject='+encodeURIComponent('Message from the Eurolibrary website')+'&body='+body;
+    });
+    var cp=document.getElementById('copy-email');
+    if(cp){cp.addEventListener('click',function(){
+      var done=function(){cp.textContent='Copied'};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('info@xeracion.org').then(done,function(){});}
+    })}
   }
 </script>
 </body>

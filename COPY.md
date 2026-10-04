@@ -73,3 +73,43 @@ Archivo: `index.html` (autocontenido, sin dependencias salvo Google Fonts).
 **Estructura mantenida**: navegación con desplegable de Mobilities, hero, concepto, cinco destinos, comunidad, leitmotiv con contadores animados, pie con aviso de la UE. Los enlaces apuntan a las páginas reales y el botón de registro al mismo formulario de Typeform.
 
 **Imágenes**: son las de la web actual (`assets/`). El logo original es blanco, así que hay una versión en tinta (`logo-ink.svg`) para fondo crema. El pie usa la insignia de la UE sobre un bloque oscuro para respetar su versión blanca.
+
+## Segunda ronda: todo el sitio, proyecto cerrado, lector evaluador
+
+Cambia el enfoque. Los cinco viajes de 2025 ya han terminado, así que la web deja de captar participantes y pasa a ser el registro del proyecto. El lector principal es quien evalúa el proyecto para la Comisión Europea, con un tono joven pero claro y verificable.
+
+**Reglas de copy que se han aplicado**
+
+* Pasado para lo que ocurrió, presente solo para descripciones de lugares y de método.
+* Sin llamadas a postular. "Apply now" desaparece y cada capítulo muestra "Completed".
+* Cada capítulo dice lo mismo en el mismo orden: idea, perfil buscado, criterios, ruta y qué cubría el proyecto. Eso permite comparar capítulos de un vistazo.
+* Cifras solo las que ya publicaba la web: 5 movilidades, más de 120 participantes, más de 150 vídeos, podcasts y reels, más de 500 km en tren, más de 150 km en bici, más de 20 km diarios a pie, cuatro Human Libraries por capítulo.
+* Se quita el "thousands of young individuals" de About, porque contradice la cifra de 50 participantes de ediciones anteriores.
+* El botón "Get involved" pasa a "Contact" y el registro desaparece.
+
+**Páginas nuevas o reformuladas**
+
+| Página | Qué cambia |
+|---|---|
+| Home | Hero de proyecto completado, tarjetas con estado "Completed", banda "Want to know more?" en lugar del registro |
+| About | Cifras de ediciones anteriores con su fuente, historia, línea de tiempo 2021 a 2025 y bloque sobre cómo conecta con las prioridades de Erasmus+ |
+| Cinco capítulos | Plantilla común con datos clave, perfil, criterios, ruta con fotos y qué cubría el proyecto |
+| Human Library | Método, resultados esperables, cinco motivos y formato de sesión |
+| Contact | Formulario que abre el correo y la dirección copiable |
+
+## Puntos que debe validar el equipo
+
+1. **Cifras de About.** Las he rotulado como "Spain edition in 2022 and Greece edition in 2023" porque coinciden con las ediciones anteriores. Hay que confirmar que es lo que significan.
+2. **Cuatro prioridades de Erasmus+.** Inclusión y diversidad, movilidad verde, participación cívica y narrativa digital son una lectura mía de lo que dice la web. Conviene alinearlas con las del formulario de candidatura.
+3. **Ruta en pasado.** Los textos dan por hecho que cada chapter se hizo como estaba publicado. Si hubo cambios de ciudad, fechas o actividades, hay que corregirlo.
+4. **Resultados por capítulo.** Un evaluador agradecerá número de participantes, eventos realizados y público alcanzado por capítulo. La web actual no los da y no los he inventado.
+5. **Fotos de las islas griegas.** Asigné las imágenes de stock a cada isla por orden, sin poder confirmar cuál es cuál.
+6. **Formulario de contacto.** En esta propuesta abre el correo del visitante. En producción debería conectarse al formulario de WordPress.
+
+## Cómo regenerar las páginas
+
+Todas las páginas salen de `tools/build.py` y de `css/site.css`.
+
+```
+python3 tools/build.py
+```

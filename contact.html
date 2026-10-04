@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Eurolibrary</title>
+<meta name="description" content="Get in touch with the Eurolibrary team about the project, the method or a collaboration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" aria-label="Eurolibrary home"><img src="assets/logo-ink.svg" alt="Eurolibrary"></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dd">
+        <a href="index.html#destinations">Mobilities</a>
+        <div class="dd-menu">
+          <a href="bulgaria.html">Balkan Express, Bulgaria</a>
+          <a href="spain.html">Buen Camino, Spain</a>
+          <a href="netherlands.html">The Dutch Way, Netherlands</a>
+          <a href="greece.html">Waves of Hope, Greece</a>
+          <a href="portugal.html">Green on Wheels, Portugal</a>
+        </div>
+      </li>
+      <li><a href="human-library.html">Human library</a></li>
+      <li><a class="btn btn-dark" href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Get in touch</span>
+      <h1 class="display h1">Reach out to the Eurolibrary team</h1>
+      <p class="lead">Reviewing the project, curious about the method or up for a collaboration? Write to us and we will get back to you.</p>
+    </div>
+  </div>
+
+  <section style="padding-top:32px">
+    <div class="wrap two-col">
+      <form class="contact" id="contact-form" novalidate>
+        <div class="field"><label for="f-name">First name</label><input id="f-name" name="name" type="text" autocomplete="given-name" required></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
+        <div><button class="btn btn-primary" type="submit">Send message</button></div>
+        <p class="form-note" id="form-status" role="status"></p>
+      </form>
+      <div>
+        <span class="eyebrow">Prefer email?</span>
+        <h2 class="display h2">Write to us directly</h2>
+        <p>The project is completed, but the team still answers questions about the method, the results and possible collaborations.</p>
+        <div class="email-line"><code>info@xeracion.org</code><button class="btn btn-ghost" type="button" id="copy-email">Copy address</button></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="eu" src="assets/eu-funded.png" alt="Funded by the European Union" style="background:var(--ink);padding:8px 12px;border-radius:8px">
+    <div class="meta">
+      <ul class="links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="human-library.html">Human library</a></li><li><a href="contact.html">Contact</a></li><li><a href="bulgaria.html">The Balkan Express</a></li><li><a href="spain.html">Buen Camino</a></li><li><a href="netherlands.html">The Dutch Way</a></li><li><a href="greece.html">Waves of Hope</a></li><li><a href="portugal.html">Green on Wheels</a></li></ul>
+      <p>Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Education and Culture Executive Agency (EACEA). Neither the European Union nor EACEA can be held responsible for them.</p>
+    </div>
+    <p class="copy">Copyright © 2026 Eurolibrary. Project completed in 2025.</p>
+  </div>
+</footer>
+
+<script>
+  var nav=document.getElementById('nav'),t=nav.querySelector('.menu-toggle');
+  t.addEventListener('click',function(){var o=nav.classList.toggle('open');t.setAttribute('aria-expanded',o)});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting)return;io.unobserve(e.target);
+      var el=e.target,to=+el.dataset.to,p=el.dataset.prefix||'',x=el.dataset.suffix||'',s=performance.now();
+      (function f(n){var k=Math.min((n-s)/1500,1);el.textContent=p+Math.round(to*k).toLocaleString('en-GB')+x;if(k<1)requestAnimationFrame(f)})(s);
+    })},{threshold:.6});
+    document.querySelectorAll('[data-to]').forEach(function(el){io.observe(el)});
+  }
+  var form=document.getElementById('contact-form');
+  if(form){
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var n=document.getElementById('f-name').value.trim(),m=document.getElementById('f-email').value.trim(),b=document.getElementById('f-msg').value.trim();
+      var body=encodeURIComponent(b+'\n\n'+n+(m?' ('+m+')':''));
+      var note=document.getElementById('form-status');
+      note.textContent='Your email app should open with the message ready. If it does not, write to info@xeracion.org.';
+      window.location.href='mailto:info@xeracion.org?subject='+encodeURIComponent('Message from the Eurolibrary website')+'&body='+body;
+    });
+    var cp=document.getElementById('copy-email');
+    if(cp){cp.addEventListener('click',function(){
+      var done=function(){cp.textContent='Copied'};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('info@xeracion.org').then(done,function(){});}
+    })}
+  }
+</script>
+</body>
+</html>
