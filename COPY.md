@@ -194,3 +194,11 @@ El álbum compartido como "Eurolibrary Greece" contiene en realidad fotos del ca
 * Carrusel de 15 fotos con lightbox, sin descripciones y con botón al álbum. Como las fotos son verticales, las diapositivas también lo son.
 * Las fotos del álbum tienen una resolución máxima de 1440 por 1800 píxeles, menor que las de Spain.
 * La página de Grecia sigue con sus imágenes de archivo hasta recibir el álbum correcto.
+
+## Duodécima ronda: valoraciones y frases de participantes
+
+Se usa el feedback de participantes españoles en los cinco proyectos para completar los resultados de cada capítulo. Solo se publican datos agregados y frases firmadas con el nombre de pila. No se usa ningún dato personal ni económico del archivo.
+
+* Valoración media sobre 5 (columna de valoración global): Países Bajos 5.0 (4 respuestas), Portugal 5.0 (3), Grecia 5.0 (5), Spain 4.7 (3) y Bulgaria 4.2 (9 respuestas de dos formularios, con 4 de 5 que eligen la Human Library como actividad favorita).
+* Cada capítulo añade "What worked" y "What we learned" y entre dos y tres frases positivas.
+* Las valoraciones proceden solo de participantes españoles, y la nota bajo las cifras lo indica. Conviene confirmar con las personas citadas que aceptan aparecer con su nombre.

@@ -236,42 +236,53 @@ CH = {
 BASE = [("25", "Young participants"), ("4", "Human Library events")]
 RESULTS = {
     "bulgaria": dict(
-        stats=BASE + [("4.0 of 5", "Average project rating in the participant survey"),
-                      ("4 of 5", "Respondents who picked a Human Library as their favourite activity")],
-        note="Survey based on 5 responses.",
+        stats=BASE + [("4.2 of 5", "Average rating from 9 participant responses"),
+                      ("4 of 5", "Survey respondents who picked a Human Library as their favourite activity")],
+        note="Ratings and favourite activity come from two participant feedback forms.",
         worked=["The Human Library on the train, which participants singled out as a highlight.",
-                "The mix of backgrounds and professions in the group, and the sense of connection it created."],
+                "The mix of backgrounds and professions in the group, and the sense of connection it created.",
+                "Singing and dancing together in Varna, and a last trip to the beach."],
         learned=["A heat wave made the programme tough. Participants suggested later start times for events, more breaks and more water and snacks.",
-                 "They also asked for more time at the start to get to know each other's stories before organising events together."],
+                 "They also asked for more time in each city and at the start to get to know each other's stories, and for a larger travel allowance for people coming from far away."],
         quotes=[("Inspiring.", "Gui"), ("A powerful human experience of connection, growth, and shared vulnerability.", "Beatriz"), ("It was a fun, dynamic trip focussed on connection.", "Rashel")],
     ),
     "spain": dict(
-        stats=BASE + [("125", "Human Books in the catalogue"), ("5", "Countries represented")],
-        note="",
-        worked=["A shared catalogue of personal stories on mental health, built by participants before the walk and used to prepare each Human Library."],
-        learned=[],
-        quotes=[],
+        stats=BASE + [("125", "Human Books in the catalogue"), ("4.7 of 5", "Average rating from 3 participant responses")],
+        note="Ratings come from the participant feedback form.",
+        worked=["A shared catalogue of personal stories on mental health, built by participants before the walk and used to prepare each Human Library.",
+                "The stories shared along the Way, and friendships that lasted long after the walk."],
+        learned=["Participants would have liked more days on the Camino."],
+        quotes=[("Hearing so many stories of overcoming big issues was very inspiring!", "Alessandro"),
+                ("People deserve to be heard.", "Óscar"),
+                ("The friendship lasted and the connection we had has been unbelievable.", "Christian")],
     ),
     "netherlands": dict(
-        stats=BASE,
-        note="",
-        worked=["Four public events held along the whole route through Friesland."],
-        learned=["Rain and wind complicated the logistics. The team found alternatives that kept participants safe and the events impactful."],
-        quotes=[],
+        stats=BASE + [("5.0 of 5", "Average rating from 4 participant responses")],
+        note="Ratings come from the participant feedback form.",
+        worked=["Four public events held along the whole route through Friesland.",
+                "The rides through the landscape, the sailing, the ferry and the evenings together."],
+        learned=["Rain and wind complicated the logistics. The team found alternatives that kept participants safe and the events impactful.",
+                 "Participants asked for better food and a larger travel allowance, and suggested announcing public events in advance so more people stop to listen."],
+        quotes=[("That I can do more than I think I am capable of, and that my body is stronger than I thought.", "Inés"),
+                ("I will remember the ferry adventure and the nights dancing.", "Javier")],
     ),
     "greece": dict(
-        stats=BASE,
-        note="",
-        worked=["Human Library events held in unusual places, including on board a ferry, and in local schools."],
-        learned=[],
-        quotes=[],
+        stats=BASE + [("5.0 of 5", "Average rating from 5 participant responses")],
+        note="Ratings come from the participant feedback form.",
+        worked=["Human Library events held in unusual places, including on board a ferry, and in local schools.",
+                "Organising the events together, talking to locals and exploring each island, with a group that felt like a family."],
+        learned=["Visiting several islands in one week left little time to rest. Participants suggested fewer moves or more days."],
+        quotes=[("I've learned that every story is unique and valuable, and that instead of looking for differences, we should try to see what we have in common.", "Estefanía"),
+                ("We really became like a family and felt really safe sharing our stories together.", "Victoria")],
     ),
     "portugal": dict(
-        stats=BASE,
-        note="",
-        worked=["Four Human Library events spread along a campervan route across the south of Portugal."],
-        learned=[],
-        quotes=[],
+        stats=BASE + [("5.0 of 5", "Average rating from 3 participant responses")],
+        note="Ratings come from the participant feedback form.",
+        worked=["Four Human Library events spread along a campervan route across the south of Portugal.",
+                "A surfing day and cooking in the van kitchen for 25 people, which participants remembered as highlights."],
+        learned=["Sanitary logistics on the road, mainly bathrooms, were the main thing to improve, and participants said they were manageable."],
+        quotes=[("Traveling light and having a place to sleep is all we need sometimes.", "David"),
+                ("Surfing day, deep talks, funny moments in the van.", "Raquel")],
     ),
 }
 
@@ -730,7 +741,7 @@ def chapter(k):
         </div></li>""")
     r = RESULTS[k]
     ncols = len(r["stats"])
-    ccls = "counters four" if ncols == 4 else "counters two"
+    ccls = "counters four" if ncols == 4 else ("counters" if ncols == 3 else "counters two")
     lists = ""
     if r["worked"]:
         lists += '<div><h3 class="display h3">What worked</h3><ul class="checklist">' + "".join(f"<li>{e(x)}</li>" for x in r["worked"]) + "</ul></div>"
@@ -738,7 +749,7 @@ def chapter(k):
         lists += '<div><h3 class="display h3">What we learned</h3><ul class="checklist learn">' + "".join(f"<li>{e(x)}</li>" for x in r["learned"]) + "</ul></div>"
     quotes = "".join(f"<figure><blockquote>{e(q)}</blockquote><figcaption>{e(n)}, participant</figcaption></figure>" for q, n in r["quotes"])
     if quotes:
-        quotes = f'<div class="quotes">{quotes}<small>Participants, describing the chapter in one sentence.</small></div>'
+        quotes = f'<div class="quotes" style="--n:{len(r["quotes"])}">{quotes}<small>Participants, in their own words.</small></div>'
     note = f'<p class="form-note" style="text-align:center;margin-top:12px">{e(r["note"])}</p>' if r["note"] else ""
     two = f'<div class="two-col" style="margin-top:32px">{lists}</div>' if lists else ""
     results_section = f"""  <section id="results" style="padding-top:0">
