@@ -202,3 +202,7 @@ Se usa el feedback de participantes españoles en los cinco proyectos para compl
 * Valoración media sobre 5 (columna de valoración global): Países Bajos 5.0 (4 respuestas), Portugal 5.0 (3), Grecia 5.0 (5), Spain 4.7 (3) y Bulgaria 4.2 (9 respuestas de dos formularios, con 4 de 5 que eligen la Human Library como actividad favorita).
 * Cada capítulo añade "What worked" y "What we learned" y entre dos y tres frases positivas.
 * Las valoraciones proceden solo de participantes españoles, y la nota bajo las cifras lo indica. Conviene confirmar con las personas citadas que aceptan aparecer con su nombre.
+
+## Decimotercera ronda: favicon
+
+Se usa el símbolo del logo (el libro con globo de diálogo), sin el nombre, como favicon. Se genera `assets/favicon.svg` con fondo crema redondeado para que se vea también en pestañas oscuras, además de `favicon-32.png` y `apple-touch-icon.png` para navegadores y dispositivos que no admiten SVG.
