@@ -315,11 +315,41 @@ def e(s):
     return html.escape(s, quote=True)
 
 
-def head(title, desc):
+SITE = "https://eurolibrary.eu"
+# clave de página: (ruta pública, foto de cabecera usada para la imagen social)
+SOCIAL = {
+    "home": ("/", "about-classroom"),
+    "about": ("/about", "about-banner"),
+    "hl": ("/human-library", "human-library-talk"),
+    "contact": ("/contact", "human-library-table"),
+    "bulgaria": ("/bulgaria", "bulgaria-hero"),
+    "spain": ("/spain", "spain-hero"),
+    "netherlands": ("/netherlands", "netherlands-hero"),
+    "greece": ("/greece", "greece-hero"),
+    "portugal": ("/portugal", "portugal-hero"),
+}
+
+
+def head(title, desc, key):
+    path, img = SOCIAL[key]
+    url, image = SITE + path, f"{SITE}/assets/social/{key}.jpg"
     return f"""<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Eurolibrary">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{e(title)}">
+<meta name="twitter:description" content="{e(desc)}">
+<meta name="twitter:image" content="{image}">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -455,7 +485,7 @@ def page(active, title, desc, body):
     return f"""<!doctype html>
 <html lang="en">
 <head>
-{head(title, desc)}
+{head(title, desc, active)}
 </head>
 <body>
 
