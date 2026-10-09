@@ -206,3 +206,11 @@ Se usa el feedback de participantes españoles en los cinco proyectos para compl
 ## Decimotercera ronda: favicon
 
 Se usa el símbolo del logo (el libro con globo de diálogo), sin el nombre, como favicon. Se genera `assets/favicon.svg` con fondo crema redondeado para que se vea también en pestañas oscuras, además de `favicon-32.png` y `apple-touch-icon.png` para navegadores y dispositivos que no admiten SVG.
+
+## Decimocuarta ronda: vista previa al compartir en redes
+
+Cada página lleva etiquetas Open Graph y Twitter Card (título, resumen, dirección canónica e imagen), de modo que al compartir el enlace en redes o mensajería aparece un resumen con la imagen de cabecera.
+
+* Las imágenes son de 1200 por 630 píxeles, recortadas de la foto de cabecera de cada página y guardadas en `assets/social/`. La portada usa una foto del aula, distinta de la de Países Bajos, para que no se repitan.
+* Las direcciones son absolutas sobre `https://eurolibrary.eu`, como exigen los rastreadores de redes sociales. Si el dominio cambia, se ajusta `SITE` en `tools/build.py`.
+* Las redes guardan en caché las vistas previas: para ver el cambio en un enlace ya compartido hay que refrescarlo con el depurador de cada red.
