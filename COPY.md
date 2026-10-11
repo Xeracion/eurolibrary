@@ -281,3 +281,14 @@ Para el equipo, antes de difundirlo:
 * La cita de la guía del Consejo de Europa figura sin enlace ni año exacto, y los orígenes del método proceden de los documentos del equipo. Contrastar con humanlibrary.org y el Consejo de Europa.
 * La cifra de "120+ participantes" y "125 libros" es la que figura en la web, y "20 a 30 lectores por evento" no se usa.
 * La licencia no está definida. El PDF pide "credit Eurolibrary" al reutilizar los anexos, pero no declara ninguna licencia.
+
+## Vigésima ronda: efectos visuales ligeros
+
+Se añaden efectos sutiles en todas las páginas, sin librerías (CSS más unas 30 líneas de JavaScript, en `FX` de `tools/build.py` y al final de `css/site.css`):
+* Entrada suave de la cabecera al cargar la página.
+* Aparición al hacer scroll (fundido y ligero ascenso, escalonado en las rejillas) de tarjetas, paradas, cifras, fotos, citas y bloques de las guías.
+* Fundido de las imágenes con carga diferida.
+* Barra de progreso de lectura fina en la parte superior.
+* Microinteracciones: botones que se elevan, tarjetas con sombra al pasar el ratón, zoom suave en fotos, polaroids que se enderezan, subrayado animado en el menú y flecha del pie.
+
+Accesibilidad y robustez: todo se aplica solo si la persona no ha pedido reducir el movimiento en su sistema. Sin JavaScript la web se ve completa, porque los elementos solo se ocultan cuando el script ya ha cargado, y al imprimir se muestra todo. Si algún efecto no gusta, se desactiva borrando su bloque en `css/site.css`.

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Buen Camino, Spain</title>
 <meta name="description" content="Buen Camino: An intense journey about mental health in Spain, 26 July to 2 August 2025.">
@@ -27,6 +28,7 @@
 <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+<div class="sp" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -242,6 +244,39 @@
       if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));
     });
   })();
+</script>
+<script>
+(function(){
+  var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* barra de progreso de lectura */
+  var sp=document.querySelector('.sp');
+  if(sp&&!calm){
+    var tick=false;
+    function prog(){var h=document.documentElement.scrollHeight-innerHeight;sp.style.setProperty('--p',h>0?Math.min(1,scrollY/h):0);tick=false}
+    addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(prog)}},{passive:true});prog();
+  }
+  if(calm||!('IntersectionObserver' in window))return;
+  /* aparición al hacer scroll */
+  var sel='.section-head,.card,.ticket,.pillar,.fact,.stop,.counter,.polaroid,.join,.ep,.hb-card,.photo-row figure,.carousel,.rule,.role,.zone,.cl-group,.faq,.pod-player,.pager>*,.grid-3>*,.quotes blockquote,.voices>*,.two-col>*,.timeline-years li,.pod-tools,.builder,.stepper,.timer';
+  var els=[].slice.call(document.querySelectorAll('main '+sel.split(',').join(',main '))).filter(function(el){
+    return !el.closest('.hero,.page-hero')&&!el.closest('.rv');
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  })},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(el){
+    var sib=[].slice.call(el.parentNode.children).filter(function(c){return els.indexOf(c)>-1});
+    el.style.setProperty('--d',Math.min(sib.indexOf(el),5)*80+'ms');
+    el.classList.add('rv');io.observe(el);
+  });
+  /* las imágenes con carga diferida aparecen con un fundido */
+  [].slice.call(document.querySelectorAll('main img[loading="lazy"]')).forEach(function(im){
+    if(im.complete&&im.naturalWidth)return;
+    im.classList.add('fd');
+    var ok=function(){im.classList.add('ld')};
+    im.addEventListener('load',ok);im.addEventListener('error',ok);
+  });
+})();
 </script>
 </body>
 </html>

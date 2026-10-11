@@ -355,6 +355,7 @@ def head(title, desc, key):
     path, img = SOCIAL[key]
     url, image = SITE + path, f"{SITE}/assets/social/{key}.jpg"
     return f"""<meta charset="utf-8">
+<script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
@@ -510,6 +511,7 @@ def page(active, title, desc, body):
 {head(title, desc, active)}
 </head>
 <body>
+<div class="sp" aria-hidden="true"></div>
 
 {nav(active)}
 
@@ -520,6 +522,7 @@ def page(active, title, desc, body):
 {footer()}
 
 {SCRIPT}
+{FX}
 </body>
 </html>
 """
@@ -1631,6 +1634,41 @@ def strip_wrapper(doc):
     doc = re.sub(r"\s*</head>\s*<body>\s*", "\n", doc)
     doc = re.sub(r"\s*</body>\s*</html>\s*$", "\n", doc)
     return doc
+
+
+FX = """<script>
+(function(){
+  var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* barra de progreso de lectura */
+  var sp=document.querySelector('.sp');
+  if(sp&&!calm){
+    var tick=false;
+    function prog(){var h=document.documentElement.scrollHeight-innerHeight;sp.style.setProperty('--p',h>0?Math.min(1,scrollY/h):0);tick=false}
+    addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(prog)}},{passive:true});prog();
+  }
+  if(calm||!('IntersectionObserver' in window))return;
+  /* aparición al hacer scroll */
+  var sel='.section-head,.card,.ticket,.pillar,.fact,.stop,.counter,.polaroid,.join,.ep,.hb-card,.photo-row figure,.carousel,.rule,.role,.zone,.cl-group,.faq,.pod-player,.pager>*,.grid-3>*,.quotes blockquote,.voices>*,.two-col>*,.timeline-years li,.pod-tools,.builder,.stepper,.timer';
+  var els=[].slice.call(document.querySelectorAll('main '+sel.split(',').join(',main '))).filter(function(el){
+    return !el.closest('.hero,.page-hero')&&!el.closest('.rv');
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  })},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(el){
+    var sib=[].slice.call(el.parentNode.children).filter(function(c){return els.indexOf(c)>-1});
+    el.style.setProperty('--d',Math.min(sib.indexOf(el),5)*80+'ms');
+    el.classList.add('rv');io.observe(el);
+  });
+  /* las imágenes con carga diferida aparecen con un fundido */
+  [].slice.call(document.querySelectorAll('main img[loading="lazy"]')).forEach(function(im){
+    if(im.complete&&im.naturalWidth)return;
+    im.classList.add('fd');
+    var ok=function(){im.classList.add('ld')};
+    im.addEventListener('load',ok);im.addEventListener('error',ok);
+  });
+})();
+</script>"""
 
 
 def clean_links(doc):

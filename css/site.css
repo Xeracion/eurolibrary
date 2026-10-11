@@ -717,3 +717,40 @@ a.chip{display:inline-block;text-decoration:none}
 .hb-facts b{font-family:var(--font-display);font-weight:400;font-size:30px;color:var(--orange-soft);margin-right:6px}
 @media (max-width:760px){.hb-card{grid-template-columns:1fr;padding:28px 24px;gap:24px}.book,.book img,.book::before{width:160px}}
 @media print{.handbook{display:none!important}}
+
+/* Efectos visuales ligeros. Todo va dentro de prefers-reduced-motion: no-preference,
+   así que quien prefiera menos movimiento ve la web sin animaciones. */
+html{scroll-behavior:smooth}
+.sp{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;pointer-events:none;background:linear-gradient(90deg,var(--orange),var(--orange-soft));transform-origin:0 50%;transform:scaleX(var(--p,0));opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .sp{opacity:1}
+  /* entrada de la cabecera */
+  @keyframes rise{from{opacity:0;translate:0 24px}to{opacity:1;translate:0 0}}
+  .hero .wrap>*,.page-hero h1,.page-hero .tagline,.page-hero .lead,.page-hero .cta,.page-hero .eyebrow,.page-hero .polaroid,.page-hero .tag{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  .hero .wrap>*:nth-child(2),.page-hero h1{animation-delay:.08s}
+  .hero .wrap>*:nth-child(3),.page-hero .tagline,.page-hero .lead{animation-delay:.18s}
+  .hero .wrap>*:nth-child(4),.page-hero .cta{animation-delay:.28s}
+  .hero .wrap>*:nth-child(n+5),.page-hero .polaroid{animation-delay:.38s}
+  /* aparición al hacer scroll */
+  .js .rv{opacity:0;translate:0 22px;
+    transition:opacity .8s ease var(--d,0ms),translate .8s cubic-bezier(.2,.7,.2,1) var(--d,0ms),transform .25s ease,box-shadow .25s ease,border-color .2s ease,background .2s ease}
+  .js .rv.in{opacity:1;translate:0 0}
+  /* fundido de las imágenes con carga diferida */
+  .js img.fd{opacity:0;transition:opacity .7s ease}
+  .js img.fd.ld{opacity:1}
+  /* microinteracciones */
+  .btn{transition:transform .2s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease,color .2s ease}
+  .btn:not([disabled]):hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(27,25,23,.18)}
+  .btn:not([disabled]):active{transform:translateY(0);box-shadow:none}
+  .stop-card,.card,.ticket,.pillar,.fact{transition:transform .25s ease,box-shadow .25s ease}
+  .card:hover,.ticket:hover,.fact:hover,.pillar:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(27,25,23,.12)}
+  .stop-card img,.photo-row img,.card img,.polaroid img{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .stop-card:hover img,.photo-row figure:hover img,.card:hover img{transform:scale(1.05)}
+  .polaroid{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+  .polaroid:hover{transform:rotate(0deg) scale(1.015);box-shadow:0 18px 40px rgba(27,25,23,.2)}
+  .nav ul a:not(.btn):not(.icon-link){background:linear-gradient(var(--orange),var(--orange)) left bottom/0 2px no-repeat;transition:background-size .3s ease,color .2s ease;padding-bottom:3px}
+  .nav ul a:not(.btn):not(.icon-link):hover,.nav ul a[aria-current="page"]:not(.btn):not(.icon-link){background-size:100% 2px}
+  .icon-link{transition:transform .25s ease,color .2s ease}.icon-link:hover{transform:scale(1.12) rotate(-4deg)}
+  footer .links a{transition:color .2s ease,translate .2s ease;display:inline-block}footer .links a:hover{translate:3px 0}
+}
+@media print{.sp{display:none}.rv,.js .rv{opacity:1!important;translate:none!important}.js img.fd{opacity:1!important}}
