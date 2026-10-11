@@ -298,3 +298,12 @@ Accesibilidad y robustez: todo se aplica solo si la persona no ha pedido reducir
 * El menú pasa a Home, Mobilities, Human library y About, con el icono de Instagram, y el botón resaltado de la derecha es ahora Podcast (se vuelve naranja en esa página).
 * La página de contacto desaparece y su formulario pasa a ser la sección "Get in touch" al final de About (`/about#contact`). El pie mantiene un enlace "Contact" a esa sección, y todos los botones "Get in touch" apuntan a ella.
 * `vercel.json` redirige `/contact` y `/contact.html` a `/about#contact`, para que no se rompan los enlaces antiguos.
+
+## Vigesimosegunda ronda: menú móvil animado
+
+El menú móvil (hasta 960 px) se rediseña:
+* Panel flotante que respeta los márgenes de la página (16 px en móvil, 24 px en tableta, los mismos que el contenido), con bordes redondeados y sombra.
+* Animación de apertura con fundido y desplazamiento, entrada escalonada de las opciones, fondo oscurecido y difuminado detrás, y botón con icono que se transforma en una X.
+* "Mobilities" se despliega como acordeón animado, con la opción "All mobilities" y abierto de entrada en las páginas de capítulo. Opciones más grandes para el dedo y botón Podcast a ancho completo.
+* Se cierra con la X, tocando el fondo, la tecla Escape, al elegir una página o al pasar a escritorio. Mientras está abierto se bloquea el scroll de la página.
+* Con "reducir movimiento" activado no hay animaciones. El menú de escritorio no cambia.

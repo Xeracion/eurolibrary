@@ -33,12 +33,13 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="/" aria-label="Eurolibrary home"><img src="assets/logo-ink.svg" alt="Eurolibrary"></a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu"><span>Menu</span><span class="mt-ico" aria-hidden="true"><i></i><i></i></span></button>
     <ul id="menu">
       <li><a href="/">Home</a></li>
       <li class="dd">
         <a href="/#destinations" aria-current="page">Mobilities</a>
-        <div class="dd-menu">
+        <div class="dd-menu" id="dd-menu">
+          <a class="mob-only" href="/#destinations">All mobilities</a>
           <a href="/bulgaria">Balkan Express, Bulgaria</a>
           <a href="/spain">Buen Camino, Spain</a>
           <a href="/netherlands">The Dutch Way, Netherlands</a>
@@ -153,8 +154,19 @@
 </footer>
 
 <script>
-  var nav=document.getElementById('nav'),t=nav.querySelector('.menu-toggle');
-  t.addEventListener('click',function(){var o=nav.classList.toggle('open');t.setAttribute('aria-expanded',o)});
+  var nav=document.getElementById('nav'),t=nav.querySelector('.menu-toggle'),mq=matchMedia('(max-width: 960px)');
+  function setMenu(o){nav.classList.toggle('open',o);t.setAttribute('aria-expanded',o);document.body.classList.toggle('menu-open',o)}
+  t.addEventListener('click',function(){setMenu(!nav.classList.contains('open'))});
+  nav.addEventListener('click',function(e){if(e.target===nav)setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);t.focus()}});
+  [].forEach.call(nav.querySelectorAll('#menu a'),function(a){a.addEventListener('click',function(e){
+    var dd=a.parentNode.classList.contains('dd')&&a.parentNode.firstElementChild===a;
+    if(dd&&mq.matches){e.preventDefault();var o=a.parentNode.classList.toggle('exp');a.setAttribute('aria-expanded',o);return}
+    if(mq.matches)setMenu(false);
+  })});
+  var ddl=nav.querySelector('.dd>a');
+  if(ddl){ddl.setAttribute('aria-haspopup','true');ddl.setAttribute('aria-expanded','false');if(ddl.hasAttribute('aria-current')){ddl.parentNode.classList.add('exp');ddl.setAttribute('aria-expanded','true')}}
+  (mq.addEventListener?mq.addEventListener.bind(mq,'change'):mq.addListener.bind(mq))(function(e){if(!e.matches)setMenu(false)});
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){
       if(!e.isIntersecting)return;io.unobserve(e.target);
