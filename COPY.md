@@ -224,3 +224,14 @@ Se añade la página `podcast.html` (enlace "Podcast" en el menú y el pie) y un
 * Los temas (identidad, viajes y fronteras, salud y mente, deporte, naturaleza, trabajo e ideas) son una clasificación propia a partir de la descripción de cada episodio. Las portadas se alojan en `assets/podcast/`.
 * Se muestran los 12 episodios más recientes que Spotify lista en la página del programa (números 89 a 100). La portada del programa habla de 100 historias, así que el reproductor completo cubre el resto. Para listar más episodios hace falta añadirlos a `EPISODES` en `tools/build.py`.
 * Se han sustituido las rayas de las descripciones originales por comas.
+
+## Decimosexta ronda: fotos de Grecia
+
+Las fotos de archivo de la página de Grecia se sustituyen por fotos reales de la carpeta de Drive "Photos Natasa" (días 2 a 6, unas 1.000 fotos, de las que se revisó una de cada tres).
+
+* Portada: la foto de grupo en la cubierta del ferry. Foto lateral: participantes sonriendo en el ferry.
+* Paradas: el embarque en Pireo, el grupo sobre Ios, la Human Library en la Chora de Folegandros, el mar de Sifnos y la espera en el puerto de vuelta.
+* Carrusel de 15 fotos con lightbox, sin descripciones visibles, y botón al álbum de Drive. Se eligieron fotos con buena luz y con composición clara: el ferry, las plazas blancas, los patios de las escuelas y los atardeceres.
+* Las fotos se redimensionan a 1400 píxeles de ancho como máximo.
+* Los créditos de las fotos no constan en la carpeta. Conviene que el equipo confirme el consentimiento de imagen, como en el resto de capítulos, y quién debe figurar como autoría.
+* El botón del álbum apunta a la carpeta de Drive tal como se compartió. Si se quiere un álbum público más cuidado, basta cambiar `gallery_link` en `tools/build.py`.
