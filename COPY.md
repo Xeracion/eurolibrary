@@ -214,3 +214,13 @@ Cada página lleva etiquetas Open Graph y Twitter Card (título, resumen, direcc
 * Las imágenes son de 1200 por 630 píxeles, recortadas de la foto de cabecera de cada página y guardadas en `assets/social/`. La portada usa una foto del aula, distinta de la de Países Bajos, para que no se repitan.
 * Las direcciones son absolutas sobre `https://eurolibrary.eu`, como exigen los rastreadores de redes sociales. Si el dominio cambia, se ajusta `SITE` en `tools/build.py`.
 * Las redes guardan en caché las vistas previas: para ver el cambio en un enlace ya compartido hay que refrescarlo con el depurador de cada red.
+
+## Decimoquinta ronda: página del podcast People of EU
+
+Se añade la página `podcast.html` (enlace "Podcast" en el menú y el pie) y un bloque en la portada que lleva a ella. Los datos salen del programa "PEOPLE OF EU | EUROLIBRARY" de Spotify (publicado por AltVenturers).
+
+* Reproductor del programa completo de Spotify, que solo se carga cuando la persona pulsa el botón, porque Spotify puede instalar cookies.
+* Explorador de episodios: filtros por tema, búsqueda por palabra, botón "Surprise me" y reproductor incrustado por episodio (solo uno abierto a la vez).
+* Los temas (identidad, viajes y fronteras, salud y mente, deporte, naturaleza, trabajo e ideas) son una clasificación propia a partir de la descripción de cada episodio. Las portadas se alojan en `assets/podcast/`.
+* Se muestran los 12 episodios más recientes que Spotify lista en la página del programa (números 89 a 100). La portada del programa habla de 100 historias, así que el reproductor completo cubre el resto. Para listar más episodios hace falta añadirlos a `EPISODES` en `tools/build.py`.
+* Se han sustituido las rayas de las descripciones originales por comas.

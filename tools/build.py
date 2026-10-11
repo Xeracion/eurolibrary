@@ -321,6 +321,7 @@ SOCIAL = {
     "home": ("/", "about-classroom"),
     "about": ("/about", "about-banner"),
     "hl": ("/human-library", "human-library-talk"),
+    "podcast": ("/podcast", "podcast"),
     "contact": ("/contact", "human-library-table"),
     "bulgaria": ("/bulgaria", "bulgaria-hero"),
     "spain": ("/spain", "spain-hero"),
@@ -379,6 +380,7 @@ def nav(active):
         </div>
       </li>
       <li><a href="human-library.html"{cur("hl")}>Human library</a></li>
+      <li><a href="podcast.html"{cur("podcast")}>Podcast</a></li>
       <li><a class="icon-link" href="https://www.instagram.com/eurolibrary" target="_blank" rel="noopener" aria-label="Eurolibrary on Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg><span class="icon-label">Instagram</span></a></li>
       <li><a class="btn btn-dark" href="contact.html"{cur("contact")}>Contact</a></li>
     </ul>
@@ -390,7 +392,7 @@ def footer():
     links = "".join(
         f'<li><a href="{f}">{t}</a></li>' for f, t in [
             ("index.html", "Home"), ("about.html", "About"), ("human-library.html", "Human library"),
-            ("contact.html", "Contact")] + [(CH[k]["file"], CH[k]["name"]) for k in CHAPTERS])
+            ("podcast.html", "Podcast"), ("contact.html", "Contact")] + [(CH[k]["file"], CH[k]["name"]) for k in CHAPTERS])
     return f"""<footer>
   <div class="wrap">
     <img class="eu" src="assets/eu-funded-blue.png" alt="Funded by the European Union">
@@ -588,6 +590,19 @@ def home():
       </div>
       <div class="cards">
 {chr(10).join(cards)}
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="pod-teaser">
+        <img src="assets/podcast/show.jpg" alt="People of EU podcast cover" width="200" height="200" loading="lazy">
+        <div>
+          <h2 class="display h2">Prefer to listen?</h2>
+          <p class="lead">People of EU is our podcast: short personal stories from across Europe, told by the people who lived them. Press play on any episode without leaving the site.</p>
+          <a class="btn btn-primary" href="podcast.html">Listen to the podcast</a>
+        </div>
       </div>
     </div>
   </section>
@@ -996,6 +1011,192 @@ def human_library():
                 "How Eurolibrary uses the Human Library method to challenge prejudice and connect young people with local communities.", body)
 
 
+PODCAST_ID = "1WtlYaA3IX5eSzW3NonMTU"
+PODCAST_URL = f"https://open.spotify.com/show/{PODCAST_ID}"
+# Episodios publicados en Spotify (datos del programa "PEOPLE OF EU | EUROLIBRARY", de AltVenturers).
+# Duración en minutos. El número de episodio es el que figura en la portada de cada uno.
+POD_TAGS = [("identity", "Identity and belonging"), ("journeys", "Journeys and borders"),
+            ("health", "Health and mind"), ("sport", "Sport"), ("nature", "Nature"), ("work", "Work and ideas")]
+EPISODES = [
+    dict(id="5xO0poKtNFYFQ6DRtZzGmY", no=100, title="From tulips to olive trees", date="18 May 2026", mins=5,
+         tags=["identity", "journeys"],
+         text="A story about leaving behind everything you thought defined you, only to discover that the most important thing you carry through life is yourself."),
+    dict(id="0kMWU6A3GgwhhdLj7ysnvX", no=99, title="Full, but not filled", date="18 May 2026", mins=5,
+         tags=["health"],
+         text="A story about overcoming a hidden struggle with food and finding self-acceptance through courage and healing."),
+    dict(id="1p7TkWes3AkyiLXRescwIO", no=98, title="Between Two Worlds", date="18 May 2026", mins=10,
+         tags=["identity", "journeys"],
+         text="A story about growing up between countries, cultures and identities, and learning to embrace belonging everywhere and nowhere at once."),
+    dict(id="0evcFH79CgbJOB2PxcLxys", no=97, title="Chasing Freedom on Two Skis", date="18 May 2026", mins=3,
+         tags=["sport", "identity"],
+         text="A story about a lifelong love for skiing that shapes identity, choices and the courage to follow what truly makes you feel alive."),
+    dict(id="6iTZlIDDHCW8uR3iL4nXXp", no=96, title="All the tales we used to believe", date="18 May 2026", mins=7,
+         tags=["nature"],
+         text="A story about how childhood compassion turned into environmental action."),
+    dict(id="4cXsiThBOhcTzTlrSg7gjj", no=95, title="You Reap What You Sow: How I Learned That My Roots Travel Faster Than I Do", date="7 May 2026", mins=8,
+         tags=["nature", "journeys"],
+         text="A story about planting a tree and discovering that roots grow even when you leave."),
+    dict(id="2DCAEEvRbYIy6ldo9GsNar", no=94, title="Choosing health", date="7 May 2026", mins=5,
+         tags=["health"],
+         text="A story about body shaming, starvation and learning that health is not punishment."),
+    dict(id="3OwqtjcKreaMUZtWw62yew", no=93, title="Rails of Passion", date="7 May 2026", mins=7,
+         tags=["work"],
+         text="A story about turning childhood passion into purpose, and using technology to improve train travel in Bulgaria."),
+    dict(id="7kcuASm3aD98r9RrwjXvAe", no=92, title="How I run a whole country", date="7 May 2026", mins=10,
+         tags=["sport"],
+         text="A story about discovering unexpected strength through running and turning a simple goal into the wild idea of crossing an entire country on foot."),
+    dict(id="3hyixc1eXaRiIMIiZ6T6sT", no=91, title="Finding the right path", date="7 May 2026", mins=7,
+         tags=["health", "identity"],
+         text="A story about bullying, emotional dependence and learning how to stand on your own feet."),
+    dict(id="5L7CXLOYxV95n5DdnjaDLs", no=90, title="Born Twice, Growing Once", date="7 May 2026", mins=7,
+         tags=["journeys"],
+         text="A story about war, borders and survival journeys."),
+    dict(id="62H28nz67jZsZiEKrQ3sB6", no=89, title="Two Hours to a Dream", date="4 May 2026", mins=5,
+         tags=["sport", "journeys"],
+         text="A story about a child who found freedom on a football field, and carried a dream across countries, rejections and closed doors."),
+]
+
+
+def podcast():
+    tag_name = dict(POD_TAGS)
+    chips = '<button class="chip" type="button" data-tag="all" aria-pressed="true">All episodes</button>' + "".join(
+        f'<button class="chip" type="button" data-tag="{k}" aria-pressed="false">{e(v)}</button>' for k, v in POD_TAGS)
+    cards = "\n".join(f"""        <article class="ep" id="ep-{x['id']}" data-id="{x['id']}" data-tags="{' '.join(x['tags'])}" data-search="{e((x['title'] + ' ' + x['text'] + ' ' + ' '.join(tag_name[t] for t in x['tags'])).lower())}">
+          <div class="ep-main">
+            <img src="assets/podcast/{x['id']}.jpg" alt="" width="112" height="112" loading="lazy">
+            <div class="ep-body">
+              <p class="ep-meta"><span class="ep-no">Ep. {x['no']}</span>{e(x['date'])} · {x['mins']} min</p>
+              <h3 class="display h3">{e(x['title'])}</h3>
+              <p>{e(x['text'])}</p>
+              <p class="ep-tags">{''.join(f'<span>{e(tag_name[t])}</span>' for t in x['tags'])}</p>
+            </div>
+          </div>
+          <div class="ep-actions">
+            <button class="btn btn-dark ep-play" type="button" aria-expanded="false">Play here</button>
+            <a class="ep-link" href="https://open.spotify.com/episode/{x['id']}" target="_blank" rel="noopener">Open in Spotify</a>
+          </div>
+          <div class="ep-embed" hidden></div>
+        </article>""" for x in EPISODES)
+    total_min = sum(x["mins"] for x in EPISODES)
+    body = f"""  <div class="page-hero split">
+    <div class="wrap">
+      <div>
+        <h1 class="display h1">People of EU, the podcast</h1>
+        <p class="lead">What happens when you truly listen to someone's story? Real voices, real journeys and real experiences from across Europe, told by the people who lived them. No headlines, no stereotypes. Just human stories.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#player">Press play</a>
+          <a class="btn btn-ghost" href="#episodes">Browse the episodes</a>
+        </div>
+      </div>
+      <div class="polaroid"><img src="assets/podcast/show.jpg" alt="People of EU podcast cover: an orange cassette tape and the words 100 stories worth sharing from all over Europe" style="aspect-ratio:1/1"></div>
+    </div>
+  </div>
+
+  <section id="player" style="padding-top:32px">
+    <div class="wrap">
+      <div class="pod-player">
+        <div class="pod-copy">
+          <h2 class="display h2">Listen to the whole series</h2>
+          <p>The Human Library puts stories in people's mouths. This podcast carries them further. Each episode is a short personal story, from overcoming anxiety to starting over in a new country, choosing a sustainable life or finding identity through sport.</p>
+          <ul class="pod-facts">
+            <li><strong>{len(EPISODES)}</strong> episodes below</li>
+            <li><strong>{total_min}</strong> minutes of stories</li>
+            <li><strong>3 to 10</strong> minutes each</li>
+          </ul>
+        </div>
+        <div class="pod-embed" id="show-embed">
+          <button class="pod-load" type="button" data-src="https://open.spotify.com/embed/show/{PODCAST_ID}?utm_source=generator">
+            <img src="assets/podcast/show.jpg" alt="" width="96" height="96">
+            <span class="display">Load the Spotify player</span>
+            <small>Content is loaded from Spotify, which may set cookies.</small>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="episodes" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <h2 class="display h2">Pick a story</h2>
+        <p class="lead muted">Filter by theme, search by word or let us choose for you. Press play and the episode opens right here.</p>
+      </div>
+      <div class="pod-tools">
+        <div class="chips" role="group" aria-label="Filter by theme">{chips}</div>
+        <div class="pod-find">
+          <label class="sr" for="pod-search">Search episodes</label>
+          <input id="pod-search" type="search" placeholder="Search episodes" autocomplete="off">
+          <button class="btn btn-primary" type="button" id="pod-random">Surprise me</button>
+        </div>
+      </div>
+      <p class="pod-count" id="pod-count" aria-live="polite">Showing {len(EPISODES)} of {len(EPISODES)} episodes</p>
+      <div class="ep-grid" id="ep-grid">
+{cards}
+      </div>
+      <p class="pod-empty" id="pod-empty" hidden>No episode matches that search. Try another word or clear the filters.</p>
+      <p class="pod-note">Here you will find the latest episodes of the series. The player above lists every episode.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="join">
+        <h2 class="display h2">Keep listening</h2>
+        <p class="lead">Follow People of EU on Spotify so the next story finds you, or meet the method that inspired it.</p>
+        <p class="cta-row"><a class="btn btn-primary" href="{PODCAST_URL}" target="_blank" rel="noopener">Follow on Spotify</a> <a class="btn btn-ghost on-dark" href="human-library.html">Explore the Human Library</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function(){{
+    var grid=document.getElementById('ep-grid'),cards=[].slice.call(grid.querySelectorAll('.ep')),
+        chips=[].slice.call(document.querySelectorAll('.chip')),q=document.getElementById('pod-search'),
+        count=document.getElementById('pod-count'),empty=document.getElementById('pod-empty'),tag='all',open=null;
+    function embed(host,src,h){{
+      var f=document.createElement('iframe');f.src=src;f.width='100%';f.height=h;f.loading='lazy';
+      f.setAttribute('allow','autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+      f.setAttribute('title','Spotify player');f.style.border='0';f.style.borderRadius='12px';host.replaceChildren(f);
+    }}
+    var load=document.querySelector('.pod-load');
+    load.addEventListener('click',function(){{var h=document.getElementById('show-embed');embed(h,load.dataset.src,'352');h.classList.add('live')}});
+    function close(c){{
+      var b=c.querySelector('.ep-play'),h=c.querySelector('.ep-embed');
+      c.classList.remove('playing');b.textContent='Play here';b.setAttribute('aria-expanded','false');h.hidden=true;h.replaceChildren();
+    }}
+    function play(c){{
+      if(open&&open!==c)close(open);
+      var b=c.querySelector('.ep-play'),h=c.querySelector('.ep-embed');
+      if(c.classList.contains('playing')){{close(c);open=null;return}}
+      c.classList.add('playing');b.textContent='Close player';b.setAttribute('aria-expanded','true');h.hidden=false;
+      embed(h,'https://open.spotify.com/embed/episode/'+c.dataset.id+'?utm_source=generator','152');open=c;
+    }}
+    cards.forEach(function(c){{c.querySelector('.ep-play').addEventListener('click',function(){{play(c)}})}});
+    function apply(){{
+      var term=q.value.trim().toLowerCase(),n=0;
+      cards.forEach(function(c){{
+        var ok=(tag==='all'||c.dataset.tags.split(' ').indexOf(tag)>-1)&&(!term||c.dataset.search.indexOf(term)>-1);
+        c.hidden=!ok;if(ok)n++;if(!ok&&c===open){{close(c);open=null}}
+      }});
+      count.textContent='Showing '+n+' of '+cards.length+' episodes';empty.hidden=n>0;
+    }}
+    chips.forEach(function(b){{b.addEventListener('click',function(){{
+      tag=b.dataset.tag;chips.forEach(function(x){{x.setAttribute('aria-pressed',x===b)}});apply();
+    }})}});
+    q.addEventListener('input',apply);
+    document.getElementById('pod-random').addEventListener('click',function(){{
+      tag='all';chips.forEach(function(x){{x.setAttribute('aria-pressed',x.dataset.tag==='all')}});q.value='';apply();
+      var c=cards[Math.floor(Math.random()*cards.length)];
+      c.scrollIntoView({{behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'}});
+      c.classList.add('pulse');setTimeout(function(){{c.classList.remove('pulse')}},1800);
+      if(!c.classList.contains('playing'))play(c);
+    }});
+  }})();
+  </script>"""
+    return page("podcast", "People of EU, the podcast",
+                "Short personal stories from across Europe, told by the people who lived them. Listen to every episode of People of EU, the Eurolibrary podcast, right here.", body)
+
+
 def contact():
     body = f"""  <div class="page-hero">
     <div class="wrap">
@@ -1024,7 +1225,7 @@ def contact():
                 "Get in touch with the Eurolibrary team about the project, the method or a collaboration.", body)
 
 
-PAGES = {"index.html": home, "about.html": about, "human-library.html": human_library, "contact.html": contact}
+PAGES = {"index.html": home, "about.html": about, "human-library.html": human_library, "podcast.html": podcast, "contact.html": contact}
 for _k in CHAPTERS:
     PAGES[CH[_k]["file"]] = (lambda k=_k: chapter(k))
 
