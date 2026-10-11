@@ -1199,7 +1199,7 @@ def human_library():
   <section class="handbook" id="handbook" style="padding-bottom:0">
     <div class="wrap">
       <div class="hb-card">
-        <img src="assets/downloads/handbook-cover.jpg" alt="Cover of The Human Library handbook" width="300" height="424" loading="lazy">
+        <div class="book"><img src="assets/downloads/handbook-cover.jpg" alt="Cover of The Human Library handbook" width="300" height="424" loading="lazy"></div>
         <div>
           <h2 class="display h2">The full handbook</h2>
           <p class="lead">Everything on this page and much more, in a 50 page methodological handbook for organisers: the method, the preparation, the day itself, and seventeen ready to print templates, from the call for books to the consent forms.</p>
