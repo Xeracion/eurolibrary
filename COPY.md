@@ -263,3 +263,21 @@ Notas para el equipo:
 ## Decimoctava ronda: PDF descargable de la lista de preparación
 
 La guía ofrece el botón "Download PDF" junto a "Print" y "Reset" en la lista de preparación. El PDF (`assets/downloads/eurolibrary-human-library-checklist.pdf`) es una hoja A4 con las siete fases, la lista de materiales y las seis reglas, con el logo y el aviso de financiación de la UE. Se genera con `python3 tools/checklist_pdf.py` a partir de los mismos datos que la web (`HL_PLAN`, `HL_MATERIALS`, `HL_RULES` en `tools/build.py`), con las tipografías de `tools/fonts/`, así que si se cambia la lista basta con volver a ejecutarlo.
+
+## Decimonovena ronda: manual metodológico descargable
+
+La guía ofrece el manual "The Human Library handbook" en PDF (`assets/downloads/eurolibrary-human-library-handbook.pdf`, 50 páginas A4, unos 7 MB), con un botón en la cabecera y una tarjeta con la portada. Mantiene el diseño de la web (crema, naranja, DM Serif Display e Inter) y usa fotos ya publicadas en los capítulos.
+
+Estructura:
+* Portada, "About Eurolibrary and this handbook", índice con números de página y cuatro partes con 14 capítulos: entender (qué es, roles y espacios, el préstamo, seguridad y ética), preparar (planificar, sede, libros, equipo y lectores, el modelo Eurolibrary), llevar a cabo el día (guion y facilitación) y evaluar y compartir (evaluación, pódcast, lecciones y preguntas frecuentes).
+* Anexos A1 a A17, listos para copiar: lista de planificación, hoja de guion del evento, convocatoria de libros, ficha del libro, hoja de reseña, agenda de formación, plantilla de catálogo, guion de bibliotecario, acuerdos de grupo, tarjeta de registro, hoja de préstamos, formularios de valoración de lectores y libros, consentimientos, matriz de riesgos, presupuesto y kit de promoción. Un último anexo reúne recursos y glosario.
+* Cada capítulo cierra con ideas clave. Se incluyen citas de participantes ya publicadas en la web, solo con nombre de pila.
+
+Cómo se genera: `python3 tools/handbook.py` (texto en `tools/handbook_content.py`, diseño en `tools/handbook.py`, tipografías en `tools/fonts/`). Necesita Chromium y poppler. El índice se numera solo en dos pasadas. Si se añade contenido hay que vigilar el máximo de 50 páginas, que el propio script informa al terminar.
+
+Para el equipo, antes de difundirlo:
+* El texto es nuevo. Se apoya en los documentos del equipo (ficha "Info Human Library", documento de organización de 2012 y pautas de movilidad) y en lo ocurrido en los cinco capítulos. Lo que es recomendación general (tamaños de equipo, estructura de la formación, guion de bibliotecario, consejos de datos y seguridad) está redactado por el asistente y conviene revisarlo.
+* Los modelos de consentimiento y de protección de datos son generales y deben revisarse para cada país.
+* La cita de la guía del Consejo de Europa figura sin enlace ni año exacto, y los orígenes del método proceden de los documentos del equipo. Contrastar con humanlibrary.org y el Consejo de Europa.
+* La cifra de "120+ participantes" y "125 libros" es la que figura en la web, y "20 a 30 lectores por evento" no se usa.
+* La licencia no está definida. El PDF pide "credit Eurolibrary" al reutilizar los anexos, pero no declara ninguna licencia.
