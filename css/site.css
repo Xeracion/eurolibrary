@@ -699,3 +699,4 @@ html:not(.js) .role-panel{border-top:1px solid var(--mist);padding-top:16px;marg
 .checklist.materials li{padding:10px 12px;font-size:14px}
 @media (max-width:640px){.checklist.materials{grid-template-columns:1fr}}
 @media (max-width:560px){.toc{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}}
+a.chip{display:inline-block;text-decoration:none}

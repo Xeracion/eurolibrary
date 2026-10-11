@@ -259,3 +259,7 @@ Notas para el equipo:
 * La duración del préstamo se formula como "20 a 30 minutos, nunca más de 30", que concilia los dos documentos del equipo (máximo 30 en uno, 15 a 20 en el otro).
 * Los datos del origen del método proceden de esos documentos y conviene contrastarlos con humanlibrary.org antes de citarlos en un informe.
 * La cifra "20 a 30 lectores por evento" sigue pendiente de confirmar, como en rondas anteriores.
+
+## Decimoctava ronda: PDF descargable de la lista de preparación
+
+La guía ofrece el botón "Download PDF" junto a "Print" y "Reset" en la lista de preparación. El PDF (`assets/downloads/eurolibrary-human-library-checklist.pdf`) es una hoja A4 con las siete fases, la lista de materiales y las seis reglas, con el logo y el aviso de financiación de la UE. Se genera con `python3 tools/checklist_pdf.py` a partir de los mismos datos que la web (`HL_PLAN`, `HL_MATERIALS`, `HL_RULES` en `tools/build.py`), con las tipografías de `tools/fonts/`, así que si se cambia la lista basta con volver a ejecutarlo.

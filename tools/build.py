@@ -1279,7 +1279,7 @@ def human_library():
         <p class="lead">A checklist built from how we prepared each Eurolibrary mobility. Tick things off as you go: your progress stays in this browser.</p>
         <div class="cl-bar-wrap">
           <div class="meter-row"><p><strong id="cl-done">0</strong> of {total_items} done</p>
-            <div class="cl-actions"><button class="chip" type="button" id="cl-print">Print</button><button class="chip" type="button" id="cl-reset">Reset</button></div></div>
+            <div class="cl-actions"><a class="chip" href="assets/downloads/eurolibrary-human-library-checklist.pdf" download>Download PDF</a><button class="chip" type="button" id="cl-print">Print</button><button class="chip" type="button" id="cl-reset">Reset</button></div></div>
           <div class="meter" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="{total_items}" aria-valuenow="0"><span id="cl-bar"></span></div>
         </div>
         <div class="cl">{plan}</div>
