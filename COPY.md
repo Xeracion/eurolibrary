@@ -241,3 +241,21 @@ Actualización: el botón "View the full album" de Grecia pasa a apuntar al álb
 Actualización del podcast: se añade el episodio 50, "I work on an educational game about circular economy" (6 de abril de 2026, 7 min), localizado con Firecrawl. La página pasa a 13 episodios y el texto aclara que es una selección y que el reproductor completo lista toda la serie.
 
 Con Firecrawl y con el HTML de Spotify no se pueden listar más: Spotify solo sirve los primeros 12 episodios en la página del programa y el resto va tras un "Load more" que exige su API autenticada. Las búsquedas web solo indexan 13 episodios, y el programa no aparece en Apple Podcasts. Los números de portada no siguen el orden de publicación (el episodio 50 es de abril y el 89 de mayo), así que no se pueden deducir los demás.
+
+## Decimoséptima ronda: la Human Library pasa a ser una guía metodológica
+
+La página `/human-library` se amplía y pasa a ser "The Human Library guide": qué es una biblioteca humana y cómo organizar una. Se basa en los documentos del propio equipo en Drive ("Info Human Library", "Our amazing Human Library" y las pautas de movilidad de Eurolibrary) y en lo que se hizo en los cinco capítulos.
+
+Contenido, con índice lateral que sigue el scroll (en móvil, una barra horizontal fija):
+* Qué es: origen (Dinamarca, 2000; apoyo del Consejo de Europa en 2003), para qué sirve y las seis reglas de la biblioteca.
+* Roles y espacios: libro, lector, bibliotecario, diccionario y promotor, con pestañas, y los tres espacios (recepción, estantería y espacio de lectura).
+* Cómo funciona un préstamo: recorrido interactivo de ocho pasos y un temporizador de préstamo (15, 20 o 30 minutos).
+* Organízala: lista de preparación en siete fases, de tres semanas antes a después del evento, con barra de progreso que se guarda en el navegador, botón de imprimir y lista de materiales. Las fases se basan en las pautas de movilidad.
+* Escribe un libro: preguntas para encontrar la historia y un constructor de reseñas con contador de palabras (50 a 150, según la ficha del equipo).
+* Mantenerla segura, medir el impacto, qué hicimos en Eurolibrary (cifras del proyecto) y preguntas frecuentes.
+
+Notas para el equipo:
+* No se han copiado los detalles del documento de 2012 que eran de un evento concreto en Polonia.
+* La duración del préstamo se formula como "20 a 30 minutos, nunca más de 30", que concilia los dos documentos del equipo (máximo 30 en uno, 15 a 20 en el otro).
+* Los datos del origen del método proceden de esos documentos y conviene contrastarlos con humanlibrary.org antes de citarlos en un informe.
+* La cifra "20 a 30 lectores por evento" sigue pendiente de confirmar, como en rondas anteriores.

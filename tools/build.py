@@ -934,101 +934,455 @@ def chapter(k):
                 f"{c['name']}: {c['subtitle']} in {c['country']}, {c['dates']}.", body)
 
 
+HL_ROLES = [
+    ("book", "Book", "A person who shares a part of their life",
+     "A book is a person who, for some reason, is labelled or stereotyped by society and who chooses to tell their own story honestly. Books speak in the first person, without generalising and without trying to convince anyone. Each one writes a short review for the catalogue.",
+     "A book always keeps the right to skip a question or to end a loan."),
+    ("reader", "Reader", "A curious member of the public",
+     "Readers register at reception, accept the rules and borrow one or more books. They come to listen and to ask honest, respectful questions, not to debate.",
+     "Come curious and leave the arguments at the door."),
+    ("librarian", "Librarian", "The organiser and master of ceremonies",
+     "Librarians build the spaces, welcome readers, explain the rules and hand out the catalogue. They introduce each reader to a book, time every loan, keep count of who was borrowed and make sure everybody feels comfortable.",
+     "Keep an eye on the reading space without listening in."),
+    ("dictionary", "Dictionary", "An interpreter for the conversation",
+     "When a book and a reader do not share a language, or when one of them is deaf, an interpreter joins the loan. In the Human Library they are called dictionaries.",
+     "If your audience is multilingual, line up your dictionaries early."),
+    ("promoter", "Promoter", "The people who bring readers in",
+     "In a public space nobody is guaranteed to walk in. Promoters invite passers by and explain the idea in an original and playful way. They also keep children busy, for example with face painting, while their parents read.",
+     "Flash mobs, free hugs and paper arrows pointing the way all work."),
+]
+
+HL_SPACES = [
+    ("Reception", "Where readers arrive",
+     "An info desk staffed by at least one librarian. Readers register, accept the rules and receive the up to date catalogue."),
+    ("Bookshelf", "Where books wait",
+     "A calm, separate corner where books relax between loans until a librarian calls them. Keep it out of earshot of the reading space."),
+    ("Reading space", "Where loans happen",
+     "Tables or armchairs, coffee and snacks to invite dialogue, and paper tablecloths for notes and doodles."),
+]
+
+HL_RULES = [
+    ("Timed loans", "A loan lasts around 20 to 30 minutes, and never more than 30. It can end earlier."),
+    ("Register first", "Readers sign in at reception, receive the instructions and accept them explicitly."),
+    ("Your own story", "Books speak from the \"I\". No generalisations, no apologies and no attempt to convince."),
+    ("The right to say no", "A book can skip any question and end the loan if the conversation goes somewhere unwanted."),
+    ("Two readers at most", "To keep it a conversation and not a lecture, no more than two readers per book at once."),
+    ("Return it with care", "Readers hand the book back as they found it: treated with courtesy, kindness and confidentiality."),
+]
+
+HL_STEPS = [
+    ("Welcome", "A reader arrives at reception. The librarian greets them, explains the rules and asks them to register and accept them."),
+    ("Browse", "The reader gets the catalogue: every book with a title and a short review. They choose the story they want to read."),
+    ("Call the book", "The librarian goes to the bookshelf and tells the book that a reader is waiting."),
+    ("Introduce", "The librarian introduces book and reader and walks them to a free table in the reading space."),
+    ("Read", "The conversation begins. The book sets the boundaries and the reader asks honest questions. No more than two readers per book."),
+    ("Time is up", "The librarian signals when the loan is over. The conversation can end earlier, and the time is fully customisable."),
+    ("Return", "The reader thanks the book. Book and reader become available again, and the reader can ask for a new loan."),
+    ("Feedback", "The librarian asks for a short evaluation and, with consent, a contact for the next events. Every loan is noted."),
+]
+
+HL_PLAN = [
+    ("weeks3", "Three weeks before", [
+        "Hold a full group meeting of 60 to 90 minutes: ice breakers, the project, the method, its roles and principles.",
+        "Agree the date of each team meeting before the call ends.",
+        "Choose the venues and ask permission: squares, schools, libraries, community centres or other public spaces.",
+        "Decide whether each event is open to the public or by invitation."]),
+    ("weeks2", "Two weeks before", [
+        "Go deeper into the method with each team: ethics, storytelling structure, and the roles of books and readers.",
+        "Help each participant choose their story and decide their emotional boundaries.",
+        "Share draft stories and give each other peer feedback.",
+        "Form the working groups: books, librarians, promoters and dictionaries."]),
+    ("week1", "One week before", [
+        "Collect every book's title and short review.",
+        "Compile the catalogue, with at least six books for a small library.",
+        "Prepare a digital version with a QR code and a few printed copies.",
+        "Prepare signs, posters, leaflets and badges or T-shirts for each role.",
+        "Run a short training for books and librarians."]),
+    ("daybefore", "The day before", [
+        "Promote the event online, in mailing lists and on social media.",
+        "Gather all the materials in one place.",
+        "Do a general trial: act out a whole loan from reception to feedback.",
+        "Organise snacks and drinks for the reading space."]),
+    ("hours3", "Three hours before", [
+        "Set up the three spaces: reception, bookshelf and reading space.",
+        "Start the promotion around the venue.",
+        "Hold a last team meeting to agree roles, timings and signals.",
+        "Check the consent you need for photos and for collecting emails."]),
+    ("during", "During the library", [
+        "Run reception: registration, rules and catalogue.",
+        "Time every loan and note who borrowed which book.",
+        "Let books rest between loans.",
+        "Keep activities going for people who are not reading: games for children, promotion, short videos."]),
+    ("after", "After the library", [
+        "Thank books, readers and the venue.",
+        "Gather feedback from participants and readers.",
+        "Share photos, videos and podcasts with readers who agreed to receive them.",
+        "Write down what worked and what to change next time."]),
+]
+
+HL_MATERIALS = ["Coloured paper and flipcharts", "Markers, pens, scissors and tape", "Badges or T-shirts for each role",
+                "Tables and chairs", "Paper tablecloths to write on", "Printed catalogue and a QR code",
+                "Signs, posters or a roll up banner", "Snacks, coffee and water", "A timer", "A sign in sheet"]
+
+HL_FAQ = [
+    ("Do I have to belong to a minority to be a book?",
+     "No. Books are people with a story to share, often because they are labelled or stereotyped, but also because they have lived something others rarely hear. What matters is that they are willing to speak honestly about their own experience."),
+    ("How long should a loan last?",
+     "Around 20 to 30 minutes works well, and it should never go over 30. A conversation can always end earlier. Fix the duration before the event and let the librarians keep time."),
+    ("How many books do we need?",
+     "A small library needs at least six, so readers have a real choice. With more books, each one gets time to rest between loans."),
+    ("Can we run one in a school?",
+     "Yes. Eurolibrary held sessions in local schools, where students heard stories straight from the people who lived them. Agree the format with the teachers beforehand, keep groups small and make sure a librarian is always nearby."),
+    ("What if a reader asks something too personal?",
+     "The book can decline to answer or end the loan at any time, and does not have to explain why. The librarian can step in and offer the reader another book."),
+    ("What about languages?",
+     "Choose a shared language for the event. If a book and a reader do not share one, or one of them is deaf, bring in a dictionary to interpret."),
+    ("Can we take photos or recordings?",
+     "Only with the consent of everyone who appears or speaks. Ask for it at registration, and do not collect readers' emails without their agreement."),
+    ("Where do we start?",
+     "The Human Library Organisation, which started the method, shares resources and guidance at humanlibrary.org. Check their advice on how to present your event before you announce it."),
+]
+
+HL_SCRIPT = r"""
+<script>
+(function(){
+  var root=document.documentElement;root.classList.add('js');
+  function $(s,c){return (c||document).querySelector(s)}
+  function $$(s,c){return [].slice.call((c||document).querySelectorAll(s))}
+
+  /* table of contents with scroll spy */
+  var links=$$('.toc a'),secs=$$('.g-sec');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}
+    })},{rootMargin:'-20% 0px -70% 0px'});
+    secs.forEach(function(s){io.observe(s)});
+  }
+
+  /* roles tabs */
+  var tabs=$$('.role-tab'),panels=$$('.role-panel');
+  function showRole(id){
+    tabs.forEach(function(t){var on=t.dataset.role===id;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});
+    panels.forEach(function(p){p.hidden=p.dataset.role!==id});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){showRole(t.dataset.role)});
+    t.addEventListener('keydown',function(e){
+      var k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!k)return;
+      var n=tabs[(i+k+tabs.length)%tabs.length];n.focus();showRole(n.dataset.role);e.preventDefault();
+    });
+  });
+  if(tabs.length)showRole(tabs[0].dataset.role);
+
+  /* loan stepper */
+  var steps=$$('.step-btn'),detail=$('#step-detail'),cur=0;
+  function goStep(i){
+    cur=Math.max(0,Math.min(steps.length-1,i));
+    steps.forEach(function(b,j){b.classList.toggle('on',j===cur);b.classList.toggle('done',j<cur);b.setAttribute('aria-current',j===cur?'step':'false')});
+    detail.querySelector('h3').textContent=steps[cur].dataset.title;
+    detail.querySelector('p').textContent=steps[cur].dataset.text;
+    detail.querySelector('.count').textContent='Step '+(cur+1)+' of '+steps.length;
+    $('#step-prev').disabled=cur===0;$('#step-next').disabled=cur===steps.length-1;
+  }
+  steps.forEach(function(b,i){b.addEventListener('click',function(){goStep(i)})});
+  if(steps.length){$('#step-prev').addEventListener('click',function(){goStep(cur-1)});$('#step-next').addEventListener('click',function(){goStep(cur+1)});goStep(0)}
+
+  /* loan timer */
+  var tEl=$('#timer-time'),tMsg=$('#timer-msg'),total=20*60,left=total,tick=null;
+  function fmt(s){var m=Math.floor(s/60),r=s%60;return (m<10?'0':'')+m+':'+(r<10?'0':'')+r}
+  function paint(){tEl.textContent=fmt(left)}
+  function stop(){if(tick){clearInterval(tick);tick=null}$('#timer-go').textContent='Start'}
+  $$('.t-pre').forEach(function(b){b.addEventListener('click',function(){
+    stop();total=+b.dataset.min*60;left=total;tMsg.textContent='';$('#timer').classList.remove('over');
+    $$('.t-pre').forEach(function(x){x.setAttribute('aria-pressed',x===b)});paint();
+  })});
+  if(tEl){
+    $('#timer-go').addEventListener('click',function(){
+      if(tick){stop();return}
+      if(left<=0){left=total;$('#timer').classList.remove('over');tMsg.textContent=''}
+      this.textContent='Pause';
+      tick=setInterval(function(){
+        left--;paint();
+        if(left===60)tMsg.textContent='One minute left.';
+        if(left<=0){stop();tMsg.textContent='Time is up. Thank the book and return it to the shelf.';$('#timer').classList.add('over')}
+      },1000);
+    });
+    $('#timer-reset').addEventListener('click',function(){stop();left=total;tMsg.textContent='';$('#timer').classList.remove('over');paint()});
+    paint();
+  }
+
+  /* planning checklist */
+  var KEY='eurolibrary-hl-checklist',boxes=$$('.cl input[type=checkbox]'),saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  function progress(){
+    var n=boxes.filter(function(b){return b.checked}).length;
+    $('#cl-done').textContent=n;$('#cl-bar').style.width=(100*n/boxes.length)+'%';
+    $('#cl-bar').parentNode.setAttribute('aria-valuenow',n);
+    $$('.cl-group').forEach(function(g){
+      var all=$$('input',g),c=all.filter(function(b){return b.checked}).length;
+      $('.cl-count',g).textContent=c+'/'+all.length;g.classList.toggle('complete',c===all.length);
+    });
+  }
+  boxes.forEach(function(b){
+    if(saved[b.id])b.checked=true;
+    b.addEventListener('change',function(){
+      saved[b.id]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}progress();
+    });
+  });
+  var rs=$('#cl-reset');if(rs)rs.addEventListener('click',function(){
+    boxes.forEach(function(b){b.checked=false});saved={};try{localStorage.removeItem(KEY)}catch(e){}progress();
+  });
+  var pr=$('#cl-print');if(pr)pr.addEventListener('click',function(){window.print()});
+  progress();
+
+  /* review builder */
+  var ta=$('#rev-text'),wc=$('#rev-count'),wb=$('#rev-bar'),wm=$('#rev-msg');
+  if(ta){
+    function count(){
+      var w=(ta.value.trim().match(/\S+/g)||[]).length;
+      wc.textContent=w;wb.style.width=Math.min(100,100*w/150)+'%';
+      var st=w===0?'':w<50?'A little short. Aim for at least 50 words.':w<=150?'Just right.':'A bit long. Trim it to 150 words or fewer.';
+      wm.textContent=st;wb.parentNode.className='meter '+(w===0?'':w<50?'low':w<=150?'ok':'high');
+    }
+    ta.addEventListener('input',count);count();
+    $('#rev-copy').addEventListener('click',function(){
+      var b=this;
+      function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy review'},1600)}
+      if(navigator.clipboard)navigator.clipboard.writeText(ta.value).then(done,function(){ta.select();document.execCommand('copy');done()});
+      else{ta.select();document.execCommand('copy');done()}
+    });
+  }
+})();
+</script>"""
+
+
 def human_library():
+    toc = [("what", "What it is"), ("roles", "Roles and spaces"), ("loan", "How a loan works"),
+           ("organise", "Organise yours"), ("books", "Write a book"), ("safe", "Keep it safe"),
+           ("impact", "Measure the impact"), ("eurolibrary", "In Eurolibrary"), ("faq", "Questions")]
+    toc_html = "".join(f'<li><a href="#{i}">{e(t)}</a></li>' for i, t in toc)
+    rules = "".join(f'<li class="rule"><i>{n}</i><h3 class="display h3">{e(t)}</h3><p>{e(p)}</p></li>'
+                    for n, (t, p) in enumerate(HL_RULES, 1))
+    role_tabs = "".join(
+        f'<button class="role-tab" type="button" role="tab" data-role="{i}" aria-selected="false" id="tab-{i}" aria-controls="panel-{i}">{e(n)}</button>'
+        for i, n, *_ in HL_ROLES)
+    role_panels = "".join(
+        f'<div class="role-panel" role="tabpanel" id="panel-{i}" aria-labelledby="tab-{i}" data-role="{i}"><p class="role-kicker">{e(k)}</p><p class="role-text">{e(t)}</p><p class="role-tip"><strong>Tip.</strong> {e(tip)}</p></div>'
+        for i, n, k, t, tip in HL_ROLES)
+    spaces = '<span class="zone-arrow" aria-hidden="true">&rarr;</span>'.join(
+        f'<div class="zone"><span class="zone-no">{n}</span><h3 class="display h3">{e(t)}</h3><p class="zone-k">{e(k)}</p><p>{e(d)}</p></div>'
+        for n, (t, k, d) in enumerate(HL_SPACES, 1))
+    step_btns = "".join(
+        f'<li><button class="step-btn" type="button" data-title="{e(t)}" data-text="{e(d)}"><span class="step-n">{n}</span><span>{e(t)}</span></button></li>'
+        for n, (t, d) in enumerate(HL_STEPS, 1))
+    total_items = sum(len(items) for _, _, items in HL_PLAN)
+    plan = "".join(
+        f'<fieldset class="cl-group"><legend><span>{e(t)}</span><span class="cl-count">0/{len(items)}</span></legend>'
+        + "".join(f'<label class="cl-item"><input type="checkbox" id="cl-{g}-{n}"><span>{e(x)}</span></label>' for n, x in enumerate(items))
+        + "</fieldset>" for g, t, items in HL_PLAN)
+    materials = "".join(f"<li>{e(m)}</li>" for m in HL_MATERIALS)
+    faq = "".join(f"<details class=\"faq\"><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in HL_FAQ)
     body = f"""  <div class="page-hero split">
     <div class="wrap">
       <div>
-        <h1 class="display h1">What is a Human Library?</h1>
-        <p class="lead">In Eurolibrary, the Human Library is the engine of every mobility. Participants were trained to share personal stories about mental health, eco living, migration, healthy lifestyles and entrepreneurship, and shared them with local communities across Europe in a safe, respectful space.</p>
+        <h1 class="display h1">The Human Library guide</h1>
+        <p class="lead">What a Human Library is, why it works and how to organise one, step by step. We learned it by running twenty of them across five countries, and we wrote down everything we would have liked to know on day one.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#organise">Start planning</a>
+          <a class="btn btn-ghost" href="#what">What is a Human Library?</a>
+        </div>
       </div>
       <div class="polaroid"><img src="assets/photos/human-library-talk.jpg" alt="Two people talking during a Human Library"></div>
     </div>
   </div>
 
-  <section>
-    <div class="wrap two-col">
-      <div>
+  <div class="wrap guide">
+    <aside class="toc" aria-label="Guide contents">
+      <p class="toc-h">In this guide</p>
+      <ol>{toc_html}</ol>
+    </aside>
+
+    <div class="guide-body">
+
+      <section class="g-sec" id="what">
         <h2 class="display h2">You borrow a person, not a book</h2>
         <p class="lead">You walk into a library. Instead of borrowing a book, you borrow a person. They tell you a story, their story: raw, real and often misunderstood.</p>
-        <p>Welcome to the Human Library, where people are the books and every conversation is a chance to question bias, break stereotypes and build connection.</p>
-      </div>
-      <div>
-        <p>The Human Library is an innovative, interactive method that promotes dialogue, reduces prejudice and builds understanding. Participants "borrow" Human Books, people who share personal stories of overcoming adversity, embracing diversity or living unique experiences.</p>
-        <p>These one to one or small group conversations challenge stereotypes and make room for authentic, empathetic exchange.</p>
-        <ul class="checklist" aria-label="Results of the Human Library events">
-          <li>Communities gain insight into the experiences of marginalised or underrepresented young people.</li>
-          <li>Locals become "readers" and talk in real time with a diverse group of young "books".</li>
-          <li>Participants build confidence, empathy and storytelling skills.</li>
+        <p>The Human Library is a method that creates a safe space for dialogue between people who would not normally meet. It uses the metaphor of a library: the books are people, the readers are the public, and a loan is a conversation. It challenges prejudice by replacing assumptions with a real person, and asks nothing of readers except that they listen.</p>
+        <div class="two-col g-two">
+          <div>
+            <h3 class="display h3">Where it comes from</h3>
+            <p>The first Human Library took place in 2000 at a music festival in Denmark, promoted by an anti discrimination association. Festival goers could sit down between concerts with people who were usually labelled by others, and the idea spread. In 2003 the Council of Europe backed the method, and Human Libraries have since been organised on every continent.</p>
+          </div>
+          <div>
+            <h3 class="display h3">What it is for</h3>
+            <ul class="checklist" aria-label="What the Human Library is for">
+              <li>Building empathy between strangers.</li>
+              <li>Breaking stereotypes through contact and dialogue.</li>
+              <li>Giving people a voice about their own experience.</li>
+              <li>Practising listening without assumptions.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="quote">"It is not about agreeing. It is about understanding."</p>
+        <h3 class="display h3" style="margin-top:40px">The rules of the library</h3>
+        <p class="muted" style="margin-bottom:20px">They are close to the rules of a real library, and they keep everyone safe.</p>
+        <ul class="rules" aria-label="The rules of the library">{rules}</ul>
+      </section>
+
+      <section class="g-sec" id="roles">
+        <h2 class="display h2">Roles and spaces</h2>
+        <p class="lead">Every Human Library needs five roles and three spaces. Pick a role to see what it does.</p>
+        <div class="roles">
+          <div class="role-tabs" role="tablist" aria-label="Roles">{role_tabs}</div>
+          <div class="role-panels">{role_panels}</div>
+        </div>
+        <h3 class="display h3" style="margin-top:48px">Three spaces</h3>
+        <p class="muted" style="margin-bottom:20px">A reader walks through them in order.</p>
+        <div class="zones">{spaces}</div>
+      </section>
+
+      <section class="g-sec" id="loan">
+        <h2 class="display h2">How a loan works</h2>
+        <p class="lead">From the moment a reader arrives to the moment the book goes back on the shelf. Click through the eight steps.</p>
+        <div class="stepper">
+          <ol class="step-list">{step_btns}</ol>
+          <div class="step-detail" id="step-detail" aria-live="polite">
+            <p class="count">Step 1 of {len(HL_STEPS)}</p>
+            <h3 class="display h3">Welcome</h3>
+            <p>{e(HL_STEPS[0][1])}</p>
+            <div class="step-nav">
+              <button class="btn btn-ghost" type="button" id="step-prev">Previous</button>
+              <button class="btn btn-dark" type="button" id="step-next">Next step</button>
+            </div>
+          </div>
+        </div>
+        <div class="timer" id="timer">
+          <div>
+            <h3 class="display h3">Loan timer</h3>
+            <p>Librarians keep the time. Pick a length and press start.</p>
+            <div class="t-pres" role="group" aria-label="Loan length">
+              <button class="chip t-pre" type="button" data-min="15" aria-pressed="false">15 min</button>
+              <button class="chip t-pre" type="button" data-min="20" aria-pressed="true">20 min</button>
+              <button class="chip t-pre" type="button" data-min="30" aria-pressed="false">30 min</button>
+            </div>
+          </div>
+          <div class="t-face">
+            <p class="t-time" id="timer-time" aria-live="off">20:00</p>
+            <p class="t-msg" id="timer-msg" role="status"></p>
+            <div class="t-btns"><button class="btn btn-primary" type="button" id="timer-go">Start</button><button class="btn btn-ghost" type="button" id="timer-reset">Reset</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="g-sec" id="organise">
+        <h2 class="display h2">Organise yours</h2>
+        <p class="lead">A checklist built from how we prepared each Eurolibrary mobility. Tick things off as you go: your progress stays in this browser.</p>
+        <div class="cl-bar-wrap">
+          <div class="meter-row"><p><strong id="cl-done">0</strong> of {total_items} done</p>
+            <div class="cl-actions"><button class="chip" type="button" id="cl-print">Print</button><button class="chip" type="button" id="cl-reset">Reset</button></div></div>
+          <div class="meter" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="{total_items}" aria-valuenow="0"><span id="cl-bar"></span></div>
+        </div>
+        <div class="cl">{plan}</div>
+        <div class="two-col g-two" style="margin-top:40px">
+          <div>
+            <h3 class="display h3">Where and when</h3>
+            <p>Choose a place where people already walk by: a square, a school, a library, a community centre or a café. Indoors is safer if the weather is unpredictable. An event can be open to the public or by invitation. Plan about two hours of loans, and start setting up at least three hours before.</p>
+          </div>
+          <div>
+            <h3 class="display h3">What you need</h3>
+            <ul class="checklist small materials" aria-label="Materials">{materials}</ul>
+          </div>
+        </div>
+        <figure class="g-fig"><img src="assets/photos/spain-human-library-setup.jpg" alt="A Human Library table under a blue tent in a town square" loading="lazy"><figcaption class="sr">A Human Library set up in a town square</figcaption></figure>
+      </section>
+
+      <section class="g-sec" id="books">
+        <h2 class="display h2">Write a book</h2>
+        <p class="lead">Every book has a title and a short review, like the back cover of a real book. It is the appetizer that helps readers choose.</p>
+        <div class="two-col g-two">
+          <div>
+            <h3 class="display h3">Find your story</h3>
+            <p>You do not need a dramatic story, just one you are happy to share. Choose a part of your life, not all of it, and decide in advance what you will not talk about.</p>
+            <ul class="checklist small" aria-label="Questions to find your story">
+              <li>How do you define yourself, and what do others say about you?</li>
+              <li>Which part of your life or work do you want to talk about?</li>
+              <li>Which challenges have you overcome, at school, at work or with others?</li>
+              <li>What have you done that might surprise people?</li>
+            </ul>
+          </div>
+          <div class="builder">
+            <h3 class="display h3">Review builder</h3>
+            <p class="muted">Write your review below. Aim for 50 to 150 words.</p>
+            <label class="sr" for="rev-text">Your review</label>
+            <textarea id="rev-text" rows="8" placeholder="Start with how others see you, then show what they do not see."></textarea>
+            <div class="meter-row"><p><strong id="rev-count">0</strong> words</p><p class="rev-msg" id="rev-msg" role="status"></p></div>
+            <div class="meter" aria-hidden="true"><span id="rev-bar"></span></div>
+            <button class="btn btn-dark" type="button" id="rev-copy" style="margin-top:16px">Copy review</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="g-sec" id="safe">
+        <h2 class="display h2">Keep it safe</h2>
+        <p class="lead">The method works because people feel safe. Safety is not a side note, it is the job.</p>
+        <div class="grid-3">
+          <div class="pillar"><h3 class="display h3">Agree the ground rules</h3><p>Co create group agreements before anything else: respect, confidentiality, punctuality and support. What is said in the reading space stays there.</p></div>
+          <div class="pillar"><h3 class="display h3">Know your limits</h3><p>Books choose what to share and what to keep. Practise the story with peers first, and agree what you will do if a question goes too far.</p></div>
+          <div class="pillar"><h3 class="display h3">Look after each other</h3><p>Form small reflection groups of four or five, a kind of project family. They are the people you can go to when a story stirs something up.</p></div>
+        </div>
+        <ul class="checklist" style="margin-top:28px" aria-label="Safety practices">
+          <li>Keep a librarian within sight of every reading table.</li>
+          <li>Give books a quiet place to rest and to talk after a hard loan.</li>
+          <li>Ask for consent before taking photos or recordings, and before collecting contact details.</li>
         </ul>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <section style="padding-top:0">
-    <div class="wrap">
-      <p class="quote">"It is not about agreeing. It is about understanding."</p>
-    </div>
-  </section>
+      <section class="g-sec" id="impact">
+        <h2 class="display h2">Measure the impact</h2>
+        <p class="lead">A Human Library changes minds quietly, so give yourself a way to see it.</p>
+        <div class="grid-3">
+          <div class="pillar"><i>During</i><h3 class="display h3">Keep count</h3><p>Note each loan and which book it was. It shows which stories reach people and when books need a rest.</p></div>
+          <div class="pillar"><i>With readers</i><h3 class="display h3">Ask and keep in touch</h3><p>Ask for a short evaluation. With explicit consent, collect an email so readers can follow the project and receive videos and podcasts afterwards.</p></div>
+          <div class="pillar"><i>With the team</i><h3 class="display h3">Reflect and improve</h3><p>Use the last day for reflection and feedback forms. Write down what to change next time.</p></div>
+        </div>
+      </section>
 
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom:32px">
-        <h2 class="display h2">Five reasons we use it</h2>
-      </div>
-      <div class="grid-4 grid-5">
-        <div class="pillar"><h3 class="display h3" style="font-size:22px">Challenge prejudice</h3><p>Through personal storytelling.</p></div>
-        <div class="pillar"><h3 class="display h3" style="font-size:22px">Stay true</h3><p>Inspire young people to hold on to their values and question social norms.</p></div>
-        <div class="pillar"><h3 class="display h3" style="font-size:22px">Honest dialogue</h3><p>Create safe spaces to talk openly.</p></div>
-        <div class="pillar"><h3 class="display h3" style="font-size:22px">Real listening</h3><p>Help us listen without assumptions.</p></div>
-        <div class="pillar"><h3 class="display h3" style="font-size:22px">Connection</h3><p>Bring together people from different cultures, experiences and walks of life.</p></div>
-      </div>
-    </div>
-  </section>
+      <section class="g-sec" id="eurolibrary">
+        <h2 class="display h2">In Eurolibrary</h2>
+        <p class="lead">Each of the five mobilities ran at least four Human Libraries, on trains, ferries, in squares, in museums, in cafés and in local schools.</p>
+        <div class="counters four" style="margin:32px 0 0">
+          {stats_block([("20", "Human Library events, 4 per chapter"), ("20 to 30", "Readers per event, on average"), ("125", "Human Books in the catalogue"), ("5", "Countries represented")])}
+        </div>
+        <div class="grid-3" style="margin-top:32px">
+          <div class="pillar"><h3 class="display h3">Prepared together</h3><p>A full group meeting three weeks before, team meetings two weeks before and the catalogue closed a week ahead, with a title and a teaser for every story.</p></div>
+          <div class="pillar"><h3 class="display h3">Built on the first day</h3><p>Ice breakers, group agreements and small reflection groups came first. The Human Libraries filled days two to five.</p></div>
+          <div class="pillar"><h3 class="display h3">Always something to do</h3><p>While some participants were books, others ran games, promoted the event and filmed short videos, so everybody had a role.</p></div>
+        </div>
+        <div class="photo-row" style="margin-top:32px"><figure><img src="assets/photos/greece-red-room.jpg" alt="A conversation circle in a room with red curtains" loading="lazy"></figure>
+        <figure><img src="assets/photos/human-library-table.jpg" alt="An information table with leaflets and a small globe" loading="lazy"></figure></div>
+        <p style="margin-top:24px"><a class="btn btn-ghost" href="index.html#destinations">See the five chapters</a></p>
+      </section>
 
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom:32px">
-        <h2 class="display h2">The Human Library in numbers</h2>
-        <p class="lead muted">Sessions took place on trains, ferries, in museums, cafés and public spaces, and in local schools.</p>
-      </div>
-      <div class="counters four" style="margin:0">
-        {stats_block([("20", "Human Library events, 4 per chapter"), ("20 to 30", "Readers per event, on average"), ("125", "Human Books in the catalogue"), ("5", "Countries represented")])}
-      </div>
-    </div>
-  </section>
+      <section class="g-sec" id="faq">
+        <h2 class="display h2">Questions we are often asked</h2>
+        <div class="faqs">{faq}</div>
+      </section>
 
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom:32px">
-        <h2 class="display h2">How a session works</h2>
-        <p class="lead muted">We ran four Human Library events in each of the five chapters.</p>
-      </div>
-      <div class="steps">
-        <div class="pillar"><i>Catalogue</i><h3 class="display h3">Pick a title</h3><p>A list of human books, each with a title that represents their story and a short summary.</p></div>
-        <div class="pillar"><i>Borrowing</i><h3 class="display h3">Borrow a book</h3><p>Readers choose a book from the catalogue and borrow them for a timed conversation.</p></div>
-        <div class="pillar"><i>Rules</i><h3 class="display h3">Respect first</h3><p>Mutual respect, open mindedness and confidentiality. Readers are encouraged to ask honest questions, and books can share or withhold details as they wish.</p></div>
-      </div>
     </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="photo-row"><figure><img src="assets/photos/human-library-talk.jpg" alt="A reader and a human book talking in a park"></figure>
-      <figure><img src="assets/photos/human-library-table.jpg" alt="An information table with leaflets and a small globe"></figure></div>
-    </div>
-  </section>
+  </div>
 
   <section style="padding-top:0">
     <div class="wrap">
       <div class="join">
-        <h2 class="display h2">Where we used it</h2>
-        <p class="lead">From Bulgarian trains to Greek islands, in town squares and in schools.</p>
-        <a class="btn btn-primary" href="index.html#destinations">See the five chapters</a>
+        <h2 class="display h2">Ready to open your own library?</h2>
+        <p class="lead">Start with the checklist, or tell us what you are planning. We are glad to help.</p>
+        <p class="cta-row"><a class="btn btn-primary" href="#organise">Open the checklist</a> <a class="btn btn-ghost on-dark" href="contact.html">Get in touch</a></p>
       </div>
     </div>
-  </section>"""
-    return page("hl", "Human Library method",
-                "How Eurolibrary uses the Human Library method to challenge prejudice and connect young people with local communities.", body)
+  </section>
+{HL_SCRIPT}"""
+    return page("hl", "The Human Library guide",
+                "A guide to the Human Library method: what it is, the roles and rules, how a loan works and how to organise your own, with a checklist and tools.", body)
 
 
 PODCAST_ID = "1WtlYaA3IX5eSzW3NonMTU"
