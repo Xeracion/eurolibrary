@@ -237,3 +237,7 @@ Las fotos de archivo de la página de Grecia se sustituyen por fotos reales de l
 * El botón del álbum apunta a la carpeta de Drive tal como se compartió. Si se quiere un álbum público más cuidado, basta cambiar `gallery_link` en `tools/build.py`.
 
 Actualización: el botón "View the full album" de Grecia pasa a apuntar al álbum de Google Fotos del equipo (https://photos.app.goo.gl/DerMeM1c22HKJRPC6), en lugar de la carpeta de Drive.
+
+Actualización del podcast: se añade el episodio 50, "I work on an educational game about circular economy" (6 de abril de 2026, 7 min), localizado con Firecrawl. La página pasa a 13 episodios y el texto aclara que es una selección y que el reproductor completo lista toda la serie.
+
+Con Firecrawl y con el HTML de Spotify no se pueden listar más: Spotify solo sirve los primeros 12 episodios en la página del programa y el resto va tras un "Load more" que exige su API autenticada. Las búsquedas web solo indexan 13 episodios, y el programa no aparece en Apple Podcasts. Los números de portada no siguen el orden de publicación (el episodio 50 es de abril y el 89 de mayo), así que no se pueden deducir los demás.

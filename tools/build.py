@@ -1074,6 +1074,9 @@ EPISODES = [
     dict(id="62H28nz67jZsZiEKrQ3sB6", no=89, title="Two Hours to a Dream", date="4 May 2026", mins=5,
          tags=["sport", "journeys"],
          text="A story about a child who found freedom on a football field, and carried a dream across countries, rejections and closed doors."),
+    dict(id="6MwcV8OLYqVzdWQg2wDqpj", no=50, title="I work on an educational game about circular economy", date="6 April 2026", mins=7,
+         tags=["work", "nature"],
+         text="A story about turning learning into play."),
 ]
 
 
@@ -1154,7 +1157,7 @@ def podcast():
 {cards}
       </div>
       <p class="pod-empty" id="pod-empty" hidden>No episode matches that search. Try another word or clear the filters.</p>
-      <p class="pod-note">Here you will find the latest episodes of the series. The player above lists every episode.</p>
+      <p class="pod-note">This is a selection of the series. The player above lists every episode.</p>
     </div>
   </section>
 
