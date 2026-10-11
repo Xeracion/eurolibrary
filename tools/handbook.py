@@ -240,7 +240,7 @@ def build(pages):
 <div class="f"><img src="file://{ROOT}/assets/eu-funded.png" alt="Funded by the European Union"><span>Eurolibrary, an Erasmus+ project. {EU_DISCLAIMER}</span></div></section>""")
     parts.append(f"""<section class="about"><h1 style="margin-top:0">About Eurolibrary and this handbook</h1>{C.ABOUT}
 <div class="credits"><img src="file://{ROOT}/assets/eu-funded-blue.png" alt="Funded by the European Union"><p>{EU_DISCLAIMER}</p>
-<p>The annex templates are meant to be copied and adapted. Please credit Eurolibrary when you reuse them. Photographs show participants of the Eurolibrary mobilities, who gave their consent. eurolibrary.eu</p></div></section>""")
+<p>The annex templates are meant to be copied and adapted. Please credit Eurolibrary when you reuse them. eurolibrary.eu</p></div></section>""")
     parts.append(f'<section class="tocpage"><h1 style="margin-top:0">Contents</h1>{toc_html(pages)}</section>')
     for no, part, title, photo, pos, body in CHAPTERS:
         parts.append(chapter(no, part, title, photo, pos, body))
