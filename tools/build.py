@@ -342,7 +342,6 @@ SOCIAL = {
     "about": ("/about", "about-banner"),
     "hl": ("/human-library", "human-library-talk"),
     "podcast": ("/podcast", "podcast"),
-    "contact": ("/contact", "human-library-table"),
     "bulgaria": ("/bulgaria", "bulgaria-hero"),
     "spain": ("/spain", "spain-hero"),
     "netherlands": ("/netherlands", "netherlands-hero"),
@@ -393,7 +392,6 @@ def nav(active):
     <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
     <ul id="menu">
       <li><a href="index.html"{cur("home")}>Home</a></li>
-      <li><a href="about.html"{cur("about")}>About</a></li>
       <li class="dd">
         <a href="index.html#destinations"{mob_active}>Mobilities</a>
         <div class="dd-menu">
@@ -401,9 +399,9 @@ def nav(active):
         </div>
       </li>
       <li><a href="human-library.html"{cur("hl")}>Human library</a></li>
-      <li><a href="podcast.html"{cur("podcast")}>Podcast</a></li>
+      <li><a href="about.html"{cur("about")}>About</a></li>
       <li><a class="icon-link" href="https://www.instagram.com/eurolibrary" target="_blank" rel="noopener" aria-label="Eurolibrary on Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg><span class="icon-label">Instagram</span></a></li>
-      <li><a class="btn btn-dark" href="contact.html"{cur("contact")}>Contact</a></li>
+      <li><a class="btn btn-dark" href="podcast.html"{cur("podcast")}>Podcast</a></li>
     </ul>
   </div>
 </header>"""
@@ -413,7 +411,7 @@ def footer():
     links = "".join(
         f'<li><a href="{f}">{t}</a></li>' for f, t in [
             ("index.html", "Home"), ("about.html", "About"), ("human-library.html", "Human library"),
-            ("podcast.html", "Podcast"), ("contact.html", "Contact")] + [(CH[k]["file"], CH[k]["name"]) for k in CHAPTERS])
+            ("podcast.html", "Podcast"), ("about.html#contact", "Contact")] + [(CH[k]["file"], CH[k]["name"]) for k in CHAPTERS])
     return f"""<footer>
   <div class="wrap">
     <img class="eu" src="assets/eu-funded-blue.png" alt="Funded by the European Union">
@@ -635,7 +633,7 @@ def home():
       <div class="join">
         <h2 class="display h2">Want to know more?</h2>
         <p class="lead">Reviewing the project, curious about our method or thinking about a collaboration? We are happy to talk.</p>
-        <a class="btn btn-primary" href="contact.html">Get in touch</a>
+        <a class="btn btn-primary" href="about.html#contact">Get in touch</a>
       </div>
     </div>
   </section>
@@ -788,9 +786,9 @@ def about():
         <a class="btn btn-primary" href="index.html#destinations">Explore the chapters</a>
       </div>
     </div>
-  </section>"""
+  </section>""" + contact_section()
     return page("about", "About Eurolibrary",
-                "The story of Eurolibrary: an Erasmus+ partnership of five NGOs that connects young people and communities through personal stories.", body)
+                "The story of Eurolibrary: an Erasmus+ partnership of five NGOs that connects young people and communities through personal stories. Get in touch with the team here.", body)
 
 
 def chapter(k):
@@ -1393,7 +1391,7 @@ def human_library():
       <div class="join">
         <h2 class="display h2">Ready to open your own library?</h2>
         <p class="lead">Start with the checklist, or tell us what you are planning. We are glad to help.</p>
-        <p class="cta-row"><a class="btn btn-primary" href="#organise">Open the checklist</a> <a class="btn btn-ghost on-dark" href="contact.html">Get in touch</a></p>
+        <p class="cta-row"><a class="btn btn-primary" href="#organise">Open the checklist</a> <a class="btn btn-ghost on-dark" href="about.html#contact">Get in touch</a></p>
       </div>
     </div>
   </section>
@@ -1591,35 +1589,34 @@ def podcast():
                 "Short personal stories from across Europe, told by the people who lived them. Listen to every episode of People of EU, the Eurolibrary podcast, right here.", body)
 
 
-def contact():
-    body = f"""  <div class="page-hero">
-    <div class="wrap">
-      <h1 class="display h1">Reach out to the Eurolibrary team</h1>
-      <p class="lead">Reviewing the project, curious about the method or up for a collaboration? Write to us and we will get back to you.</p>
-    </div>
-  </div>
+def contact_section():
+    return f"""
 
-  <section style="padding-top:32px">
-    <div class="wrap two-col">
-      <form class="contact" id="contact-form" novalidate>
-        <div class="field"><label for="f-name">First name</label><input id="f-name" name="name" type="text" autocomplete="given-name" required></div>
-        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
-        <div><button class="btn btn-primary" type="submit">Send message</button></div>
-        <p class="form-note" id="form-status" role="status"></p>
-      </form>
-      <div>
-        <h2 class="display h2">Write to us directly</h2>
-        <p>The project is completed, but the team still answers questions about the method, the results and possible collaborations.</p>
-        <div class="email-line"><code>{EMAIL}</code><button class="btn btn-ghost" type="button" id="copy-email">Copy address</button></div>
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:32px">
+        <h2 class="display h2">Get in touch</h2>
+        <p class="lead muted">Reviewing the project, curious about the method or up for a collaboration? Write to us and we will get back to you.</p>
+      </div>
+      <div class="two-col">
+        <form class="contact" id="contact-form" novalidate>
+          <div class="field"><label for="f-name">First name</label><input id="f-name" name="name" type="text" autocomplete="given-name" required></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
+          <div><button class="btn btn-primary" type="submit">Send message</button></div>
+          <p class="form-note" id="form-status" role="status"></p>
+        </form>
+        <div>
+          <h3 class="display h3">Write to us directly</h3>
+          <p>The project is completed, but the team still answers questions about the method, the results and possible collaborations.</p>
+          <div class="email-line"><code>{EMAIL}</code><button class="btn btn-ghost" type="button" id="copy-email">Copy address</button></div>
+        </div>
       </div>
     </div>
   </section>"""
-    return page("contact", "Contact Eurolibrary",
-                "Get in touch with the Eurolibrary team about the project, the method or a collaboration.", body)
 
 
-PAGES = {"index.html": home, "about.html": about, "human-library.html": human_library, "podcast.html": podcast, "contact.html": contact}
+PAGES = {"index.html": home, "about.html": about, "human-library.html": human_library, "podcast.html": podcast}
 for _k in CHAPTERS:
     PAGES[CH[_k]["file"]] = (lambda k=_k: chapter(k))
 

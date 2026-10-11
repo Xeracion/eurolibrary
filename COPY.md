@@ -292,3 +292,9 @@ Se añaden efectos sutiles en todas las páginas, sin librerías (CSS más unas 
 * Microinteracciones: botones que se elevan, tarjetas con sombra al pasar el ratón, zoom suave en fotos, polaroids que se enderezan, subrayado animado en el menú y flecha del pie.
 
 Accesibilidad y robustez: todo se aplica solo si la persona no ha pedido reducir el movimiento en su sistema. Sin JavaScript la web se ve completa, porque los elementos solo se ocultan cuando el script ya ha cargado, y al imprimir se muestra todo. Si algún efecto no gusta, se desactiva borrando su bloque en `css/site.css`.
+
+## Vigesimoprimera ronda: menú y contacto
+
+* El menú pasa a Home, Mobilities, Human library y About, con el icono de Instagram, y el botón resaltado de la derecha es ahora Podcast (se vuelve naranja en esa página).
+* La página de contacto desaparece y su formulario pasa a ser la sección "Get in touch" al final de About (`/about#contact`). El pie mantiene un enlace "Contact" a esa sección, y todos los botones "Get in touch" apuntan a ella.
+* `vercel.json` redirige `/contact` y `/contact.html` a `/about#contact`, para que no se rompan los enlaces antiguos.

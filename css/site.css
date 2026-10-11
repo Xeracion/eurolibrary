@@ -754,3 +754,4 @@ html{scroll-behavior:smooth}
   footer .links a{transition:color .2s ease,translate .2s ease;display:inline-block}footer .links a:hover{translate:3px 0}
 }
 @media print{.sp{display:none}.rv,.js .rv{opacity:1!important;translate:none!important}.js img.fd{opacity:1!important}}
+.nav .btn-dark[aria-current="page"]{background:var(--orange)}
