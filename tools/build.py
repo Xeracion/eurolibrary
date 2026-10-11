@@ -197,7 +197,7 @@ CH = {
         side=("photos/greece-side.jpg", "Participants smiling together on the ferry deck"),
         gallery_h="Photos from the islands",
         gallery_p="Ferries, whitewashed squares, school courtyards and sunsets. Tap a photo to see it larger.",
-        gallery_link=("View the full album", "https://drive.google.com/drive/folders/1dvTDIxuk_RL0rgTF8u82sp3dJiayyr0s"),
+        gallery_link=("View the full album", "https://photos.app.goo.gl/DerMeM1c22HKJRPC6"),
         gallery=[
             ("photos/greece-ferry-circle.jpg", "Participants sitting in a circle on the ferry", "50% 50%"),
             ("photos/greece-ferry-hug.jpg", "A group hug on the ferry", "50% 50%"),

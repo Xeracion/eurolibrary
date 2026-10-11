@@ -235,3 +235,5 @@ Las fotos de archivo de la página de Grecia se sustituyen por fotos reales de l
 * Las fotos se redimensionan a 1400 píxeles de ancho como máximo.
 * Los créditos de las fotos no constan en la carpeta. Conviene que el equipo confirme el consentimiento de imagen, como en el resto de capítulos, y quién debe figurar como autoría.
 * El botón del álbum apunta a la carpeta de Drive tal como se compartió. Si se quiere un álbum público más cuidado, basta cambiar `gallery_link` en `tools/build.py`.
+
+Actualización: el botón "View the full album" de Grecia pasa a apuntar al álbum de Google Fotos del equipo (https://photos.app.goo.gl/DerMeM1c22HKJRPC6), en lugar de la carpeta de Drive.
