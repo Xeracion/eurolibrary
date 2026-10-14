@@ -587,9 +587,6 @@ def stats_block(items, cls="counters four"):
 
 
 def home():
-    tickets = "\n".join(
-        f'        <a class="ticket" href="{CH[k]["file"]}"><small>Chapter {CH[k]["no"]}, {CH[k]["mode"]}</small><strong>{e(CH[k]["country"])}</strong></a>'
-        for k in CHAPTERS)
     summaries = {
         "bulgaria": "More than 500 km by rail with young entrepreneurs and changemakers, who told their stories in four Human Libraries.",
         "spain": "Walking the English Way of the Camino de Santiago to talk about mental health, with four Human Libraries along the route.",
@@ -618,11 +615,6 @@ def home():
       <div class="cta">
         <a class="btn btn-primary" href="#destinations">Explore the five chapters</a>
         <a class="btn btn-ghost" href="human-library.html">See how the Human Library works</a>
-      </div>
-      <p class="note">All five mobilities are completed and applications are closed. This site is the project record. <a href="about.html#results" style="text-decoration:underline">See the results</a>.</p>
-
-      <div class="ticket-row" aria-label="The five chapters at a glance">
-{tickets}
       </div>
     </div>
   </div>

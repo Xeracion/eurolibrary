@@ -345,3 +345,8 @@ Se rehacen las etiquetas y las imágenes que usan las redes sociales y los mensa
 * La dirección pública ya no está fijada a mano. Durante cada despliegue en Vercel, `vercel.json` ejecuta `tools/build.py`, que toma el dominio de producción del proyecto, y en local se puede forzar con `--site https://...` o la variable `SITE_URL`. Si algo fallara, el comando termina sin error y se despliegan las páginas ya generadas, con `https://eurolibrary.eu`.
 
 Para comprobar el resultado hay que compartir la dirección de producción, no una vista previa, y refrescar la caché de cada red: Facebook (Sharing Debugger), LinkedIn (Post Inspector), X y WhatsApp guardan la vista previa antigua.
+
+## Vigesimosexta ronda: portada y compartir en redes
+
+* Se elimina de la portada el aviso "All five mobilities are completed and applications are closed..." y las cinco tarjetas de capítulo que había justo debajo. Los capítulos siguen accesibles desde el botón "Explore the five chapters" y desde el menú "Mobilities".
+* Diagnóstico de la vista previa sin imagen: al consultar `eurolibrary.eu` desde fuera, incluso presentándose como Facebook, X, WhatsApp o LinkedIn, Vercel responde con `429` y `x-vercel-mitigated: challenge`, es decir, el Firewall de Vercel muestra una pantalla de verificación en lugar de la página. Un rastreador de redes no puede superarla, así que no lee ni las etiquetas ni la imagen. No se arregla desde el código: hay que cambiar la protección en el panel de Vercel (Project, Firewall: desactivar Attack Challenge Mode y la Bot Protection, o añadir una regla que permita los agentes de usuario de los rastreadores sociales).
