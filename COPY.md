@@ -315,3 +315,7 @@ Con el listado de episodios exportado de Spotify for Creators se añade a la pá
 * El archivo traía 101 filas, y "Once ahead, now aside" (23 de marzo) aparece dos veces, así que se publica una sola vez, lo que deja exactamente 100 episodios.
 * El listado solo tiene título y fecha: no incluye los enlaces de Spotify ni las descripciones. Por eso los 87 episodios restantes enlazan a su búsqueda en Spotify ("Find on Spotify") en lugar de abrir directamente el episodio, y no tienen reproductor propio. Para tenerlo hacen falta los enlaces de cada episodio.
 * Las cifras de reproducciones y descargas del archivo son estadísticas internas y no se publican ni se guardan en el repositorio. Los datos de la lista están en `tools/podcast_all.py`.
+
+Menú: se añade un icono de Spotify con enlace directo al programa People of EU, junto al de Instagram (en el menú móvil aparece como "Spotify"). El botón resaltado sigue llevando a la página del podcast de la web.
+
+Episodios restantes: para dar tarjeta (portada, descripción y reproductor) a los 87 episodios que faltan hacen falta sus datos. Ni Spotify ni los directorios públicos los sirven (el programa no está en Apple Podcasts y no se localiza su feed RSS público). La vía más limpia es el feed RSS del programa, que se obtiene en Spotify for Creators, en Ajustes, apartado de distribución. Con él se generarían tarjetas con portada, descripción y duración, y un reproductor propio con el audio, sin depender de los enlaces de Spotify.
