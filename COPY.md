@@ -321,3 +321,16 @@ Menú: se añade un icono de Spotify con enlace directo al programa People of EU
 Episodios restantes: para dar tarjeta (portada, descripción y reproductor) a los 87 episodios que faltan hacen falta sus datos. Ni Spotify ni los directorios públicos los sirven (el programa no está en Apple Podcasts y no se localiza su feed RSS público). La vía más limpia es el feed RSS del programa, que se obtiene en Spotify for Creators, en Ajustes, apartado de distribución. Con él se generarían tarjetas con portada, descripción y duración, y un reproductor propio con el audio, sin depender de los enlaces de Spotify.
 
 Se retira el icono de Spotify del menú. El acceso al podcast queda solo en el botón resaltado "Podcast", que lleva a la página de la web.
+
+## Vigesimocuarta ronda: todos los episodios del podcast como tarjetas, desde el feed RSS
+
+Con el feed RSS del programa (https://anchor.fm/s/10f4bf978/podcast/rss) la página del podcast muestra los 100 episodios con tarjeta propia: portada, número, fecha, duración, descripción y temas, y un reproductor de audio integrado en la web.
+
+* El feed trae 101 elementos, y "Once ahead, now aside" estaba subido dos veces con el mismo audio, así que se publica una vez. Hay una errata de numeración en el feed, y "All the tales we used to believe" aparece como 99 cuando su portada dice 96, que se corrige en `tools/podcast_sync.py`.
+* El reproductor es propio (reproducir y pausar, barra de progreso, tiempo y velocidad 1x, 1.25x, 1.5x y 2x) y reproduce el audio del feed, sin cookies de terceros hasta que se pulsa. Solo suena un episodio a la vez. El reproductor de Spotify del programa completo sigue cargándose bajo petición. Si un audio no carga, la tarjeta lo avisa y remite a Spotify.
+* La página muestra 12 episodios y tiene "Show more stories", filtros por tema, buscador y orden por fecha. "Surprise me" elige y reproduce uno al azar.
+* Los 13 primeros episodios mantienen sus temas revisados a mano. Los temas de los demás se asignan por palabras clave en el título y la descripción, y se corrigieron a mano los 13 que no daban ninguno. Es una clasificación propia, sin revisión editorial: se corrige en `POD_TAGS_CURATED` de `tools/build.py`.
+* Los 13 con enlace conocido abren directamente en Spotify. Los demás enlazan a la búsqueda del título ("Find on Spotify").
+* Las descripciones del feed se limpian: se quitan las etiquetas y se sustituyen las rayas por comas.
+
+Cómo actualizarlo cuando salgan episodios nuevos: `python3 tools/podcast_sync.py` (descarga el feed, las portadas a `assets/podcast/ep/` y regenera `tools/podcast_all.py`) y después `python3 tools/build.py`, y subir los cambios. Si Spotify cambiara las direcciones del audio, el sincronizador las renueva.

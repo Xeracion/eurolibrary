@@ -1417,113 +1417,72 @@ def human_library():
 
 PODCAST_ID = "1WtlYaA3IX5eSzW3NonMTU"
 PODCAST_URL = f"https://open.spotify.com/show/{PODCAST_ID}"
-# Episodios publicados en Spotify (datos del programa "PEOPLE OF EU | EUROLIBRARY", de AltVenturers).
-# Duración en minutos. El número de episodio es el que figura en la portada de cada uno.
+# Los episodios (título, fecha, descripción, audio y portada) salen de tools/podcast_all.py,
+# que genera tools/podcast_sync.py a partir del feed RSS del programa.
 POD_TAGS = [("identity", "Identity and belonging"), ("journeys", "Journeys and borders"),
             ("health", "Health and mind"), ("sport", "Sport"), ("nature", "Nature"), ("work", "Work and ideas")]
-EPISODES = [
-    dict(id="5xO0poKtNFYFQ6DRtZzGmY", no=100, title="From tulips to olive trees", date="18 May 2026", mins=5,
-         tags=["identity", "journeys"],
-         text="A story about leaving behind everything you thought defined you, only to discover that the most important thing you carry through life is yourself."),
-    dict(id="0kMWU6A3GgwhhdLj7ysnvX", no=99, title="Full, but not filled", date="18 May 2026", mins=5,
-         tags=["health"],
-         text="A story about overcoming a hidden struggle with food and finding self-acceptance through courage and healing."),
-    dict(id="1p7TkWes3AkyiLXRescwIO", no=98, title="Between Two Worlds", date="18 May 2026", mins=10,
-         tags=["identity", "journeys"],
-         text="A story about growing up between countries, cultures and identities, and learning to embrace belonging everywhere and nowhere at once."),
-    dict(id="0evcFH79CgbJOB2PxcLxys", no=97, title="Chasing Freedom on Two Skis", date="18 May 2026", mins=3,
-         tags=["sport", "identity"],
-         text="A story about a lifelong love for skiing that shapes identity, choices and the courage to follow what truly makes you feel alive."),
-    dict(id="6iTZlIDDHCW8uR3iL4nXXp", no=96, title="All the tales we used to believe", date="18 May 2026", mins=7,
-         tags=["nature"],
-         text="A story about how childhood compassion turned into environmental action."),
-    dict(id="4cXsiThBOhcTzTlrSg7gjj", no=95, title="You Reap What You Sow: How I Learned That My Roots Travel Faster Than I Do", date="7 May 2026", mins=8,
-         tags=["nature", "journeys"],
-         text="A story about planting a tree and discovering that roots grow even when you leave."),
-    dict(id="2DCAEEvRbYIy6ldo9GsNar", no=94, title="Choosing health", date="7 May 2026", mins=5,
-         tags=["health"],
-         text="A story about body shaming, starvation and learning that health is not punishment."),
-    dict(id="3OwqtjcKreaMUZtWw62yew", no=93, title="Rails of Passion", date="7 May 2026", mins=7,
-         tags=["work"],
-         text="A story about turning childhood passion into purpose, and using technology to improve train travel in Bulgaria."),
-    dict(id="7kcuASm3aD98r9RrwjXvAe", no=92, title="How I run a whole country", date="7 May 2026", mins=10,
-         tags=["sport"],
-         text="A story about discovering unexpected strength through running and turning a simple goal into the wild idea of crossing an entire country on foot."),
-    dict(id="3hyixc1eXaRiIMIiZ6T6sT", no=91, title="Finding the right path", date="7 May 2026", mins=7,
-         tags=["health", "identity"],
-         text="A story about bullying, emotional dependence and learning how to stand on your own feet."),
-    dict(id="5L7CXLOYxV95n5DdnjaDLs", no=90, title="Born Twice, Growing Once", date="7 May 2026", mins=7,
-         tags=["journeys"],
-         text="A story about war, borders and survival journeys."),
-    dict(id="62H28nz67jZsZiEKrQ3sB6", no=89, title="Two Hours to a Dream", date="4 May 2026", mins=5,
-         tags=["sport", "journeys"],
-         text="A story about a child who found freedom on a football field, and carried a dream across countries, rejections and closed doors."),
-    dict(id="6MwcV8OLYqVzdWQg2wDqpj", no=50, title="I work on an educational game about circular economy", date="6 April 2026", mins=7,
-         tags=["work", "nature"],
-         text="A story about turning learning into play."),
-]
+# Enlaces directos a Spotify de los episodios que se conocen. El resto enlaza a la búsqueda del título.
+SPOTIFY_IDS = {'From tulips to olive trees': '5xO0poKtNFYFQ6DRtZzGmY', 'Full, but not filled': '0kMWU6A3GgwhhdLj7ysnvX', 'Between Two Worlds': '1p7TkWes3AkyiLXRescwIO', 'Chasing Freedom on Two Skis': '0evcFH79CgbJOB2PxcLxys', 'All the tales we used to believe': '6iTZlIDDHCW8uR3iL4nXXp', 'You Reap What You Sow: How I Learned That My Roots Travel Faster Than I Do': '4cXsiThBOhcTzTlrSg7gjj', 'Choosing health': '2DCAEEvRbYIy6ldo9GsNar', 'Rails of Passion': '3OwqtjcKreaMUZtWw62yew', 'How I run a whole country': '7kcuASm3aD98r9RrwjXvAe', 'Finding the right path': '3hyixc1eXaRiIMIiZ6T6sT', 'Born Twice, Growing Once': '5L7CXLOYxV95n5DdnjaDLs', 'Two Hours to a Dream': '62H28nz67jZsZiEKrQ3sB6', 'I work on an educational game about circular economy': '6MwcV8OLYqVzdWQg2wDqpj'}
+# Temas revisados a mano. Los demás se asignan por palabras clave en el título y la descripción.
+POD_TAGS_CURATED = {'From tulips to olive trees': ['identity', 'journeys'], 'Full, but not filled': ['health'], 'Between Two Worlds': ['identity', 'journeys'], 'Chasing Freedom on Two Skis': ['sport', 'identity'], 'All the tales we used to believe': ['nature'], 'You Reap What You Sow: How I Learned That My Roots Travel Faster Than I Do': ['nature', 'journeys'], 'Choosing health': ['health'], 'Rails of Passion': ['work'], 'How I run a whole country': ['sport'], 'Finding the right path': ['health', 'identity'], 'Born Twice, Growing Once': ['journeys'], 'Two Hours to a Dream': ['sport', 'journeys'], 'I work on an educational game about circular economy': ['work', 'nature'], 'Home is where I park It': ['journeys', 'identity'], 'A Tale of Two Cities': ['work'], 'Stopping, losing, learning': ['health'], 'Appreciate the small things': ['health'], 'The quest to bring life back to life': ['journeys', 'identity'], 'Brewing change from the kitchen': ['health'], 'The book': ['health', 'sport'], 'Where Im standing': ['journeys', 'identity'], 'How one „Yes“ changed my life': ['identity'], 'She who asks too many questions': ['identity', 'work'], 'A girl with a dream': ['identity'], 'Neither from here nor from there': ['identity', 'journeys'], "No Man's Home": ['health']}
+POD_KEYWORDS = {
+    "identity": ["identity", "belong", "who i am", "roots", "culture", "tradition", "self", "myself", "queer", "gender", "language", "third culture", "authentic"],
+    "journeys": ["migrat", "border", "refugee", "war", "abroad", "country", "countries", "immigr", "expat", "homeland", "moving", "moved", "journey", "travel", "pilgrim", "road", "greece", "return", "far from home", "new country"],
+    "health": ["health", "body", "mental", "anxiety", "depress", "therapy", "eating", "food", "burnout", "panic", "fear", "trauma", "healing", "mind", "addiction", "smok", "cancer", "pain", "wellbeing", "stress", "balance", "taboo", "breath", "darkness", "self acceptance"],
+    "sport": ["sport", " run", "running", "ski", "football", "marathon", "cycl", "bike", "climb", "hik", "mountain", "swim", "surf", "muscle", "training", "pedal", "peak", "judo", "athlet", "trek"],
+    "nature": ["nature", "eco", "green", "recycl", "waste", "environment", "climate", "sustainab", "planet", "garden", "tree", "wild", "animal", "forest", "ocean", "plastic", "vegan", "zero waste", "biology"],
+    "work": ["business", "entrepreneur", "startup", "career", "professional", "company", "game", "technolog", "design", "social enterprise", "educator", "volunteer", "project", "innovation", "leader", "calling", "work", "studies", "job", "create", "crafting"],
+}
+
+
+def pod_tags(ep):
+    if ep["title"] in POD_TAGS_CURATED:
+        return POD_TAGS_CURATED[ep["title"]]
+    hay = " " + (ep["title"] + " " + ep["text"]).lower() + " "
+    scores = [(sum(hay.count(w) for w in ws), k) for k, ws in POD_KEYWORDS.items()]
+    scores = [x for x in sorted(scores, reverse=True) if x[0] > 0][:2]
+    return [k for _, k in scores]
+
+
+def pod_date(iso):
+    import datetime
+    d = datetime.date.fromisoformat(iso)
+    return f"{d.day} {d.strftime('%B')} {d.year}"
 
 
 def podcast():
     tag_name = dict(POD_TAGS)
     chips = '<button class="chip" type="button" data-tag="all" aria-pressed="true">All episodes</button>' + "".join(
         f'<button class="chip" type="button" data-tag="{k}" aria-pressed="false">{e(v)}</button>' for k, v in POD_TAGS)
-    cards = "\n".join(f"""        <article class="ep" id="ep-{x['id']}" data-id="{x['id']}" data-tags="{' '.join(x['tags'])}" data-search="{e((x['title'] + ' ' + x['text'] + ' ' + ' '.join(tag_name[t] for t in x['tags'])).lower())}">
+    eps = podcast_all.ALL
+    cards = []
+    for i, x in enumerate(eps):
+        tg = pod_tags(x)
+        sid = SPOTIFY_IDS.get(x["title"])
+        spot = (f"https://open.spotify.com/episode/{sid}" if sid
+                else "https://open.spotify.com/search/" + urllib.parse.quote(x["title"]))
+        spot_l = "Open in Spotify" if sid else "Find on Spotify"
+        no = f'<span class="ep-no">Ep. {x["no"]}</span>' if x.get("no") else ""
+        search = (x["title"] + " " + x["text"] + " " + " ".join(tag_name[t] for t in tg)).lower()
+        tagline = "".join(f"<span>{e(tag_name[t])}</span>" for t in tg)
+        cards.append(f"""        <article class="ep" id="ep-{x['cover'][:8]}" data-i="{i}" data-date="{x['date']}" data-tags="{' '.join(tg)}" data-audio="{e(x['audio'])}" data-search="{e(search)}">
           <div class="ep-main">
-            <img src="assets/podcast/{x['id']}.jpg" alt="" width="112" height="112" loading="lazy">
+            <img src="assets/podcast/ep/{x['cover']}" alt="" width="112" height="112" loading="lazy">
             <div class="ep-body">
-              <p class="ep-meta"><span class="ep-no">Ep. {x['no']}</span>{e(x['date'])} · {x['mins']} min</p>
+              <p class="ep-meta">{no}{e(pod_date(x['date']))} · {x['secs'] // 60} min</p>
               <h3 class="display h3">{e(x['title'])}</h3>
               <p>{e(x['text'])}</p>
-              <p class="ep-tags">{''.join(f'<span>{e(tag_name[t])}</span>' for t in x['tags'])}</p>
+              <p class="ep-tags">{tagline}</p>
             </div>
           </div>
           <div class="ep-actions">
             <button class="btn btn-dark ep-play" type="button" aria-expanded="false">Play here</button>
-            <a class="ep-link" href="https://open.spotify.com/episode/{x['id']}" target="_blank" rel="noopener">Open in Spotify</a>
+            <a class="ep-link" href="{spot}" target="_blank" rel="noopener">{spot_l}</a>
           </div>
           <div class="ep-embed" hidden></div>
-        </article>""" for x in EPISODES)
-    by_title = {x["title"]: x["id"] for x in EPISODES}
-    month_names = {"2026-05": "May 2026", "2026-04": "April 2026", "2026-03": "March 2026", "2026-02": "February 2026"}
-    mchips = '<button class="chip" type="button" data-m="all" aria-pressed="true">All</button>' + "".join(
-        f'<button class="chip" type="button" data-m="{m}" aria-pressed="false">{n}</button>' for m, n in month_names.items())
-    groups = ""
-    for m, n in month_names.items():
-        rows = ""
-        for t, d in podcast_all.ALL:
-            if not d.startswith(m):
-                continue
-            eid = by_title.get(t)
-            day = f"{int(d[8:])} {n.split()[0]}"
-            if eid:
-                url, label = f"https://open.spotify.com/episode/{eid}", "Open in Spotify"
-                play_l = f'<a class="al-p" href="#ep-{eid}" data-id="{eid}">Play here</a>'
-            else:
-                url, label = "https://open.spotify.com/search/" + urllib.parse.quote(t), "Find on Spotify"
-                play_l = ""
-            rows += (f'<li class="al-row" data-t="{e(t.lower())}"><span class="al-d">{day}</span><span class="al-t">{e(t)}</span>'
-                     f'<span class="al-a">{play_l}<a class="al-l" href="{url}" target="_blank" rel="noopener">{label}</a></span></li>')
-        groups += f'<div class="al-group" data-month="{m}"><h3 class="display h3">{n}</h3><ul class="al-list">{rows}</ul></div>'
-    all_html = f"""  <section id="all" style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom:28px">
-        <h2 class="display h2">The full series</h2>
-        <p class="lead muted">All {len(podcast_all.ALL)} episodes, newest first. Open any story on Spotify.</p>
-      </div>
-      <div class="pod-tools">
-        <div class="chips" role="group" aria-label="Filter by month">{mchips}</div>
-        <div class="pod-find">
-          <label class="sr" for="all-search">Search the full list</label>
-          <input id="all-search" type="search" placeholder="Search by title" autocomplete="off">
-        </div>
-      </div>
-      <p class="pod-count" id="all-count" aria-live="polite">Showing {len(podcast_all.ALL)} of {len(podcast_all.ALL)} episodes</p>
-      <div class="al-groups">{groups}</div>
-      <p class="pod-empty" id="all-empty" hidden>No episode matches that search. Try another word or month.</p>
-    </div>
-  </section>
-"""
+        </article>""")
+    cards = "\n".join(cards)
+    n = len(eps)
     body = f"""  <div class="page-hero split">
     <div class="wrap">
       <div>
@@ -1545,7 +1504,7 @@ def podcast():
           <h2 class="display h2">Listen to the whole series</h2>
           <p>The Human Library puts stories in people's mouths. This podcast carries them further. Each episode is a short personal story, from overcoming anxiety to starting over in a new country, choosing a sustainable life or finding identity through sport.</p>
           <ul class="pod-facts">
-            <li><strong>{len(podcast_all.ALL)}</strong> episodes</li>
+            <li><strong>{n}</strong> episodes</li>
             <li><strong>Feb to May</strong> 2026</li>
             <li><strong>Short</strong> personal stories</li>
           </ul>
@@ -1564,27 +1523,27 @@ def podcast():
   <section id="episodes" style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <h2 class="display h2">Featured stories</h2>
-        <p class="lead muted">A selection with a description and a player right here. Filter by theme, search by word or let us choose for you. Looking for a particular title? <a href="#all">Browse all {len(podcast_all.ALL)} episodes</a>.</p>
+        <h2 class="display h2">Pick a story</h2>
+        <p class="lead muted">All {n} episodes. Filter by theme, search by word or let us choose for you. Press play and the episode opens right here.</p>
       </div>
       <div class="pod-tools">
         <div class="chips" role="group" aria-label="Filter by theme">{chips}</div>
         <div class="pod-find">
           <label class="sr" for="pod-search">Search episodes</label>
           <input id="pod-search" type="search" placeholder="Search episodes" autocomplete="off">
+          <label class="sr" for="pod-sort">Sort</label>
+          <select id="pod-sort"><option value="new">Newest first</option><option value="old">Oldest first</option></select>
           <button class="btn btn-primary" type="button" id="pod-random">Surprise me</button>
         </div>
       </div>
-      <p class="pod-count" id="pod-count" aria-live="polite">Showing {len(EPISODES)} of {len(EPISODES)} episodes</p>
+      <p class="pod-count" id="pod-count" aria-live="polite">Showing {n} of {n} episodes</p>
       <div class="ep-grid" id="ep-grid">
 {cards}
       </div>
       <p class="pod-empty" id="pod-empty" hidden>No episode matches that search. Try another word or clear the filters.</p>
-      <p class="pod-note">These are {len(EPISODES)} of the {len(podcast_all.ALL)} episodes. <a href="#all">See the full list</a>.</p>
+      <p class="pod-more"><button class="btn btn-ghost" type="button" id="pod-more">Show more stories</button></p>
     </div>
   </section>
-
-{all_html}
 
   <section style="padding-top:0">
     <div class="wrap">
@@ -1595,77 +1554,80 @@ def podcast():
       </div>
     </div>
   </section>
-
-  <script>
-  (function(){{
-    var grid=document.getElementById('ep-grid'),cards=[].slice.call(grid.querySelectorAll('.ep')),
-        chips=[].slice.call(document.querySelectorAll('#episodes .chip')),q=document.getElementById('pod-search'),
-        count=document.getElementById('pod-count'),empty=document.getElementById('pod-empty'),tag='all',open=null;
-    function embed(host,src,h){{
-      var f=document.createElement('iframe');f.src=src;f.width='100%';f.height=h;f.loading='lazy';
-      f.setAttribute('allow','autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
-      f.setAttribute('title','Spotify player');f.style.border='0';f.style.borderRadius='12px';host.replaceChildren(f);
-    }}
-    var load=document.querySelector('.pod-load');
-    load.addEventListener('click',function(){{var h=document.getElementById('show-embed');embed(h,load.dataset.src,'352');h.classList.add('live')}});
-    function close(c){{
-      var b=c.querySelector('.ep-play'),h=c.querySelector('.ep-embed');
-      c.classList.remove('playing');b.textContent='Play here';b.setAttribute('aria-expanded','false');h.hidden=true;h.replaceChildren();
-    }}
-    function play(c){{
-      if(open&&open!==c)close(open);
-      var b=c.querySelector('.ep-play'),h=c.querySelector('.ep-embed');
-      if(c.classList.contains('playing')){{close(c);open=null;return}}
-      c.classList.add('playing');b.textContent='Close player';b.setAttribute('aria-expanded','true');h.hidden=false;
-      embed(h,'https://open.spotify.com/embed/episode/'+c.dataset.id+'?utm_source=generator','152');open=c;
-    }}
-    cards.forEach(function(c){{c.querySelector('.ep-play').addEventListener('click',function(){{play(c)}})}});
-    function apply(){{
-      var term=q.value.trim().toLowerCase(),n=0;
-      cards.forEach(function(c){{
-        var ok=(tag==='all'||c.dataset.tags.split(' ').indexOf(tag)>-1)&&(!term||c.dataset.search.indexOf(term)>-1);
-        c.hidden=!ok;if(ok)n++;if(!ok&&c===open){{close(c);open=null}}
-      }});
-      count.textContent='Showing '+n+' of '+cards.length+' episodes';empty.hidden=n>0;
-    }}
-    chips.forEach(function(b){{b.addEventListener('click',function(){{
-      tag=b.dataset.tag;chips.forEach(function(x){{x.setAttribute('aria-pressed',x===b)}});apply();
-    }})}});
-    q.addEventListener('input',apply);
-    window.__podPlay=function(id){{
-      tag='all';chips.forEach(function(x){{x.setAttribute('aria-pressed',x.dataset.tag==='all')}});q.value='';apply();
-      var c=document.getElementById('ep-'+id);if(!c)return;
-      c.scrollIntoView({{behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'}});
-      c.classList.add('pulse');setTimeout(function(){{c.classList.remove('pulse')}},1800);
-      if(!c.classList.contains('playing'))play(c);
-    }};
-    document.getElementById('pod-random').addEventListener('click',function(){{
-      tag='all';chips.forEach(function(x){{x.setAttribute('aria-pressed',x.dataset.tag==='all')}});q.value='';apply();
-      var c=cards[Math.floor(Math.random()*cards.length)];
-      c.scrollIntoView({{behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'}});
-      c.classList.add('pulse');setTimeout(function(){{c.classList.remove('pulse')}},1800);
-      if(!c.classList.contains('playing'))play(c);
-    }});
-  }})();
-  </script>
-  <script>
-  (function(){{
-    var rows=[].slice.call(document.querySelectorAll('.al-row')),groups=[].slice.call(document.querySelectorAll('.al-group')),
-        mc=[].slice.call(document.querySelectorAll('#all .chip')),aq=document.getElementById('all-search'),
-        cnt=document.getElementById('all-count'),emp=document.getElementById('all-empty'),m='all';
-    function go(){{
-      var t=aq.value.trim().toLowerCase(),n=0;
-      rows.forEach(function(r){{var ok=(m==='all'||r.parentNode.parentNode.dataset.month===m)&&(!t||r.dataset.t.indexOf(t)>-1);r.hidden=!ok;if(ok)n++}});
-      groups.forEach(function(g){{g.hidden=!g.querySelector('.al-row:not([hidden])')}});
-      cnt.textContent='Showing '+n+' of '+rows.length+' episodes';emp.hidden=n>0;
-    }}
-    mc.forEach(function(b){{b.addEventListener('click',function(){{m=b.dataset.m;mc.forEach(function(x){{x.setAttribute('aria-pressed',x===b)}});go()}})}});
-    aq.addEventListener('input',go);
-    [].slice.call(document.querySelectorAll('.al-p')).forEach(function(a){{a.addEventListener('click',function(e){{e.preventDefault();if(window.__podPlay)window.__podPlay(a.dataset.id)}})}});
-  }})();
-  </script>"""
+""" + POD_SCRIPT
     return page("podcast", "People of EU, the podcast",
                 "Short personal stories from across Europe, told by the people who lived them. Listen to every episode of People of EU, the Eurolibrary podcast, right here.", body)
+
+
+POD_SCRIPT = r"""<script>
+(function(){
+  var grid=document.getElementById('ep-grid'),cards=[].slice.call(grid.querySelectorAll('.ep')),
+      chips=[].slice.call(document.querySelectorAll('#episodes .chip')),q=document.getElementById('pod-search'),
+      sortSel=document.getElementById('pod-sort'),count=document.getElementById('pod-count'),empty=document.getElementById('pod-empty'),
+      more=document.getElementById('pod-more'),tag='all',limit=12,PAGE=12,cur=null;
+  function fmt(s){s=Math.floor(s||0);var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
+  /* reproductor de audio propio */
+  function closeP(c){
+    var b=c.querySelector('.ep-play'),h=c.querySelector('.ep-embed'),a=c._audio;
+    if(a){a.pause();a.removeAttribute('src');a.load();c._audio=null}
+    c.classList.remove('playing');b.textContent='Play here';b.setAttribute('aria-expanded','false');h.hidden=true;h.replaceChildren();
+  }
+  function build(c){
+    var h=c.querySelector('.ep-embed'),a=new Audio();a.preload='none';a.src=c.dataset.audio;c._audio=a;
+    var ui=document.createElement('div');ui.className='ap';
+    ui.innerHTML='<button type="button" class="ap-b" aria-label="Play"></button><input type="range" class="ap-r" min="0" max="1000" value="0" aria-label="Seek"><span class="ap-t">0:00</span><button type="button" class="ap-s" aria-label="Playback speed">1x</button><p class="ap-e" role="alert" hidden>The audio could not be loaded. Open the episode on Spotify instead.</p>';
+    h.appendChild(ui);
+    var b=ui.querySelector('.ap-b'),r=ui.querySelector('.ap-r'),t=ui.querySelector('.ap-t'),sp=ui.querySelector('.ap-s'),er=ui.querySelector('.ap-e'),drag=false,speeds=[1,1.25,1.5,2],si=0;
+    function paint(){var d=a.duration||0;if(!drag&&d)r.value=1000*a.currentTime/d;t.textContent=fmt(a.currentTime)+' / '+(d?fmt(d):'...');ui.classList.toggle('on',!a.paused)}
+    b.addEventListener('click',function(){if(a.paused){var p=a.play();if(p&&p.catch)p.catch(function(){er.hidden=false})}else a.pause()});
+    a.addEventListener('play',function(){b.setAttribute('aria-label','Pause');paint()});
+    a.addEventListener('pause',function(){b.setAttribute('aria-label','Play');paint()});
+    a.addEventListener('timeupdate',paint);a.addEventListener('loadedmetadata',paint);a.addEventListener('ended',paint);
+    a.addEventListener('error',function(){er.hidden=false});
+    r.addEventListener('input',function(){drag=true;if(a.duration)t.textContent=fmt(a.duration*r.value/1000)+' / '+fmt(a.duration)});
+    r.addEventListener('change',function(){if(a.duration)a.currentTime=a.duration*r.value/1000;drag=false});
+    sp.addEventListener('click',function(){si=(si+1)%speeds.length;a.playbackRate=speeds[si];sp.textContent=speeds[si]+'x'});
+    var p=a.play();if(p&&p.catch)p.catch(function(){});
+  }
+  function play(c){
+    if(c.classList.contains('playing')){closeP(c);cur=null;return}
+    if(cur&&cur!==c)closeP(cur);
+    var b=c.querySelector('.ep-play'),h=c.querySelector('.ep-embed');
+    c.classList.add('playing');b.textContent='Close player';b.setAttribute('aria-expanded','true');h.hidden=false;build(c);cur=c;
+  }
+  cards.forEach(function(c){c.querySelector('.ep-play').addEventListener('click',function(){play(c)})});
+  /* filtros, orden y paginación */
+  function match(c){var t=q.value.trim().toLowerCase();return(tag==='all'||c.dataset.tags.split(' ').indexOf(tag)>-1)&&(!t||c.dataset.search.indexOf(t)>-1)}
+  function apply(){
+    var old=sortSel.value==='old',list=cards.slice().sort(function(a,b){return old?(a.dataset.date<b.dataset.date?-1:a.dataset.date>b.dataset.date?1:b.dataset.i-a.dataset.i):(a.dataset.i-b.dataset.i)});
+    var shown=0,total=0;
+    list.forEach(function(c){grid.appendChild(c);var ok=match(c);if(ok)total++;var vis=ok&&shown<limit;if(vis)shown++;c.hidden=!vis;if(!vis&&c===cur){closeP(c);cur=null}});
+    count.textContent='Showing '+shown+' of '+total+' episodes';empty.hidden=total>0;more.hidden=shown>=total;
+  }
+  chips.forEach(function(b){b.addEventListener('click',function(){tag=b.dataset.tag;limit=PAGE;chips.forEach(function(x){x.setAttribute('aria-pressed',x===b)});apply()})});
+  q.addEventListener('input',function(){limit=PAGE;apply()});
+  sortSel.addEventListener('change',function(){limit=PAGE;apply()});
+  more.addEventListener('click',function(){limit+=PAGE;apply()});
+  document.getElementById('pod-random').addEventListener('click',function(){
+    tag='all';chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.tag==='all')});q.value='';
+    var c=cards[Math.floor(Math.random()*cards.length)];
+    sortSel.value='new';
+    var pos=cards.slice().sort(function(a,b){return a.dataset.i-b.dataset.i}).indexOf(c);
+    if(pos>=limit)limit=pos+1;apply();
+    c.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+    c.classList.add('pulse');setTimeout(function(){c.classList.remove('pulse')},1800);
+    if(!c.classList.contains('playing'))play(c);
+  });
+  var load=document.querySelector('.pod-load');
+  if(load)load.addEventListener('click',function(){
+    var h=document.getElementById('show-embed'),f=document.createElement('iframe');
+    f.src=load.dataset.src;f.width='100%';f.height='352';f.loading='lazy';
+    f.setAttribute('allow','autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+    f.setAttribute('title','Spotify player');f.style.border='0';f.style.borderRadius='12px';h.replaceChildren(f);h.classList.add('live');
+  });
+  apply();
+})();
+</script>"""
 
 
 def contact_section():
