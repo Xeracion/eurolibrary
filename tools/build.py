@@ -405,7 +405,6 @@ def nav(active):
       <li><a href="human-library.html"{cur("hl")}>Human library</a></li>
       <li><a href="about.html"{cur("about")}>About</a></li>
       <li><a class="icon-link" href="https://www.instagram.com/eurolibrary" target="_blank" rel="noopener" aria-label="Eurolibrary on Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg><span class="icon-label">Instagram</span></a></li>
-      <li><a class="icon-link" href="{PODCAST_URL}" target="_blank" rel="noopener" aria-label="People of EU on Spotify"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M7.4 9.5c3.3-.9 6.9-.6 9.7 1.1"/><path d="M8 12.5c2.7-.7 5.5-.4 7.8.9"/><path d="M8.6 15.4c2.1-.5 4.1-.3 5.9.6"/></svg><span class="icon-label">Spotify</span></a></li>
       <li><a class="btn btn-dark" href="podcast.html"{cur("podcast")}>Podcast</a></li>
     </ul>
   </div>

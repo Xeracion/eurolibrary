@@ -319,3 +319,5 @@ Con el listado de episodios exportado de Spotify for Creators se añade a la pá
 Menú: se añade un icono de Spotify con enlace directo al programa People of EU, junto al de Instagram (en el menú móvil aparece como "Spotify"). El botón resaltado sigue llevando a la página del podcast de la web.
 
 Episodios restantes: para dar tarjeta (portada, descripción y reproductor) a los 87 episodios que faltan hacen falta sus datos. Ni Spotify ni los directorios públicos los sirven (el programa no está en Apple Podcasts y no se localiza su feed RSS público). La vía más limpia es el feed RSS del programa, que se obtiene en Spotify for Creators, en Ajustes, apartado de distribución. Con él se generarían tarjetas con portada, descripción y duración, y un reproductor propio con el audio, sin depender de los enlaces de Spotify.
+
+Se retira el icono de Spotify del menú. El acceso al podcast queda solo en el botón resaltado "Podcast", que lleva a la página de la web.
