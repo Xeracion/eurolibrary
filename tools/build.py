@@ -338,7 +338,23 @@ def e(s):
     return html.escape(s, quote=True)
 
 
-SITE = "https://eurolibrary.eu"
+DEFAULT_SITE = "https://eurolibrary.eu"
+
+
+def _site():
+    """Dirección pública para las etiquetas de redes (deben ser absolutas). Por orden: --site URL, la
+    variable SITE_URL y, durante un despliegue en Vercel, el dominio de producción del proyecto."""
+    if "--site" in sys.argv:
+        return sys.argv[sys.argv.index("--site") + 1].rstrip("/")
+    if os.environ.get("SITE_URL"):
+        return os.environ["SITE_URL"].rstrip("/")
+    host = os.environ.get("VERCEL_PROJECT_PRODUCTION_URL")
+    if host and os.environ.get("VERCEL_ENV") == "production":
+        return "https://" + host.strip("/")
+    return DEFAULT_SITE
+
+
+SITE = _site()
 # clave de página: (ruta pública, foto de cabecera usada para la imagen social)
 SOCIAL = {
     "home": ("/", "about-classroom"),
@@ -354,26 +370,38 @@ SOCIAL = {
 
 
 def head(title, desc, key):
+    import hashlib
     path, img = SOCIAL[key]
-    url, image = SITE + path, f"{SITE}/assets/social/{key}.jpg"
+    if "Eurolibrary" not in title:
+        title = f"{title} | Eurolibrary"
+    img_file = os.path.join(ROOT, "assets", "social", f"{key}.jpg")
+    ver = hashlib.md5(open(img_file, "rb").read()).hexdigest()[:8] if os.path.exists(img_file) else "1"
+    url, image = SITE + path, f"{SITE}/assets/social/{key}.jpg?v={ver}"
+    alt = f"{title}: photo and title on a dark card with the Eurolibrary logo"
     return f"""<meta charset="utf-8">
 <script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#faf2ec">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eurolibrary">
+<meta property="og:locale" content="en_GB">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{image}">
+<meta property="og:image:secure_url" content="{image}">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(alt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(title)}">
 <meta name="twitter:description" content="{e(desc)}">
 <meta name="twitter:image" content="{image}">
+<meta name="twitter:image:alt" content="{e(alt)}">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -680,7 +708,7 @@ def home():
       </div>
     </div>
   </section>"""
-    return page("home", "Eurolibrary home",
+    return page("home", "Eurolibrary: a living library made of people",
                 "An Erasmus+ project that took young people across five countries to build a living library made of people.", body)
 
 
@@ -804,6 +832,12 @@ def about():
   </section>""" + contact_section()
     return page("about", "About Eurolibrary",
                 "The story of Eurolibrary: an Erasmus+ partnership of five NGOs that connects young people and communities through personal stories. Get in touch with the team here.", body)
+
+
+def _snippet(c):
+    """Resumen para las vistas previas en redes: ficha del capítulo, siempre con la misma estructura."""
+    return (f"{c['subtitle'][0].upper()}{c['subtitle'][1:]} in {c['country']}, {c['dates']}. "
+            f"Chapter {c['no']} of the Eurolibrary Erasmus+ project.")
 
 
 def chapter(k):
@@ -947,7 +981,7 @@ def chapter(k):
     <div class="wrap">{pager}</div>
   </section>"""
     return page(k, f"{c['name']}, {c['country']}",
-                f"{c['name']}: {c['subtitle']} in {c['country']}, {c['dates']}.", body)
+                _snippet(c), body)
 
 
 HL_ROLES = [

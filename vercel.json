@@ -1,8 +1,18 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "buildCommand": "python3 tools/build.py || true",
+  "outputDirectory": ".",
   "redirects": [
-    { "source": "/contact", "destination": "/about#contact", "permanent": true },
-    { "source": "/contact.html", "destination": "/about#contact", "permanent": true }
+    {
+      "source": "/contact",
+      "destination": "/about#contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/about#contact",
+      "permanent": true
+    }
   ]
 }

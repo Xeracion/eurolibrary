@@ -334,3 +334,14 @@ Con el feed RSS del programa (https://anchor.fm/s/10f4bf978/podcast/rss) la pág
 * Las descripciones del feed se limpian: se quitan las etiquetas y se sustituyen las rayas por comas.
 
 Cómo actualizarlo cuando salgan episodios nuevos: `python3 tools/podcast_sync.py` (descarga el feed, las portadas a `assets/podcast/ep/` y regenera `tools/podcast_all.py`) y después `python3 tools/build.py`, y subir los cambios. Si Spotify cambiara las direcciones del audio, el sincronizador las renueva.
+
+## Vigesimoquinta ronda: vistas previas al compartir en redes
+
+Se rehacen las etiquetas y las imágenes que usan las redes sociales y los mensajeros al compartir un enlace:
+* Imágenes nuevas de 1200 por 630 píxeles en `assets/social/`, con la foto de cabecera actual de cada página, el título, una línea de contexto y el logo. La de Grecia estaba desactualizada, de antes de cambiar sus fotos. Todas pesan menos de 150 KB, porque WhatsApp descarta las imágenes de más de unos 300 KB. Se regeneran con `python3 tools/social_cards.py`.
+* Títulos con la marca ("Waves of Hope, Greece | Eurolibrary") y resúmenes con la misma estructura en los cinco capítulos.
+* La dirección de la imagen lleva un número de versión según su contenido, para que las redes que guardan la vista previa en caché la actualicen al cambiar la imagen.
+* Etiquetas añadidas: texto alternativo de la imagen, tipo de imagen, idioma y color del tema.
+* La dirección pública ya no está fijada a mano. Durante cada despliegue en Vercel, `vercel.json` ejecuta `tools/build.py`, que toma el dominio de producción del proyecto, y en local se puede forzar con `--site https://...` o la variable `SITE_URL`. Si algo fallara, el comando termina sin error y se despliegan las páginas ya generadas, con `https://eurolibrary.eu`.
+
+Para comprobar el resultado hay que compartir la dirección de producción, no una vista previa, y refrescar la caché de cada red: Facebook (Sharing Debugger), LinkedIn (Post Inspector), X y WhatsApp guardan la vista previa antigua.
