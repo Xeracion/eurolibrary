@@ -307,3 +307,11 @@ El menú móvil (hasta 960 px) se rediseña:
 * "Mobilities" se despliega como acordeón animado, con la opción "All mobilities" y abierto de entrada en las páginas de capítulo. Opciones más grandes para el dedo y botón Podcast a ancho completo.
 * Se cierra con la X, tocando el fondo, la tecla Escape, al elegir una página o al pasar a escritorio. Mientras está abierto se bloquea el scroll de la página.
 * Con "reducir movimiento" activado no hay animaciones. El menú de escritorio no cambia.
+
+## Vigesimotercera ronda: catálogo completo del podcast
+
+Con el listado de episodios exportado de Spotify for Creators se añade a la página del podcast la sección "The full series": los 100 episodios, del 2 de febrero al 18 de mayo de 2026, agrupados por mes, con filtro por mes y buscador por título. Los 13 episodios que ya tenían descripción y portada pasan a llamarse "Featured stories" y mantienen su reproductor, y desde la lista completa un "Play here" lleva a su tarjeta y abre el reproductor.
+
+* El archivo traía 101 filas, y "Once ahead, now aside" (23 de marzo) aparece dos veces, así que se publica una sola vez, lo que deja exactamente 100 episodios.
+* El listado solo tiene título y fecha: no incluye los enlaces de Spotify ni las descripciones. Por eso los 87 episodios restantes enlazan a su búsqueda en Spotify ("Find on Spotify") en lugar de abrir directamente el episodio, y no tienen reproductor propio. Para tenerlo hacen falta los enlaces de cada episodio.
+* Las cifras de reproducciones y descargas del archivo son estadísticas internas y no se publican ni se guardan en el repositorio. Los datos de la lista están en `tools/podcast_all.py`.

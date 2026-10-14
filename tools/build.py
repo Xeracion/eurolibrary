@@ -11,7 +11,10 @@ Las páginas de la raíz usan URLs limpias (/about) gracias a "cleanUrls" en ver
 import html
 import os
 import re
+import urllib.parse
 import sys
+
+import podcast_all  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TYPEFORM = "https://xeracion.typeform.com/go2eurolibrary"
@@ -1481,7 +1484,46 @@ def podcast():
           </div>
           <div class="ep-embed" hidden></div>
         </article>""" for x in EPISODES)
-    total_min = sum(x["mins"] for x in EPISODES)
+    by_title = {x["title"]: x["id"] for x in EPISODES}
+    month_names = {"2026-05": "May 2026", "2026-04": "April 2026", "2026-03": "March 2026", "2026-02": "February 2026"}
+    mchips = '<button class="chip" type="button" data-m="all" aria-pressed="true">All</button>' + "".join(
+        f'<button class="chip" type="button" data-m="{m}" aria-pressed="false">{n}</button>' for m, n in month_names.items())
+    groups = ""
+    for m, n in month_names.items():
+        rows = ""
+        for t, d in podcast_all.ALL:
+            if not d.startswith(m):
+                continue
+            eid = by_title.get(t)
+            day = f"{int(d[8:])} {n.split()[0]}"
+            if eid:
+                url, label = f"https://open.spotify.com/episode/{eid}", "Open in Spotify"
+                play_l = f'<a class="al-p" href="#ep-{eid}" data-id="{eid}">Play here</a>'
+            else:
+                url, label = "https://open.spotify.com/search/" + urllib.parse.quote(t), "Find on Spotify"
+                play_l = ""
+            rows += (f'<li class="al-row" data-t="{e(t.lower())}"><span class="al-d">{day}</span><span class="al-t">{e(t)}</span>'
+                     f'<span class="al-a">{play_l}<a class="al-l" href="{url}" target="_blank" rel="noopener">{label}</a></span></li>')
+        groups += f'<div class="al-group" data-month="{m}"><h3 class="display h3">{n}</h3><ul class="al-list">{rows}</ul></div>'
+    all_html = f"""  <section id="all" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:28px">
+        <h2 class="display h2">The full series</h2>
+        <p class="lead muted">All {len(podcast_all.ALL)} episodes, newest first. Open any story on Spotify.</p>
+      </div>
+      <div class="pod-tools">
+        <div class="chips" role="group" aria-label="Filter by month">{mchips}</div>
+        <div class="pod-find">
+          <label class="sr" for="all-search">Search the full list</label>
+          <input id="all-search" type="search" placeholder="Search by title" autocomplete="off">
+        </div>
+      </div>
+      <p class="pod-count" id="all-count" aria-live="polite">Showing {len(podcast_all.ALL)} of {len(podcast_all.ALL)} episodes</p>
+      <div class="al-groups">{groups}</div>
+      <p class="pod-empty" id="all-empty" hidden>No episode matches that search. Try another word or month.</p>
+    </div>
+  </section>
+"""
     body = f"""  <div class="page-hero split">
     <div class="wrap">
       <div>
@@ -1503,9 +1545,9 @@ def podcast():
           <h2 class="display h2">Listen to the whole series</h2>
           <p>The Human Library puts stories in people's mouths. This podcast carries them further. Each episode is a short personal story, from overcoming anxiety to starting over in a new country, choosing a sustainable life or finding identity through sport.</p>
           <ul class="pod-facts">
-            <li><strong>{len(EPISODES)}</strong> episodes below</li>
-            <li><strong>{total_min}</strong> minutes of stories</li>
-            <li><strong>3 to 10</strong> minutes each</li>
+            <li><strong>{len(podcast_all.ALL)}</strong> episodes</li>
+            <li><strong>Feb to May</strong> 2026</li>
+            <li><strong>Short</strong> personal stories</li>
           </ul>
         </div>
         <div class="pod-embed" id="show-embed">
@@ -1522,8 +1564,8 @@ def podcast():
   <section id="episodes" style="padding-top:0">
     <div class="wrap">
       <div class="section-head" style="margin-bottom:32px">
-        <h2 class="display h2">Pick a story</h2>
-        <p class="lead muted">Filter by theme, search by word or let us choose for you. Press play and the episode opens right here.</p>
+        <h2 class="display h2">Featured stories</h2>
+        <p class="lead muted">A selection with a description and a player right here. Filter by theme, search by word or let us choose for you. Looking for a particular title? <a href="#all">Browse all {len(podcast_all.ALL)} episodes</a>.</p>
       </div>
       <div class="pod-tools">
         <div class="chips" role="group" aria-label="Filter by theme">{chips}</div>
@@ -1538,9 +1580,11 @@ def podcast():
 {cards}
       </div>
       <p class="pod-empty" id="pod-empty" hidden>No episode matches that search. Try another word or clear the filters.</p>
-      <p class="pod-note">This is a selection of the series. The player above lists every episode.</p>
+      <p class="pod-note">These are {len(EPISODES)} of the {len(podcast_all.ALL)} episodes. <a href="#all">See the full list</a>.</p>
     </div>
   </section>
+
+{all_html}
 
   <section style="padding-top:0">
     <div class="wrap">
@@ -1555,7 +1599,7 @@ def podcast():
   <script>
   (function(){{
     var grid=document.getElementById('ep-grid'),cards=[].slice.call(grid.querySelectorAll('.ep')),
-        chips=[].slice.call(document.querySelectorAll('.chip')),q=document.getElementById('pod-search'),
+        chips=[].slice.call(document.querySelectorAll('#episodes .chip')),q=document.getElementById('pod-search'),
         count=document.getElementById('pod-count'),empty=document.getElementById('pod-empty'),tag='all',open=null;
     function embed(host,src,h){{
       var f=document.createElement('iframe');f.src=src;f.width='100%';f.height=h;f.loading='lazy';
@@ -1588,6 +1632,13 @@ def podcast():
       tag=b.dataset.tag;chips.forEach(function(x){{x.setAttribute('aria-pressed',x===b)}});apply();
     }})}});
     q.addEventListener('input',apply);
+    window.__podPlay=function(id){{
+      tag='all';chips.forEach(function(x){{x.setAttribute('aria-pressed',x.dataset.tag==='all')}});q.value='';apply();
+      var c=document.getElementById('ep-'+id);if(!c)return;
+      c.scrollIntoView({{behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'}});
+      c.classList.add('pulse');setTimeout(function(){{c.classList.remove('pulse')}},1800);
+      if(!c.classList.contains('playing'))play(c);
+    }};
     document.getElementById('pod-random').addEventListener('click',function(){{
       tag='all';chips.forEach(function(x){{x.setAttribute('aria-pressed',x.dataset.tag==='all')}});q.value='';apply();
       var c=cards[Math.floor(Math.random()*cards.length)];
@@ -1595,6 +1646,22 @@ def podcast():
       c.classList.add('pulse');setTimeout(function(){{c.classList.remove('pulse')}},1800);
       if(!c.classList.contains('playing'))play(c);
     }});
+  }})();
+  </script>
+  <script>
+  (function(){{
+    var rows=[].slice.call(document.querySelectorAll('.al-row')),groups=[].slice.call(document.querySelectorAll('.al-group')),
+        mc=[].slice.call(document.querySelectorAll('#all .chip')),aq=document.getElementById('all-search'),
+        cnt=document.getElementById('all-count'),emp=document.getElementById('all-empty'),m='all';
+    function go(){{
+      var t=aq.value.trim().toLowerCase(),n=0;
+      rows.forEach(function(r){{var ok=(m==='all'||r.parentNode.parentNode.dataset.month===m)&&(!t||r.dataset.t.indexOf(t)>-1);r.hidden=!ok;if(ok)n++}});
+      groups.forEach(function(g){{g.hidden=!g.querySelector('.al-row:not([hidden])')}});
+      cnt.textContent='Showing '+n+' of '+rows.length+' episodes';emp.hidden=n>0;
+    }}
+    mc.forEach(function(b){{b.addEventListener('click',function(){{m=b.dataset.m;mc.forEach(function(x){{x.setAttribute('aria-pressed',x===b)}});go()}})}});
+    aq.addEventListener('input',go);
+    [].slice.call(document.querySelectorAll('.al-p')).forEach(function(a){{a.addEventListener('click',function(e){{e.preventDefault();if(window.__podPlay)window.__podPlay(a.dataset.id)}})}});
   }})();
   </script>"""
     return page("podcast", "People of EU, the podcast",
