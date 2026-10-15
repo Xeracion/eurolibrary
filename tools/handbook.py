@@ -220,6 +220,9 @@ ol.num{{margin:2mm 0 3mm 5mm}}ol.num li{{margin-bottom:2mm;padding-left:1mm}}
 .anx{{break-before:page}}
 .anx ul{{list-style:none;margin-top:3mm;columns:2;column-gap:8mm}}
 .anx li{{padding:1.4mm 0;border-bottom:1px dotted #cfc4ba;font-size:9.2pt;break-inside:avoid}}.anx li b{{color:var(--orange);display:inline-block;width:9mm}}
+.ccb{{position:absolute;left:18mm;right:18mm;bottom:36mm;display:flex;gap:5mm;align-items:center;font-size:7.4pt;color:#ece3da;line-height:1.45}}
+.ccb img{{position:static!important;height:8.4mm!important;width:auto;flex:none;filter:none!important}}
+.back .ccb{{left:20mm;right:20mm;bottom:34mm;max-width:150mm}}
 /* back cover */
 .back{{page:cover;break-before:page;position:relative;width:210mm;height:297mm;color:#fff;overflow:hidden;
   background:linear-gradient(180deg,rgba(27,25,23,.45),rgba(27,25,23,.93)),url('{PH}greece-hillside.jpg') 50% 50%/cover}}
@@ -237,7 +240,8 @@ def build(pages):
 <div class="t"><p class="k">Methodological handbook</p><h1>The Human Library handbook</h1>
 <p>How to organise a Human Library with young people and local communities: the method, the preparation, the day itself and ready to use materials.</p>
 <span class="badge">First edition, 2026</span></div>
-<div class="f"><img src="file://{ROOT}/assets/eu-funded.png" alt="Funded by the European Union"><span>Eurolibrary, an Erasmus+ project. {EU_DISCLAIMER}</span></div></section>""")
+<div class="f"><img src="file://{ROOT}/assets/eu-funded.png" alt="Funded by the European Union"><span>Eurolibrary, an Erasmus+ project. {EU_DISCLAIMER}</span></div>
+<div class="ccb"><img src="file://{ROOT}/assets/cc-by.svg" alt="CC BY 4.0"><span>Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).</span></div></section>""")
     parts.append(f"""<section class="about"><h1 style="margin-top:0">About Eurolibrary and this handbook</h1>{C.ABOUT}
 <div class="credits"><img src="file://{ROOT}/assets/eu-funded-blue.png" alt="Funded by the European Union"><p>{EU_DISCLAIMER}</p>
 <p>The annex templates are meant to be copied and adapted. Please credit Eurolibrary when you reuse them. eurolibrary.eu</p></div></section>""")
@@ -256,6 +260,7 @@ def build(pages):
     parts.append(f'<section class="annex"><p class="eyebrow">Annex R</p><h1>Resources and glossary</h1>{C.RESOURCES}</section>')
     parts.append(f"""<section class="back"><img class="logo" src="file://{ROOT}/assets/logo-ink.svg" alt="Eurolibrary">
 <div class="t"><h2>Open your own library.</h2><p>Every story you make room for is a stereotype fewer. Visit eurolibrary.eu to see the five mobilities, listen to People of EU and follow the project.</p></div>
+<div class="ccb"><img src="file://{ROOT}/assets/cc-by.svg" alt="CC BY 4.0"><span>This handbook is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0). You may share and adapt it, even commercially, as long as you credit Eurolibrary and indicate any changes. creativecommons.org/licenses/by/4.0</span></div>
 <div class="f"><img src="file://{ROOT}/assets/eu-funded.png" alt="Funded by the European Union"><span>{EU_DISCLAIMER}</span></div></section>""")
     return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>The Human Library handbook</title><style>{CSS}</style></head><body>{"".join(parts)}</body></html>'
 
