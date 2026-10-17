@@ -1683,7 +1683,24 @@ def contact_section():
   </section>"""
 
 
-PAGES = {"index.html": home, "about.html": about, "human-library.html": human_library, "podcast.html": podcast}
+def not_found():
+    body = """  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="display h1">This book is not on our shelves.</h1>
+      <p class="lead">The page you are looking for does not exist or has moved. Try the home page, the five chapters or the Human Library guide.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="index.html">Back to the home page</a>
+        <a class="btn btn-ghost" href="human-library.html">Human Library guide</a>
+      </div>
+    </div>
+  </div>"""
+    doc = page("home", "Page not found", "This page does not exist. Go back to the Eurolibrary home page.", body)
+    doc = re.sub(r'<link rel="canonical"[^>]*>\n|<meta property="og:url"[^>]*>\n', "", doc)
+    return doc.replace("<title>", '<meta name="robots" content="noindex">\n<title>', 1)
+
+
+PAGES = {"index.html": home, "404.html": not_found, "about.html": about, "human-library.html": human_library, "podcast.html": podcast}
 for _k in CHAPTERS:
     PAGES[CH[_k]["file"]] = (lambda k=_k: chapter(k))
 
@@ -1760,6 +1777,9 @@ def main():
         else:
             doc = doc.replace("<!--CSS-->", '<link rel="stylesheet" href="css/site.css">')
             doc = clean_links(doc)
+            if name == "404.html":
+                # se sirve en cualquier ruta: los recursos relativos deben ser absolutos
+                doc = re.sub(r'(href|src)="(?!https?:|/|#|mailto:|tel:|data:)([^"]+)"', r'\1="/\2"', doc)
         with open(os.path.join(out, name), "w", encoding="utf8") as f:
             f.write(doc)
         print("escrito", os.path.join(out, name))
