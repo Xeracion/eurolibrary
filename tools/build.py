@@ -408,7 +408,11 @@ def head(title, desc, key):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<!--CSS-->"""
+<!--CSS-->
+<script>
+  window.va = window.va || function () {{ (window.vaq = window.vaq || []).push(arguments); }};
+</script>
+<script defer src="https://cdn.vercel-insights.com/v1/script.debug.js"></script>"""
 
 
 def nav(active):
